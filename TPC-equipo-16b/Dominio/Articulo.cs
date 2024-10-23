@@ -13,7 +13,7 @@ namespace Dominio
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
 
-        //public int ID { get; set; }
+        public int Id { get; set; }
     }
 }
 //Para la primera etapa del TPC se solicita:

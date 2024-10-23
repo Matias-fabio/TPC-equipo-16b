@@ -8,5 +8,6 @@ namespace Dominio
 {
     internal class Carrito
     {
+        List<Articulo> listaArticulos;
     }
 }
