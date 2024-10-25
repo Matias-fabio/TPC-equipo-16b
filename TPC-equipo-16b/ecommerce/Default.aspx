@@ -12,7 +12,6 @@
         <h1>default page</h1>
         <asp:Repeater runat="server" ID="repCardArt">
             <ItemTemplate>
-
                 <div class="card" style="width: 20rem;">
                     <div class="card-body">
                         <h5 class="card-title"><%#Eval("Nombre") %></h5>
@@ -20,8 +19,6 @@
                         <h3 class="card-text"><%#Eval("Precio") %></h3>
                     </div>
                 </div>
-
-
             </ItemTemplate>
         </asp:Repeater>
     </div>
