@@ -55,26 +55,33 @@
 
 /*categorias destacadas*/
 .card-categorias {
-    display: flex ;
-    flex-direction: row ;
-    align-items:center;
-    justify-content:center;
-    height: auto ;
-    width: 100% ;
-    gap:24px;
-    margin:20px 26px;
-
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    gap: 24px;
+    margin: 20px 26px;
+   
 }
 .card-content {
     width: 12rem;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    
 }
+    .card-content:hover {
+/*        box-shadow: 17px 0px 31px 8px rgba(0,0,0,0.1);*/
+        transform: scale(1.1);
+        transition: .4s;
+    }
 
 .card-link {
     text-decoration: none; 
     color: inherit;
+
 }
 
 /*.card-img {

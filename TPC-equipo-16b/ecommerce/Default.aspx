@@ -53,13 +53,13 @@
     <div class="container-md">
         <div class="row">
             <h3>CATEGORÍAS DESTACADAS </h3>
-            <div class="container-md">
-                <div class="card-categorias">
+            <div class="container-md" >
+                <div class="card-categorias ">
                     <asp:Repeater runat="server" ID="repCategorias" OnItemCommand="repCategorias_ItemCommand">
                         <ItemTemplate>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card card-content" style="cursor: pointer; aspect-ratio: 1/1;">
+                            <div class="row ">
+                                <div class="col" >
+                                    <div class="card card-content" style="cursor: pointer; aspect-ratio: 1/1; border: none;">
                                         <asp:LinkButton runat="server" CommandName="Select" CommandArgument='<%#Eval("Id") %>' CssClass="card-link">
                                            <img src="<%#Eval("UrlImagen") %>" class="card-img" alt="..." " >
                                         </asp:LinkButton>
