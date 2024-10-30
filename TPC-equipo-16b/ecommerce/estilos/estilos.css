@@ -20,7 +20,9 @@
     background-color: white !important;
 }
 
-
+.carousel-container{
+    margin-bottom:40px;
+}
 .carousel-inner {
     width: 1340px;
     height: 500px;
@@ -38,7 +40,7 @@
 
 .nav-link {
     color: #333333cb;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
 }
 
@@ -46,12 +48,40 @@
     color: #66666660 !important;
 }
 
-    .nav-link:hover {
-        color: mediumpurple;
-    }
+.nav-link:hover {
+    color: #eed23e;
+}
 
 
-/*main styles*/
+/*categorias destacadas*/
+.card-categorias {
+    display: flex ;
+    flex-direction: row ;
+    align-items:center;
+    justify-content:center;
+    height: auto ;
+    width: 100% ;
+    gap:24px;
+    margin:20px 26px;
+
+}
+.card-content {
+    width: 12rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-link {
+    text-decoration: none; 
+    color: inherit;
+}
+
+/*.card-img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+}*/
 
 
 

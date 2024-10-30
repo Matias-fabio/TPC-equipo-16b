@@ -9,7 +9,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="">
+    <div class="carousel-container">
         <div class="row row-cols-auto">
             <div class="col ">
                 <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -51,7 +51,28 @@
 
 
     <div class="container-md">
-        <h1>default page</h1>
+        <div class="row">
+            <h3>CATEGORÍAS DESTACADAS </h3>
+            <div class="container-md">
+                <div class="card-categorias">
+                    <asp:Repeater runat="server" ID="repCategorias" OnItemCommand="repCategorias_ItemCommand">
+                        <ItemTemplate>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card card-content" style="cursor: pointer; aspect-ratio: 1/1;">
+                                        <asp:LinkButton runat="server" CommandName="Select" CommandArgument='<%#Eval("Id") %>' CssClass="card-link">
+                                           <img src="<%#Eval("UrlImagen") %>" class="card-img" alt="..." " >
+                                        </asp:LinkButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-md">
         <asp:Repeater runat="server" ID="repCardArt">
             <ItemTemplate>
                 <div class="card" style="width: 20rem;">
