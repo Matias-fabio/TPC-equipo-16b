@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Carrito.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="DetalleCategoria.aspx" />
     <Content Include="estilos\estilos.css" />
     <Content Include="Global.asax" />
     <Content Include="Js\js.js" />
@@ -88,6 +89,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleCategoria.aspx.cs">
+      <DependentUpon>DetalleCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleCategoria.aspx.designer.cs">
+      <DependentUpon>DetalleCategoria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
