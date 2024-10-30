@@ -1,3 +1,57 @@
 ﻿
-body {
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+/*header styles*/
+
+.nav-size {
+    height: 90px;
+}
+
+
+
+/*carousel styles*/
+.carousel-indicators button {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    background-color: white !important;
+}
+
+
+.carousel-inner {
+    width: 1340px;
+    height: 500px;
+    border-radius: 20px;
+}
+
+.carousel-item img {
+    object-fit: cover;
+}
+
+/*navigation styles*/
+.nav-container {
+    margin: 16px;
+}
+
+.nav-link {
+    color: #333333cb;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.disabled {
+    color: #66666660 !important;
+}
+
+    .nav-link:hover {
+        color: mediumpurple;
+    }
+
+
+/*main styles*/
+
+
+
