@@ -18,5 +18,24 @@ namespace ecommerce
         {
             Response.Redirect("Carrito.aspx");
         }
+
+        protected void btnIngresar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void lbCategorias_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DetalleCategoria.aspx");
+        }
+
+        protected void lbCarrito_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Carrito.aspx");
+        }
+        protected void lbLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }
