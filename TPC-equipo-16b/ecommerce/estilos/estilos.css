@@ -5,13 +5,18 @@
     padding: 0;
 }
 /*header styles*/
+body {
+    background: #f6f6f6;
+}
 
 .nav-size {
     height: 90px;
 }
+
 .search i {
     color: #ffc756;
 }
+
 .nav-link i {
     color: #ffc756;
 }
@@ -19,7 +24,6 @@
 .nav-header:hover {
     background: #7777776e;
     border-radius: 8px;
-    
 }
 /*carousel styles*/
 .carousel-indicators button {
@@ -29,9 +33,10 @@
     background-color: white !important;
 }
 
-.carousel-container{
-    margin-bottom:40px;
+.carousel-container {
+    margin-bottom: 40px;
 }
+
 .carousel-inner {
     width: 1340px;
     height: 500px;
@@ -51,7 +56,6 @@
     color: #333333cb;
     font-size: 18px;
     font-weight: 600;
-    
 }
 
 .disabled {
@@ -73,26 +77,24 @@
     width: 100%;
     gap: 24px;
     margin: 20px 26px;
-   
 }
+
 .card-content {
     width: 12rem;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    
 }
+
     .card-content:hover {
-       
         box-shadow: 0px 9px 7px 0px rgba(0,0,0,0.1);
         transform: scale(1.1);
         transition: .4s;
     }
 
 .card-link {
-    text-decoration: none; 
+    text-decoration: none;
     color: inherit;
-
 }
 
 /*banner arma pc*/
@@ -108,38 +110,69 @@
     margin: 50px 0;
 }
 
-
-
 /*footer*/
+
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    background: #ffffff;
+    width: 100%;
+    height:auto;
+}
+
+.banner-item {
+    flex: 1;
+}
+
+    .banner-item:not(:last-child) {
+        border-right: 1px solid #ddd;
+    }
+
+.icon {
+    font-size: 2rem;
+    color: #ffc756;
+    margin-bottom: 10px;
+}
+.icon-redes {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 10px;
+}
+.icon-redes:hover {
+    color: #ffc756;
+}
+
 footer {
-    height:500px;
+    height: 600px;
     width: auto;
-    background: #f5f5f5;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    padding-top:60px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .details-container {
+}
 
+.info-cont {
+    margin-top: 20px;
+    padding: 20px;
+    gap: 40px;
+    display: flex;
+    justify-content: space-between;
 }
-.info-cont{
-  
-    margin-top:20px;    
-    padding:20px;
-    gap:40px;
-    display:flex;
-    justify-content:space-between;
-   
-}
+
 .text-uppercase {
     color: #ffc756 !important;
 }
+
 .links-content li a {
     text-decoration: none;
     color: black;
 }
+
     .links-content li a:hover {
         text-decoration: underline;
         color: #ffc756;

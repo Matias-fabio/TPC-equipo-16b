@@ -63,6 +63,10 @@
             </asp:ContentPlaceHolder>
         </main>
 
+
+
+
+
         <footer class="text-center text-lg-start mt-auto footer-container">
             <div class="container p-4 details-container">
                 <div class="row info-cont">
@@ -78,10 +82,13 @@
                         <h5 class="text-uppercase">Enlaces Rápidos</h5>
                         <ul class="list-unstyled mb-0">
                             <li><a href="#" class="">Inicio</a></li>
-                            <li><asp:LinkButton ID="lbCategorias" runat="server" CssClass="" OnClick="lbCategorias_Click">Productos</asp:LinkButton></li>
+                            <li>
+                                <asp:LinkButton ID="lbCategorias" runat="server" CssClass="" OnClick="lbCategorias_Click">Productos</asp:LinkButton></li>
                             <li><a href="#" class="">Ofertas</a></li>
-                            <li><asp:LinkButton ID="lbCarrito" runat="server" CssClass="" OnClick="lbCarrito_Click">Carrito</asp:LinkButton></li>
-                            <li><asp:LinkButton ID="lbLogin" runat="server" CssClass="" OnClick="lbLogin_Click">Iniciar Sesión</asp:LinkButton></li>
+                            <li>
+                                <asp:LinkButton ID="lbCarrito" runat="server" CssClass="" OnClick="lbCarrito_Click">Carrito</asp:LinkButton></li>
+                            <li>
+                                <asp:LinkButton ID="lbLogin" runat="server" CssClass="" OnClick="lbLogin_Click">Iniciar Sesión</asp:LinkButton></li>
                         </ul>
                     </div>
                     <div class="col-lg-4 links-content">
@@ -95,11 +102,34 @@
                     </div>
                 </div>
             </div>
+            <section class="banner row">
+                <div class="banner-item col-md-4">
+                    <div class="icon">
+                        <i class="fa-regular fa-credit-card"></i>
+                    </div>
+                    <h5>Hasta 12 cuotas</h5>
+                    <p>Abona con tarjetas de crédito</p>
+                </div>
+                <div class="banner-item col-md-4">
+                    <div class="icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h5>Envíos a todo el país</h5>
+                    <p>A través de OCA y Correo Argentino</p>
+                </div>
+                <div class="banner-item col-md-4">
+                    <div class="icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h5>Garantía oficial</h5>
+                    <p>De hasta 36 meses en todos los productos</p>
+                </div>
+            </section>
             <div class="container p-4 pb-0">
                 <section class="mb-4 text-center">
-                    <a class="btn  btn-floating m-1" href="https://www.facebook.com/" role="button"><i class="fa-brands fa-facebook"></i></a>
-                    <a class="btn  btn-floating m-1" href="https://www.instagram.com/" role="button"><i class="fa-brands fa-instagram"></i></a>
-                    <a class="btn  btn-floating m-1" href="https://x.com/?lang=en" role="button"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a class="btn  btn-floating m-1 icon-redes" href="https://www.facebook.com/" role="button"><i class="fa-brands fa-facebook"></i></a>
+                    <a class="btn  btn-floating m-1 icon-redes" href="https://www.instagram.com/" role="button"><i class="fa-brands fa-instagram"></i></a>
+                    <a class="btn  btn-floating m-1 icon-redes" href="https://x.com/?lang=en" role="button"><i class="fa-brands fa-x-twitter"></i></a>
                 </section>
             </div>
             <div class="text-center p-3">

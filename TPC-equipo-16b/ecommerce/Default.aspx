@@ -73,23 +73,35 @@
 
     <section class=" container-banner">
         <div class="row row-cols-auto">
-            <div class="col">             
+            <div class="col">
             </div>
         </div>
     </section>
-    <div class="container-md">
-        <asp:Repeater runat="server" ID="repCardArt">
-            <ItemTemplate>
-                <div class="card" style="width: 20rem;">
-                    <div class="card-body">
-                        <h5 class="card-title"><%#Eval("Nombre") %></h5>
-                        <p class="card-text"><%#Eval("Descripcion") %></p>
-                        <h3 class="card-text"><%#Eval("Precio") %></h3>
-                    </div>
+
+    <section class="container-md">
+        <div class="row">
+            <h3>PRODUCTOS EN TENDENCIA </h3>
+            <div class="container-md">
+                <div class="card-categorias ">
+                    <asp:Repeater runat="server" ID="repCardArt">
+                        <ItemTemplate>
+                            <div class="card" style="width: 20rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%#Eval("Nombre") %></h5>
+                                    <p class="card-text"><%#Eval("Descripcion") %></p>
+                                    <h3 class="card-text"><%#Eval("Precio") %></h3>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </div>
-            </ItemTemplate>
-        </asp:Repeater>
-    </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
 </asp:Content>
 
 
