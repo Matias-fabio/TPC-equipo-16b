@@ -13,5 +13,10 @@ namespace ecommerce
         {
 
         }
+
+        protected void btnCarrito_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Carrito.aspx");
+        }
     }
 }

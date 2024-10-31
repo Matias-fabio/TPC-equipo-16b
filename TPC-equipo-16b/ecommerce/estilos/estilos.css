@@ -9,9 +9,20 @@
 .nav-size {
     height: 90px;
 }
+.search i {
+    color: #eed23e;
+ 
+}
+.nav-link i {
+    color: #eed23e;
+    
+}
 
-
-
+.nav-header:hover {
+    background: #7777776e;
+    border-radius: 8px;
+    
+}
 /*carousel styles*/
 .carousel-indicators button {
     width: 12px !important;
@@ -42,6 +53,7 @@
     color: #333333cb;
     font-size: 18px;
     font-weight: 600;
+    
 }
 
 .disabled {

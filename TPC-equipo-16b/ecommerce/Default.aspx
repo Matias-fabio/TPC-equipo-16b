@@ -48,8 +48,6 @@
         </div>
     </section>
 
-
-
     <section class="container-md">
         <div class="row">
             <h3>CATEGORÍAS DESTACADAS </h3>
@@ -75,9 +73,7 @@
 
     <section class=" container-banner">
         <div class="row row-cols-auto">
-            <div class="col">
-
-                
+            <div class="col">             
             </div>
         </div>
     </section>

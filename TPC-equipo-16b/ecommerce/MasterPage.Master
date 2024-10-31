@@ -18,17 +18,24 @@
             <div class="container-md">
                 <a class="navbar-brand text-white" href="Default.aspx">E-commerce</a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="input-group ms-3" style="max-width: 400px; width: 100%;">
-                        <input type="text" class="form-control" placeholder="Buscar productos..." aria-label="Search">
-                        <button class="btn btn-light" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <div class="input-group ms-3 search " style="max-width: 400px; width: 100%;">
+                        <asp:TextBox ID="txtBuscarProductos" runat="server" CssClass="form-control d-inline-flex focus-ring focus-ring-warning " Placeholder="Buscar productos..." aria-label="Search"></asp:TextBox>
+                        <asp:LinkButton ID="btnBuscar" runat="server" CssClass="btn btn-light">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </asp:LinkButton>
                     </div>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="#">Ingresar</a>
+                            <asp:LinkButton ID="btnIngresar" runat="server" CssClass="nav-link nav-header text-white active" >
+                                <i class="fa-regular fa-user"></i> Ingresar
+                            </asp:LinkButton>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="Carrito.aspx"><i class="fa-solid fa-cart-shopping"></i></a>
+                            <asp:LinkButton ID="btnCarrito" runat="server" CssClass="nav-link nav-header" OnClick="btnCarrito_Click" >
+                                 <i class="fa-solid fa-cart-shopping"></i>
+                            </asp:LinkButton>
                         </li>
+
                     </ul>
                 </div>
             </div>
