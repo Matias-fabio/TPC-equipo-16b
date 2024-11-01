@@ -81,15 +81,17 @@
     <section class="container-md">
         <div class="row">
             <h3>PRODUCTOS EN TENDENCIA </h3>
-            <div class="container-md">
+            <div class="container-md ">
                 <div class="card-categorias ">
                     <asp:Repeater runat="server" ID="repCardArt">
                         <ItemTemplate>
-                            <div class="card" style="width: 20rem;">
+                            <div class="card  ratio ratio-1x1 " style="width: 20rem;">
                                 <div class="card-body">
+                                    <!--<p class="card-text"><%//#Eval("Categoria") %></p>-->  
                                     <h5 class="card-title"><%#Eval("Nombre") %></h5>
                                     <p class="card-text"><%#Eval("Descripcion") %></p>
-                                    <h3 class="card-text"><%#Eval("Precio") %></h3>
+                                    <h5 class="card-text">$ <%#Eval("Precio") %></h5>
+
                                 </div>
                             </div>
                         </ItemTemplate>
@@ -98,9 +100,6 @@
             </div>
         </div>
     </section>
-
-
-
 
 </asp:Content>
 

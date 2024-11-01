@@ -12,8 +12,10 @@ namespace Dominio
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
-
         public int Id { get; set; }
+        public string categoria { get; set; }
+        public string Marca { get; set; }
+
     }
 }
 //Para la primera etapa del TPC se solicita:
