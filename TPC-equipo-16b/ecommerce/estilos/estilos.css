@@ -84,11 +84,12 @@ body {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    transition: box-shadow 0.3s ease;
 }
 
     .card-content:hover {
-        box-shadow: 0px 9px 7px 0px rgba(0,0,0,0.1);
-        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: scale(1.05);
         transition: .4s;
     }
 
@@ -119,7 +120,7 @@ body {
     text-align: center;
     background: #ffffff;
     width: 100%;
-    height:auto;
+    height: auto;
 }
 
 .banner-item {
@@ -135,14 +136,16 @@ body {
     color: #ffc756;
     margin-bottom: 10px;
 }
+
 .icon-redes {
     font-size: 2rem;
     color: black;
     margin-bottom: 10px;
 }
-.icon-redes:hover {
-    color: #ffc756;
-}
+
+    .icon-redes:hover {
+        color: #ffc756;
+    }
 
 footer {
     height: 600px;
@@ -181,3 +184,46 @@ footer {
 .links-content {
     width: 300px;
 }
+
+/*card productos tendencias*/
+.card-tendencias {
+    width: 24rem; 
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-bottom: 1rem; 
+    transition: box-shadow 0.3s ease; 
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem; 
+    background: #ffffff;
+}
+
+    .card-tendencias:hover {
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-tendencias .img-fluid {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        padding-left: 1rem;
+      
+
+    }
+
+    .card-tendencias .card-body {
+        padding: 1rem;
+        flex: 1;
+        
+    }
+
+    .card-tendencias .card-text {
+        margin-bottom: 0.5rem;
+    }
+
+    .card-tendencias h5.card-title,
+    .card-tendencias h5.card-text {
+        margin-bottom: 0.75rem;
+
+    }

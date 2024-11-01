@@ -78,29 +78,35 @@
         </div>
     </section>
 
-    <section class="container-md">
-        <div class="row">
-            <h3>PRODUCTOS EN TENDENCIA </h3>
-            <div class="container-md ">
-                <div class="card-categorias ">
-                    <asp:Repeater runat="server" ID="repCardArt">
-                        <ItemTemplate>
-                            <div class="card  ratio ratio-1x1 " style="width: 20rem;">
-                                <div class="card-body">
-                                    <!--<p class="card-text"><%//#Eval("Categoria") %></p>-->  
-                                    <h5 class="card-title"><%#Eval("Nombre") %></h5>
-                                    <p class="card-text"><%#Eval("Descripcion") %></p>
-                                    <h5 class="card-text">$ <%#Eval("Precio") %></h5>
-
+    <section class="container-md container-tendencias">
+        <div class="row grid gap-4">
+            <h3>PRODUCTOS EN TENDENCIA</h3>
+            <div class="d-flex flex-wrap justify-content-center">
+                <asp:Repeater runat="server" ID="repCardArt">
+                    <ItemTemplate>
+                        <div class="card-tendencias mb-3 mx-2">
+                            <div class="row g-0 align-items-center" style="flex: 1;">
+                                <div class="col-5">
+                                    <img src="..."
+                                        class="img-fluid rounded-start"
+                                        alt="...">
+                                </div>
+                                <div class="col-7">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <small class="text-body-secondary opacity-50"><%#Eval("Categoria") %></small>
+                                        </p>
+                                        <h5 class="card-title"><%#Eval("Nombre") %></h5>
+                                        <h5 class="card-text">$ <%#Eval("Precio") %></h5>
+                                    </div>
                                 </div>
                             </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </div>
     </section>
-
 </asp:Content>
 
 
