@@ -17,7 +17,7 @@ namespace Negocio
             try
             {
 
-                datos.setearConsulta("SELECT TOP 6 A.Id, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, A.Precio, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca FROM ARTICULOS A JOIN CATEGORIAS C ON A.IdCategoria = C.Id JOIN MARCAS M ON A.IdMarca = M.Id;");
+                datos.setearConsulta("SELECT TOP 6 A.Id, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, A.Precio, A.ImgUrl AS Img, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca FROM ARTICULOS A JOIN CATEGORIAS C ON A.IdCategoria = C.Id JOIN MARCAS M ON A.IdMarca = M.Id;");
 
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
@@ -29,6 +29,7 @@ namespace Negocio
                     aux.Descripcion = (string)datos.Lector["DescripcionArticulo"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.categoria = (string)datos.Lector["NombreCategoria"];
+                    aux.UrlImagen = (string)datos.Lector["Img"];
                     lista.Add(aux);
                 }
 

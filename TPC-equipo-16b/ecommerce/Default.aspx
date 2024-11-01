@@ -87,7 +87,7 @@
                         <div class="card-tendencias mb-3 mx-2">
                             <div class="row g-0 align-items-center" style="flex: 1;">
                                 <div class="col-5">
-                                    <img src="..."
+                                    <img src="<%#Eval("UrlImagen") %>"
                                         class="img-fluid rounded-start"
                                         alt="...">
                                 </div>

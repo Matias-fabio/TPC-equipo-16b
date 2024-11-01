@@ -16,6 +16,8 @@ namespace Dominio
         public string categoria { get; set; }
         public string Marca { get; set; }
 
+        public string UrlImagen { get; set; }
+
     }
 }
 //Para la primera etapa del TPC se solicita:
