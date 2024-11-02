@@ -33,6 +33,7 @@ namespace ecommerce
             if (e.CommandName == "Select")
             {
                 string categoriaID = e.CommandArgument.ToString();
+                // Redirigir a la página DetalleCategoria con el parametro categoriaID en la URL
                 Response.Redirect($"DetalleCategoria.aspx?categoriaID={categoriaID}");
             }
         }
