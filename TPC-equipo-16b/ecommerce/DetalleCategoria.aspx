@@ -4,11 +4,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-   
+
 
     <section class="container-md container-tendencias">
         <div class="row grid gap-4">
-             <h3><%#Eval("categoria") %></h3>
+            <h3><asp:Label runat="server" CssClass="text-body-secondary opacity-75" ID="lblCategoria" Text=" "></asp:Label></h3>
             <div class="d-flex flex-wrap justify-content-center">
                 <asp:Repeater runat="server" ID="repCardArt">
                     <ItemTemplate>

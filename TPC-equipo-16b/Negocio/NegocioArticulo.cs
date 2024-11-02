@@ -18,7 +18,7 @@ namespace Negocio
             {
 
                 datos.setearConsulta("SELECT TOP 6 A.Id, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, A.Precio, A.ImgUrl AS Img, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca FROM ARTICULOS A JOIN CATEGORIAS C ON A.IdCategoria = C.Id JOIN MARCAS M ON A.IdMarca = M.Id;");
-
+                //pasar consulta a stored procedure
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -51,7 +51,7 @@ namespace Negocio
                                   "JOIN CATEGORIAS C ON A.IdCategoria = C.Id " +
                                   "JOIN MARCAS M ON A.IdMarca = M.Id " +
                                   "WHERE A.IdCategoria = @CategoriaID";
-
+                //pasar consulta a stored procedure
                 datos.setearConsulta(consulta);
                 datos.setearParametro("@CategoriaID", categoriaID);
                 datos.ejecutarLectura();

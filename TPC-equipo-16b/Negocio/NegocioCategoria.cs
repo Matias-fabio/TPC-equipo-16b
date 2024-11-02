@@ -39,6 +39,35 @@ namespace Negocio
             }
         }
 
- 
+        public Categoria ObtenerCategoriaPorId(string id)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            Categoria categoria = null;
+
+            try
+            {
+                accesoDatos.setearConsulta("SELECT * FROM CATEGORIAS WHERE Id = @id");
+                accesoDatos.setearParametro("@id", id);
+                accesoDatos.ejecutarLectura();
+
+                if (accesoDatos.Lector.Read())
+                {
+                    categoria = new Categoria();
+                    categoria.Id = (int)accesoDatos.Lector["Id"];
+                    categoria.Nombre = (string)accesoDatos.Lector["Nombre"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex; // Manejar el error de forma adecuada en producción
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+
+            return categoria;
+        }
+
     }
 }
