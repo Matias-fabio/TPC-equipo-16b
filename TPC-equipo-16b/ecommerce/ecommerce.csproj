@@ -74,6 +74,8 @@
     <Content Include="Global.asax" />
     <Content Include="Js\js.js" />
     <Content Include="Login.aspx" />
+    <Content Include="Registro1.aspx" />
+    <Content Include="RestablecerContraseña.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +118,20 @@
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registro1.aspx.cs">
+      <DependentUpon>Registro1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registro1.aspx.designer.cs">
+      <DependentUpon>Registro1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RestablecerContraseña.aspx.cs">
+      <DependentUpon>RestablecerContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RestablecerContraseña.aspx.designer.cs">
+      <DependentUpon>RestablecerContraseña.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.Master" />

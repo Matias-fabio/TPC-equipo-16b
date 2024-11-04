@@ -12,27 +12,28 @@
             <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Text="" type="email"
-                    title="Ingrese una dirección de correo válida" required="required"></asp:TextBox>
-
+                    title="Ingrese una dirección de correo válida"></asp:TextBox>
             </div>
         </div>
         <div class="col-md-4">
             <label for="validationCustomUsername" class="form-label">Contraseña</label>
             <div class="input-group has-validation">
-
                 <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text="" type="password"></asp:TextBox>
-                
             </div>
         </div>
+
         <div class="col-12" id="BotonIngresar">
-            <asp:Button ID="btnForm" runat="server" CssClass="btn btn-primary"  Text="Aceptar" />
+            <asp:Button id="BotonAceptar" runat="server" CssClass="btn btn-primary btn-lg"  Text="Aceptar" />
         </div>
-        <div class="col-12" id="BotonIngresarConstraseña">
-            <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" Text="Olvide mi contraseña" />
+        <div class="row BotonesLogin">
+            <div class="col-6" id="BotonIngresarConstraseña">
+                <asp:Button id="BotonContraseña" runat="server" CssClass="btn btn-primary btn-lg" Text="Olvide mi contraseña" />
+            </div>
+            <div class="col-6" id="NuevoUsuario">
+                <asp:Button id="botonNuevoUsuario" runat="server" CssClass="btn btn-primary btn-lg" Text="Nuevo usuario" />
+            </div>
         </div>
-        <div class="col-12" id="NuevoUsuario">
-            <asp:Button ID="Button2" runat="server" CssClass="btn btn-primary" Text="Nuevo usuario" />
-        </div>
+        
     </div>
        
    
