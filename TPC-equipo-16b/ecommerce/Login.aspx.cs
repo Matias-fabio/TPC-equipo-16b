@@ -13,5 +13,20 @@ namespace ecommerce
 		{
 
 		}
-	}
+
+        protected void BotonAceptar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void BotonContraseña_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RestablecerContraseña.aspx");
+        }
+
+        protected void botonNuevoUsuario_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Registro.aspx");
+        }
+    }
 }

@@ -13,5 +13,10 @@ namespace ecommerce
         {
 
         }
+
+        protected void BotonAceptar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }

@@ -21,16 +21,22 @@
                 <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text="" type="password"></asp:TextBox>
             </div>
         </div>
-
         <div class="col-12" id="BotonIngresar">
-            <asp:Button id="BotonAceptar" runat="server" CssClass="btn btn-primary btn-lg"  Text="Aceptar" />
+            <asp:LinkButton ID="BotonAceptar" runat="server" CssClass="btn btn-primary btn-lg" onClick="BotonAceptar_Click">
+                <h5>Aceptar</h5> 
+            </asp:LinkButton>
         </div>
+       
         <div class="row BotonesLogin">
             <div class="col-6" id="BotonIngresarConstraseña">
-                <asp:Button id="BotonContraseña" runat="server" CssClass="btn btn-primary btn-lg" Text="Olvide mi contraseña" />
+                <asp:LinkButton ID="BotonContraseña" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonContraseña_Click">
+                    <h5>Olvide mi contraseña</h5> 
+                </asp:LinkButton>
             </div>
             <div class="col-6" id="NuevoUsuario">
-                <asp:Button id="botonNuevoUsuario" runat="server" CssClass="btn btn-primary btn-lg" Text="Nuevo usuario" />
+                <asp:LinkButton ID="botonNuevoUsuario" runat="server" CssClass="btn btn-primary btn-lg" OnClick="botonNuevoUsuario_Click">
+                    <h5>Nuevo usuario</h5> 
+                </asp:LinkButton>
             </div>
         </div>
         

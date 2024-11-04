@@ -239,19 +239,32 @@ footer {
 #BotonIngresar {
     display: flex;
     align-items: center;
-    justify-content:center;
-}
-
-#BotonIngresar {
+    justify-content: center;
     padding-top: 100px;
     padding-bottom: 100px;
 }
+
+
 
 .BotonesLogin{
     padding-bottom:100px;
 }
 
 #NuevoUsuario {
-    padding-left: 45%;
+    padding-left: 31%;
 }
 
+/*NuevoUsuario*/
+
+.NuevoUsuario{
+    padding-top:120px;
+    padding-bottom:180px;
+}
+
+#BotonIngresarNuevoUsuario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
