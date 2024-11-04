@@ -7,6 +7,7 @@ USE TPC_Ecommerce
 GO
 
 
+
 CREATE TABLE ARTICULOS(
     ID INT IDENTITY(1,1) NOT NULL,
     Codigo VARCHAR(10) NULL,
@@ -25,6 +26,8 @@ GO
 TRUNCATE TABLE ARTICULOS
 GO
 
+select * from ARTICULOS
+
 INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio, ImgUrl) VALUES
 ('PROD001', 'Teclado Mecánico Redragon K568', 'Teclado mecánico con iluminación RGB, switches cherry red', 1, 5, 7999.99, 'https://redragon.es/content/uploads/2021/04/DARK-AVENGER.png'),
 ('PROD002', 'Mouse Gamer Logitech G203', 'Mouse óptico gamer con 16000 DPI y retroiluminación', 1, 5, 4999.99, 'https://resource.logitechg.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g203/g203-gallery-1.png?v=1'),
@@ -38,7 +41,7 @@ INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio
 ('PROD010', 'Procesador Intel i7 12700K', 'Procesador Intel Core i7 12700K de 12 núcleos y 20 hilos', 1, 12, 179999.99, 'https://example.com/img/intel-i7.jpg'),
 ('PROD011', 'SSD 1TB NVMe', 'Unidad SSD NVMe de 1TB con velocidad de lectura de 3500MB/s', 1, 11, 24999.99, 'https://example.com/img/ssd-1tb.jpg'),
 ('PROD012', 'Placa Madre Z690', 'Placa madre para Intel Z690 con soporte para DDR5', 1, 6, 37999.99, 'https://example.com/img/placa-madre-z690.jpg'),
-('PROD013', 'Cooler Líquido 240mm', 'Sistema de refrigeración líquida con radiador de 240mm', 1, 13, 19999.99, 'https://example.com/img/cooler-liquido.jpg'),
+('PROD013', 'Cooler Líquido 240mm', 'Sistema de refrigeración líquida con radiador de 240mm', 1, 11, 19999.99, 'https://example.com/img/cooler-liquido.jpg'),
 ('PROD014', 'Auriculares Gamer 7.1', 'Auriculares gaming con sonido 7.1 envolvente y micrófono', 1, 5, 9999.99, 'https://example.com/img/auriculares-gamer.jpg'),
 ('PROD015', 'Silla Gamer', 'Silla ergonómica para gaming con reposabrazos ajustable', 1, 4, 24999.99, 'https://example.com/img/silla-gamer.jpg'),
 ('PROD016', 'Router WiFi 6', 'Router de última generación con tecnología WiFi 6', 1, 5, 11999.99, 'https://example.com/img/router-wifi6.jpg'),
@@ -46,8 +49,7 @@ INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio
 ('PROD018', 'Micrófono Condensador USB', 'Micrófono condensador USB ideal para streaming y grabaciones', 1, 5, 10999.99, 'https://example.com/img/microfono-usb.jpg'),
 ('PROD019', 'Base Refrigerante para Laptop', 'Base refrigerante para laptops de hasta 17 pulgadas con iluminación LED', 1, 13, 4999.99, 'https://example.com/img/base-refrigerante.jpg'),
 ('PROD020', 'Kit de Limpieza para PC', 'Kit de limpieza profesional para PC y componentes electrónicos', 1, 5, 2499.99, 'https://example.com/img/kit-limpieza.jpg');
-
-
+GO
 
 CREATE TABLE CATEGORIAS(
     Id int IDENTITY(1,1) NOT NULL,
@@ -61,9 +63,7 @@ GO
 
 
 
--- ALTER TABLE CATEGORIAS
--- ADD UrlImagen VARCHAR(300) NULL;
--- GO
+
 
 TRUNCATE TABLE CATEGORIAS
 GO
@@ -82,11 +82,8 @@ VALUES
 ('Gabinetes', 'Carcasas para ensamblar componentes de computadoras', ''),
 ('Almacenamiento Externo', 'Discos duros y SSD externos para almacenamiento adicional', '')
 GO
--- INSERT INTO CATEGORIAS (Nombre, Descripcion, UrlImagen)
--- VALUES 
--- ('Procesadores', 'procesadores logicos para mejor funcionamiento', ''),
--- ('Refigeracion', 'para mantener fresca la pc', '')
--- GO
+
+
 
 CREATE TABLE MARCAS(
     Id int IDENTITY(1,1) NOT NULL, 
@@ -101,6 +98,20 @@ VALUES
 ('AMD','')
 GO
 
+create table Usuarios(
+    ID int IDENTITY(1,1) NOT NULL,
+    IDAdmin INT NOT NULL,
+    Nombre VARCHAR(50) NULL,
+    Apellido VARCHAR(50) NULL,
+    Direcion VARCHAR(100) NULL,
+    Telefono VARCHAR(20) NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Contraseña VARCHAR(20) NOT NULL,
+)
+
+
+
+SELECT  * from CATEGORIAS 
 
 -- CONSULTAS
 -- MARCAS

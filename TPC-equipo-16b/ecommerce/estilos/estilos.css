@@ -229,3 +229,18 @@ footer {
     .card-tendencias h5.card-text {
         margin-bottom: 0.75rem;
     }
+
+
+
+
+/*Lagin*/
+
+
+#BotonIngresar{
+    align-items: center;
+    display:flex;
+}
+#BotonIngresar {
+    padding-top: 100px;
+    padding-bottom: 200px;
+}
