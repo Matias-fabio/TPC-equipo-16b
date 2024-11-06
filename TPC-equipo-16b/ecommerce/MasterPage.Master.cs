@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -41,6 +42,17 @@ namespace ecommerce
         protected void lbProductos_Click(object sender, EventArgs e)
         {
             Response.Redirect("DetalleCategoria.aspx");
+        }
+
+        protected void lbNotebooks_Click(object sender, EventArgs e)
+        {
+            string categoriaId = "1";
+            Response.Redirect("DetalleCategoria.aspx?categoriaID=" + categoriaId);
+        }
+
+        protected void lbAyuda_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Ayuda.aspx");
         }
     }
 }
