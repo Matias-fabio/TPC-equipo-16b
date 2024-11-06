@@ -43,13 +43,13 @@
         <nav class="nav-container">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link active " aria-current="page" href="#">Productos</a>
+                    <asp:LinkButton ID="lbProductos" runat="server" CssClass="nav-link active" OnClick="lbProductos_Click" >Productos</asp:LinkButton>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">Notebooks</a>
+                    <asp:LinkButton ID="lbNotebooks" runat="server" CssClass="nav-link">Notebooks</asp:LinkButton>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">Ayuda</a>
+                    <asp:LinkButton ID="lbAyuda" runat="server" CssClass="nav-link" >Ayuda</asp:LinkButton>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" aria-disabled="true">Arma tu PC</a>

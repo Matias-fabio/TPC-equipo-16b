@@ -2,9 +2,11 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.DynamicData;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -17,46 +19,47 @@ namespace ecommerce
         public Categoria categoria { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
-                
                 string categoriaID = Request.QueryString["categoriaID"];
+                NegocioArticulo negocioArticulo = new NegocioArticulo();
+                NegocioCategoria negocioCategoria = new NegocioCategoria();
 
-                if (!string.IsNullOrEmpty(categoriaID))
+                try
                 {
-                    NegocioArticulo negocio = new NegocioArticulo();
-
-                    NegocioCategoria negocioCategoria = new NegocioCategoria();
-                    try
+                    if (string.IsNullOrEmpty(categoriaID))
                     {
-                        //trae el nombre de la categoria y lo seatea en la lbl
+                        ListaArticulos = negocioArticulo.listarArticulos();
+                        lblCategoria.Text = "Todos los productos";
+                        Session["ListaArticulos"] = ListaArticulos;
+                    }
+                    else
+                    {
                         categoria = negocioCategoria.ObtenerCategoriaPorId(categoriaID);
-
-                        if (categoria != null)
-                        {    
-                            lblCategoria.Text = categoria.Nombre;
-                            
-                        }
-
-                        //lista todos los articulos correspondientes al id de la categoria
-                        ListaArticulos = negocio.CargarProductosPorCategoria(categoriaID);
-
-                        if (ListaArticulos != null && ListaArticulos.Count > 0)
-                        {
-                            repCardArt.DataSource = ListaArticulos;
-                            repCardArt.DataBind();
-                        }
-
-
-
-
+                        lblCategoria.Text = categoria.Nombre;
+                        ListaArticulos = negocioArticulo.CargarProductosPorCategoria(categoriaID); 
+                        Session["ListaArticulos"] = ListaArticulos;
                     }
-                    catch (Exception ex)
+                    if (ListaArticulos != null && ListaArticulos.Count > 0)
                     {
-                        // Manejar los errores
-
-                        throw ex;
+                        repCardArt.DataSource = ListaArticulos;
+                        repCardArt.DataBind();
                     }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                ListaArticulos = Session["ListaArticulos"] as List<Articulo>;
+
+                if (ListaArticulos != null)
+                {
+                    repCardArt.DataSource = ListaArticulos;
+                    repCardArt.DataBind();
                 }
             }
         }

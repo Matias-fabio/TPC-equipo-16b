@@ -23,7 +23,7 @@ namespace ecommerce
 
 
             NegocioArticulo negocio = new NegocioArticulo();
-            ListaArticulos = negocio.listarArticulos();
+            ListaArticulos = negocio.listarArticulosDestacados();
             repCardArt.DataSource = ListaArticulos;
             repCardArt.DataBind();
         }

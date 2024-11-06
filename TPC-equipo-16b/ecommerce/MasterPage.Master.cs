@@ -37,5 +37,10 @@ namespace ecommerce
         {
             Response.Redirect("Login.aspx");
         }
+
+        protected void lbProductos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DetalleCategoria.aspx");
+        }
     }
 }
