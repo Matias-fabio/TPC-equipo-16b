@@ -9,11 +9,28 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    internal class NegocioUsuario
+    public class NegocioUsuario
     {
         public void IngresarUsuario(Cliente Cli)
         {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.setearConsulta("SELECT ID, Email, Contraseña FROM Usuarios WHERE email = @Email AND contraseña = @Contraseña");
+                Datos.setearParametro("@Email", Cli.Email);
+                Datos.setearParametro("@Contraseña",Cli.Contraseña);
 
+                Datos.ejecutarAccion();
+
+
+            }
+            catch (Exception Ex){
+                throw Ex;
+            }
+            finally
+            {
+                Datos.cerrarConexion();
+            }
         }
         public void AgregarUsuario(Cliente Cli)
         {

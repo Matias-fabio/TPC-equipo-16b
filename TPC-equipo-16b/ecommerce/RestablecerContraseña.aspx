@@ -3,4 +3,34 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Restablecer Contraseña</h1>
+
+    <div class="col-md-4">
+        <label for="validationCustomUsername" class="form-label">Email</label>
+        <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend">@</span>
+            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Text="" type="email"
+                title="Ingrese una dirección de correo válida"></asp:TextBox>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <label for="validationCustomUsername" class="form-label">Contraseña</label>
+        <div class="input-group has-validation">
+            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text="" type="password"></asp:TextBox>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <label for="validationCustomUsername" class="form-label">Confirme contraseña</label>
+        <div class="input-group has-validation">
+            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" Text="" type="password"></asp:TextBox>
+        </div>
+    </div>
+
+    <div class="col-12" id="BotonIngresar">
+        <asp:LinkButton ID="BotonAceptar" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonAceptar_Click">
+          <h5>Aceptar</h5> 
+        </asp:LinkButton>
+    </div>
+
 </asp:Content>
