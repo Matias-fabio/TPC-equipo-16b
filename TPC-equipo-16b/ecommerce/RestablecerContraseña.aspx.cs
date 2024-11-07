@@ -22,7 +22,7 @@ namespace ecommerce
             string confirmarContraseña = txtContraseña2.Text;
 
             NegocioUsuario negocioUsuario = new NegocioUsuario();
-
+           
             try
             {
                 if (nuevaContraseña != confirmarContraseña)
@@ -35,6 +35,7 @@ namespace ecommerce
                 {
                     lblMensaje.Text = "La contraseña se ha restablecido correctamente.";
                     lblMensaje.Visible = true; lblError.Visible = false;
+                    Response.Redirect("Login.aspx");
                 }
                 else
                 {
@@ -45,10 +46,15 @@ namespace ecommerce
             }
             catch (Exception ex)
             {
-                lblError.Text = "Error al restablecer la contraseña: " + ex.Message; 
+                lblError.Text = "Error al restablecer la contraseña"; 
                 lblError.Visible = true; lblMensaje.Visible = false;
             }
 
+            
+        }
+
+        protected void VolverLogin_Click(object sender, EventArgs e)
+        {
             Response.Redirect("Login.aspx");
         }
     }

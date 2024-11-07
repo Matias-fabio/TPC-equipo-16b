@@ -28,12 +28,19 @@
     </div>
     <asp:Label ID="lblMensaje" runat="server" CssClass="text-success" Visible="False"></asp:Label>
     <asp:Label ID="lblError" runat="server" CssClass="text-danger" Visible="False"></asp:Label>
-    <div class="col-12" id="BotonIngresar">
+    <div class="col-12" id="BotonIngresarLoginRecuperarContraseña">
         <div class="d-grid gap-2 col-8 mx-auto">
             <asp:LinkButton ID="BotonAceptar" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonAceptar_Click">
-          <h5>Aceptar</h5> 
+                <h5>Aceptar</h5> 
             </asp:LinkButton>
         </div>
     </div>
+    <div class="col-12" id="BotonVolver">
+    <div class="d-grid gap-2 col-8 mx-auto">
+        <asp:LinkButton ID="VolverLogin" runat="server" CssClass="btn btn-primary btn-lg" Onclick="VolverLogin_Click">
+            <h5>Volver</h5> 
+        </asp:LinkButton>
+    </div>
+</div>
 
 </asp:Content>
