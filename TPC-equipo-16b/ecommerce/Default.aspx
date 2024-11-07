@@ -84,22 +84,24 @@
             <div class="d-flex flex-wrap justify-content-center">
                 <asp:Repeater runat="server" ID="repCardArt">
                     <ItemTemplate>
-                        <div class="card-tendencias mb-3 mx-2">
-                            <div class="row g-0 align-items-center" style="flex: 1;">
-                                <div class="col-5">
-                                    <img src="<%#Eval("UrlImagen") %>" class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-7">
-                                    <div class="card-body">
-                                        <p class="card-text">
+                        <asp:LinkButton runat="server" CommandName="VerDetalles" ID="VerDetalles" CommandArgument='<%# Eval("ID") %>' OnCommand="VerDetalles_Command" CssClass="link-button text-decoration-none text-body-secondary  ">
+                            <div class="card-tendencias mb-3 mx-2">
+                                <div class="row g-0 align-items-center" style="flex: 1;">
+                                    <div class="col-5">
+                                        <img src="<%#Eval("UrlImagen") %>" class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card-body">
+                                            <p class="card-text">
                                             <small class="text-body-secondary opacity-50"><%#Eval("Categoria") %></small>
-                                        </p>
-                                        <h5 class="card-title"><%#Eval("Nombre") %></h5>
-                                        <h5 class="card-text">$ <%#Eval("Precio") %></h5>
+                                            </p>
+                                            <h5 class="card-title fs-6"><%#Eval("Nombre") %></h5>
+                                            <h6 class="card-text fs-5">$ <%#Eval("Precio") %></h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </asp:LinkButton>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>

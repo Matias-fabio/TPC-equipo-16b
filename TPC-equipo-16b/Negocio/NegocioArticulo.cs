@@ -1,6 +1,7 @@
 ﻿using Datos;
 using Dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -114,5 +115,43 @@ namespace Negocio
             return lista;
         }
 
+        public Articulo CargarProducto(int idProducto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Articulo aux = new Articulo();
+            try
+            {
+                string consulta = @"
+                SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.ImgUrl, C.Nombre AS Categoria, M.Nombre AS NombreMarca
+                FROM ARTICULOS A
+                INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id
+                INNER JOIN MARCAS M ON A.IdMarca = M.Id
+                WHERE A.Id = @IdProducto";
+
+                //pasar consulta a stored procedure
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@IdProducto", idProducto);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+                    aux.categoria = (string)datos.Lector["Categoria"];
+                    aux.UrlImagen = (string)datos.Lector["ImgUrl"];
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
