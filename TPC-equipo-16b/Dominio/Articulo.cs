@@ -20,7 +20,3 @@ namespace Dominio
 
     }
 }
-//Para la primera etapa del TPC se solicita:
-//-la arquitectura de clases (modelo de dominio),
-//- armado de pantallas de la aplicación (SIN funcionalidad, sólo ventanas, algunos controles y navegación) y
-//- lectura desde base de datos de al menos UNA entidad.
