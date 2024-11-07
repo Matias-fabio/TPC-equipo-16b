@@ -19,8 +19,8 @@ namespace Datos
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server = localhost; database=TPC_Ecommerce; User Id=SA;Password=Panqueque16;");
-            //conexion = new SqlConnection("server=.\\SQLEXPRESS; database=TPC_Ecommerce; integrated security=true");
+            //conexion = new SqlConnection("server = localhost; database=TPC_Ecommerce; User Id=SA;Password=Panqueque16;");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=TPC_Ecommerce; integrated security=true");
             comando = new SqlCommand();
         }
 
@@ -75,6 +75,11 @@ namespace Datos
             if (lector != null)
                 lector.Close();
             conexion.Close();
+        }
+
+        public void limpiarParametros()
+        {
+            comando.Parameters.Clear(); 
         }
 
     }

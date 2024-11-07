@@ -67,9 +67,10 @@ namespace Negocio
                     {
                         throw new Exception("El email ya está registrado.");
                     }
+                    Datos.cerrarConexion();
+                    Datos.limpiarParametros();
 
-
-                        Datos.setearConsulta("INSERT INTO Usuarios (IDAdmin, Nombre, Apellido, Direcion, Telefono, Email, Contraseña) VALUES " +
+                    Datos.setearConsulta("INSERT INTO Usuarios (IDAdmin, Nombre, Apellido, Direcion, Telefono, Email, Contraseña) VALUES " +
                         "(@IDAdmin, @Nombre, @Apellido, @Direccion, @Telefono, @Email, @Contraseña)");
                     Datos.setearParametro("@IDAdmin", 1);
                     Datos.setearParametro("@Nombre", cliente.Nombre);
@@ -79,7 +80,7 @@ namespace Negocio
                     Datos.setearParametro("@Email", cliente.Email);
                     Datos.setearParametro("@Contraseña", cliente.Contraseña);
 
-                    Datos.ejecutarLectura();
+                    Datos.ejecutarAccion();
                 }
             }
             catch (Exception Ex)
