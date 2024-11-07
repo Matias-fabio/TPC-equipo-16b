@@ -31,6 +31,7 @@ namespace ecommerce
 
                 if(cliente != null)
                 {
+
                     Response.Redirect("Default.aspx");
                 }
                 else

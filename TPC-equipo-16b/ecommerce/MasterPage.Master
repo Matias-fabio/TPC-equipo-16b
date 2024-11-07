@@ -27,7 +27,9 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <asp:LinkButton ID="btnIngresar" runat="server" CssClass="nav-link nav-header text-white active" OnClick="btnIngresar_Click">
-                                <i class="fa-regular fa-user"></i> Ingresar
+                                <i class="fa-regular fa-user">
+                                    <asp:Label ID="Ingresarusuario" runat="server" Text="Ingresar"></asp:Label> 
+                                </i>
                             </asp:LinkButton>
                         </li>
                         <li class="nav-item">

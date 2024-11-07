@@ -53,9 +53,43 @@ namespace Negocio
         }
 
 
-        public void AgregarUsuario(Cliente Cli)
+        public void AgregarUsuario(Cliente cliente)
         {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                {
+                    // Verificar si el email ya existe
+                    Datos.setearConsulta("SELECT COUNT(*) FROM Usuarios WHERE Email = @Email"); 
+                    Datos.setearParametro("@Email", cliente.Email); 
+                    Datos.ejecutarLectura();
+                    if (Datos.Lector.Read() && Convert.ToInt32(Datos.Lector[0]) > 0)
+                    {
+                        throw new Exception("El email ya está registrado.");
+                    }
 
+
+                        Datos.setearConsulta("INSERT INTO Usuarios (IDAdmin, Nombre, Apellido, Direcion, Telefono, Email, Contraseña) VALUES " +
+                        "(@IDAdmin, @Nombre, @Apellido, @Direccion, @Telefono, @Email, @Contraseña)");
+                    Datos.setearParametro("@IDAdmin", 1);
+                    Datos.setearParametro("@Nombre", cliente.Nombre);
+                    Datos.setearParametro("@Apellido", cliente.Apellido);
+                    Datos.setearParametro("@Direccion", cliente.Direccion);
+                    Datos.setearParametro("@Telefono", cliente.Telefono);
+                    Datos.setearParametro("@Email", cliente.Email);
+                    Datos.setearParametro("@Contraseña", cliente.Contraseña);
+
+                    Datos.ejecutarLectura();
+                }
+            }
+            catch (Exception Ex)
+            {
+                throw new Exception("Error al intentar agregar usuario: " + Ex.Message);
+            }
+            finally
+            {
+                Datos.cerrarConexion();
+            }
         }
         public void RestablecerContraseñaUsuario(Cliente Cli)
         {
