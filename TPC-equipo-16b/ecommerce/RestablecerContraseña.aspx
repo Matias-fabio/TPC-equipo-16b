@@ -16,21 +16,24 @@
     <div class="col-md-4">
         <label for="validationCustomUsername" class="form-label">Contraseña</label>
         <div class="input-group has-validation">
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text="" type="password"></asp:TextBox>
+            <asp:TextBox ID="txtContraseña1" runat="server" CssClass="form-control" Text="" type="password"></asp:TextBox>
         </div>
     </div>
 
     <div class="col-md-4">
         <label for="validationCustomUsername" class="form-label">Confirme contraseña</label>
         <div class="input-group has-validation">
-            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" Text="" type="password"></asp:TextBox>
+            <asp:TextBox ID="txtContraseña2" runat="server" CssClass="form-control" Text="" type="password"></asp:TextBox>
         </div>
     </div>
-
+    <asp:Label ID="lblMensaje" runat="server" CssClass="text-success" Visible="False"></asp:Label>
+    <asp:Label ID="lblError" runat="server" CssClass="text-danger" Visible="False"></asp:Label>
     <div class="col-12" id="BotonIngresar">
-        <asp:LinkButton ID="BotonAceptar" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonAceptar_Click">
+        <div class="d-grid gap-2 col-8 mx-auto">
+            <asp:LinkButton ID="BotonAceptar" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonAceptar_Click">
           <h5>Aceptar</h5> 
-        </asp:LinkButton>
+            </asp:LinkButton>
+        </div>
     </div>
 
 </asp:Content>

@@ -91,10 +91,41 @@ namespace Negocio
                 Datos.cerrarConexion();
             }
         }
-        public void RestablecerContraseñaUsuario(Cliente Cli)
+        public bool RestablecerContraseña(string email, string newPassword)
         {
+            AccesoDatos Datos = new AccesoDatos();
 
+            try
+            {
+                // Verificar si el email existe
+                Datos.setearConsulta("SELECT COUNT(*) FROM Usuarios WHERE Email = @Email");
+                Datos.setearParametro("@Email", email);
+                Datos.ejecutarLectura();
+
+                if (Datos.Lector.Read() && Convert.ToInt32(Datos.Lector[0]) > 0)
+                {
+                    // Si el email existe, actualizar la contraseña
+                    Datos.setearConsulta("UPDATE Usuarios SET Contraseña = @NuevaContraseña WHERE Email = @Email");
+                    Datos.setearParametro("@NuevaContraseña", newPassword);
+                    Datos.setearParametro("@Email", email);
+                    Datos.ejecutarAccion();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception Ex)
+            {
+                throw new Exception("Error al restablecer la contraseña: " + Ex.Message);
+            }
+            finally
+            {
+                Datos.cerrarConexion();
+            }
         }
+
 
     }
 }
