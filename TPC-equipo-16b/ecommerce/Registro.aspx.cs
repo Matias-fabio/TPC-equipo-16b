@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -16,7 +19,26 @@ namespace ecommerce
 
         protected void BotonAceptar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Login.aspx");
+            NegocioUsuario negocioUsuario = new NegocioUsuario();
+            Cliente cliente = new Cliente();
+            cliente.Nombre = txtNombre.Text;
+            cliente.Apellido = txtApellido.Text;
+            cliente.Direccion= txtDireccion.Text;
+            cliente.Telefono= txtTelefono.Text;
+            cliente.Email= txtEmail.Text;
+            cliente.Contraseña= txtContraseña.Text;
+            try
+            {
+                negocioUsuario.AgregarUsuario(cliente);
+
+                Response.Redirect("Login.aspx");
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message; 
+                lblError.Visible = true;
+            }
+            
         }
     }
 }

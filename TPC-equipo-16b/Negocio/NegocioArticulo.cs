@@ -115,6 +115,7 @@ namespace Negocio
             return lista;
         }
 
+<<<<<<< HEAD
         public Articulo CargarProducto(int idProducto)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -153,5 +154,54 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+=======
+        public List<Articulo> BuscarArticulos(string searchTerm)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos Datos = new AccesoDatos();
+
+            try
+            {
+                Datos.setearConsulta(@"
+                    SELECT a.ID, a.Codigo, a.Nombre, a.Descripcion, a.Precio, a.ImgUrl, 
+                    m.Nombre AS Marca, c.Nombre AS Categoria
+                    FROM ARTICULOS a
+                    INNER JOIN MARCAS m ON a.IdMarca = m.Id
+                    INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id
+                    WHERE a.Nombre LIKE @searchTerm OR a.Descripcion LIKE @searchTerm");
+
+                Datos.setearParametro("@searchTerm", "%" + searchTerm + "%");
+                Datos.ejecutarLectura();
+
+                while (Datos.Lector.Read())
+                {
+                    Articulo art = new Articulo();
+                    art.Id = (int)Datos.Lector["ID"];
+                    art.Codigo = (string)Datos.Lector["Codigo"];
+                    art.Nombre = (string)Datos.Lector["Nombre"];
+                    art.Descripcion = (string)Datos.Lector["Descripcion"];
+                    art.Precio = (decimal)Datos.Lector["Precio"];
+                    art.Marca = (string)Datos.Lector["Marca"];
+                    art.categoria = (string)Datos.Lector["Categoria"];
+                    art.UrlImagen = (string)Datos.Lector["ImgUrl"];
+                    lista.Add(art);
+                }
+            }
+            catch (Exception Ex)
+            {
+                throw new Exception("Error al buscar artículos: " + Ex.Message);
+            }
+            finally
+            {
+                Datos.cerrarConexion();
+            }
+
+            return lista;
+        }
+
+
+
+
+>>>>>>> 12924ed34af546e1cf73ce627430da4341b23490
     }
 }
