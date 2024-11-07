@@ -23,11 +23,13 @@
         </div>
         <asp:Label ID="labelError" runat="server" ForeColor="Red" Visible="False"></asp:Label>
         <div class="col-12" id="BotonIngresar">
-            <asp:LinkButton ID="BotonAceptar" runat="server" CssClass="btn btn-primary btn-lg" onClick="BotonAceptar_Click">
+            <div class="d-grid gap-2 col-8 mx-auto">
+                <asp:LinkButton ID="BotonAceptar" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonAceptar_Click">
                 <h5>Aceptar</h5> 
-            </asp:LinkButton>
+                </asp:LinkButton>
+            </div>
         </div>
-       
+
         <div class="row BotonesLogin">
             <div class="col-6" id="BotonIngresarConstraseña">
                 <asp:LinkButton ID="BotonContraseña" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonContraseña_Click">

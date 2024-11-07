@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-md-6">
             <label for="validationCustomUsername" class="form-label">Contraseña</label>
             <div class="input-group has-validation">
@@ -50,9 +50,11 @@
         <asp:Label ID="lblError" runat="server" CssClass="text-danger" Visible="False"></asp:Label>
 
         <div class="col-12" id="BotonIngresarNuevoUsuario">
-            <asp:LinkButton ID="BotonAceptar" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonAceptar_Click">
+            <div class="d-grid gap-2 col-8 mx-auto">
+                <asp:LinkButton ID="BotonAceptar" runat="server" class="btn btn-primary" type="button" OnClick="BotonAceptar_Click">
                 <h3>Aceptar!!</h3> 
-            </asp:LinkButton>
-</div>
+                </asp:LinkButton>
+            </div>
+        </div>
     </div>
 </asp:Content>
