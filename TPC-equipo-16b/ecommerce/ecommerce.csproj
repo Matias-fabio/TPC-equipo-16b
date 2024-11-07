@@ -75,9 +75,11 @@
     <Content Include="Global.asax" />
     <Content Include="Js\js.js" />
     <Content Include="Login.aspx" />
+    <Content Include="ProductoInfo.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="RestablecerContraseña.aspx" />
     <Content Include="Web.config" />
+    <Content Include="BuscarProducto.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ayuda.aspx.cs">
@@ -125,6 +127,13 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="ProductoInfo.aspx.cs">
+      <DependentUpon>ProductoInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductoInfo.aspx.designer.cs">
+      <DependentUpon>ProductoInfo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
@@ -139,6 +148,13 @@
     </Compile>
     <Compile Include="RestablecerContraseña.aspx.designer.cs">
       <DependentUpon>RestablecerContraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BuscarProducto.aspx.cs">
+      <DependentUpon>BuscarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BuscarProducto.aspx.designer.cs">
+      <DependentUpon>BuscarProducto.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
