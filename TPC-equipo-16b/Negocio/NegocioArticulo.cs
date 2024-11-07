@@ -115,7 +115,7 @@ namespace Negocio
             return lista;
         }
 
-<<<<<<< HEAD
+
         public Articulo CargarProducto(int idProducto)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -154,7 +154,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-=======
+
         public List<Articulo> BuscarArticulos(string searchTerm)
         {
             List<Articulo> lista = new List<Articulo>();
@@ -199,9 +199,5 @@ namespace Negocio
             return lista;
         }
 
-
-
-
->>>>>>> 12924ed34af546e1cf73ce627430da4341b23490
     }
 }
