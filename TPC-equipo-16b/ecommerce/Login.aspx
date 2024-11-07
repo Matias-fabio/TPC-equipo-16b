@@ -12,15 +12,16 @@
             <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Text="" type="email"
-                    title="Ingrese una dirección de correo válida"></asp:TextBox>
+                    title="Ingrese una dirección de correo válida" required="required"></asp:TextBox>
             </div>
         </div>
         <div class="col-md-4">
             <label for="validationCustomUsername" class="form-label">Contraseña</label>
             <div class="input-group has-validation">
-                <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text="" type="password"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" Text="" type="password"></asp:TextBox>
             </div>
         </div>
+        <asp:Label ID="labelError" runat="server" ForeColor="Red" Visible="False"></asp:Label>
         <div class="col-12" id="BotonIngresar">
             <asp:LinkButton ID="BotonAceptar" runat="server" CssClass="btn btn-primary btn-lg" onClick="BotonAceptar_Click">
                 <h5>Aceptar</h5> 
