@@ -12,6 +12,18 @@ namespace ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Carrito"] != null)
+            {
+                //Falta solucionar que actualize correctamente la cantidad en en lblCantidadCarrito
+                List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+                int cantidadProductos = carrito.Sum(item => item.Cantidad);
+                lblCantidadCarrito.Text = cantidadProductos.ToString();
+            }
+            else
+            {
+                lblCantidadCarrito.Text = "";
+            }
+
 
         }
 
