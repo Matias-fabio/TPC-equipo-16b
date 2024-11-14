@@ -36,3 +36,16 @@
     min-width: 40px;
     text-align: center;
 }
+
+.lbl-total{
+    display:flex;
+    justify-content: end;
+    padding-block: 10px;
+    
+}
+
+.btnFinalizar {
+    display: flex;
+    justify-content: end;
+    margin-block: 60px;
+}

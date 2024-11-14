@@ -40,7 +40,7 @@
                         </li>
                         <li class="nav-item">
                             <asp:LinkButton ID="BotonAdmin" runat="server" CssClass="nav-link nav-header" Onclick="BotonAdmin_Click">
-                                 <i class="fa-solid fa-cart-shopping"></i>
+                                 <i class="fa-solid fa-user-tie"></i>
                             </asp:LinkButton>
                         </li>
 

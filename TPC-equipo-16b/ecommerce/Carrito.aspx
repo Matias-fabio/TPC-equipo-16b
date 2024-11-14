@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="ecommerce.Carrito" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   
 </asp:Content>
 
 
@@ -40,8 +39,15 @@
     </asp:Repeater>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-             <h4>Total: <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label></h4>
+            <div class="lbl-total">
+                <h4>Total:
+                    <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label></h4>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-   
+    <asp:Label ID="lblVacio" runat="server" ForeColor="Red" Visible="False"></asp:Label>
+    <div class="btnFinalizar">
+        <asp:Button ID="btnFinalizar" Text="Finalizar Compra" runat="server" CssClass="btn btn-warning" OnClick="btnFinalizar_Click" />
+    </div>
+
 </asp:Content>

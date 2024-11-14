@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Ayuda.aspx" />
     <Content Include="Carrito.aspx" />
+    <Content Include="Checkout.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleCategoria.aspx" />
@@ -99,6 +100,13 @@
     </Compile>
     <Compile Include="Carrito.aspx.designer.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>

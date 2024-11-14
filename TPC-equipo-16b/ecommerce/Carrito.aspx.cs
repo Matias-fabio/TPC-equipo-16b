@@ -112,5 +112,28 @@ namespace ecommerce
 
             }
         }
+
+        protected void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            if (Session["Carrito"] != null)
+            {
+                List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+
+                if (carrito.Count > 0)
+                {
+                    Response.Redirect("Checkout.aspx");
+                }
+                else
+                {
+                    lblVacio.Text = "El carrito está vacío, cargue productos.";
+                    lblVacio.Visible = true;
+                }
+            }
+            else
+            {
+                lblVacio.Text = "El carrito está vacío, cargue productos.";
+                lblVacio.Visible = true;
+            }
+        }
     }
-}
+} 
