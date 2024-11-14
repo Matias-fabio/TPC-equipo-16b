@@ -23,8 +23,7 @@ namespace ecommerce
 
                     if (carrito != null && carrito.Count > 0)
                     {
-                        // Calcular el total 
-                        decimal total = carrito.Sum(item => item.Precio);
+                        decimal total = (decimal)Session["TotalCarrito"];
                         lblTotal.Text = total.ToString("C");
                     }
                 }
@@ -86,12 +85,12 @@ namespace ecommerce
             {
                 List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
 
-               
+
                 Articulo articuloAEliminar = carrito.FirstOrDefault(a => a.Id == idArticulo);
 
                 if (articuloAEliminar != null)
                 {
-                    
+
                     carrito.Remove(articuloAEliminar);
 
                     Session["Carrito"] = carrito;
@@ -136,4 +135,4 @@ namespace ecommerce
             }
         }
     }
-} 
+}

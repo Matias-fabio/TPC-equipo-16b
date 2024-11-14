@@ -35,7 +35,6 @@ namespace ecommerce
                 NegocioArticulo negocio = new NegocioArticulo();
                 Articulo producto = negocio.CargarProducto(int.Parse(idProducto));
 
-                // Verifica si ya existe un carrito en la sesión, si no, lo crea
                 List<Articulo> carrito;
                 if (Session["Carrito"] == null)
                 {
@@ -45,9 +44,23 @@ namespace ecommerce
                 {
                     carrito = (List<Articulo>)Session["Carrito"];
                 }
-                // Añade el producto al carrito
-                carrito.Add(producto);
+
+                Articulo articuloExistente = carrito.Find(a => a.Id == producto.Id);
+
+                if (articuloExistente != null)
+                    articuloExistente.Cantidad++;
+                
+                else
+                {
+
+                    producto.Cantidad = 1;
+                    carrito.Add(producto);
+                }
+    
                 Session["Carrito"] = carrito;
+
+                decimal total = carrito.Sum(item => item.Precio * item.Cantidad);
+                Session["TotalCarrito"] = total;
 
             }
         }
