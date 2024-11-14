@@ -78,6 +78,15 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.LinkButton btnCarrito;
 
         /// <summary>
+        /// Control BotonAdmin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton BotonAdmin;
+
+        /// <summary>
         /// Control lbProductos.
         /// </summary>
         /// <remarks>

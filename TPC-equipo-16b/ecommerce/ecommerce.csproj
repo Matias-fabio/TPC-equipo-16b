@@ -83,6 +83,7 @@
     <Content Include="RestablecerContraseña.aspx" />
     <Content Include="Web.config" />
     <Content Include="BuscarProducto.aspx" />
+    <Content Include="AdministradorInicio.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ayuda.aspx.cs">
@@ -172,6 +173,13 @@
     </Compile>
     <Compile Include="BuscarProducto.aspx.designer.cs">
       <DependentUpon>BuscarProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdministradorInicio.aspx.cs">
+      <DependentUpon>AdministradorInicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministradorInicio.aspx.designer.cs">
+      <DependentUpon>AdministradorInicio.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
