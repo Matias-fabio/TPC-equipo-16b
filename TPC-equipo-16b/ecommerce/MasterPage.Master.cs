@@ -60,5 +60,10 @@ namespace ecommerce
             string buscarproducto = txtBuscarProductos.Text;
             Response.Redirect("BuscarProducto.aspx?query="+buscarproducto);
         }
+
+        protected void BotonAdmin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdministradorInicio.aspx");
+        }
     }
 }
