@@ -1,39 +1,47 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="ecommerce.Carrito" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+   
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Carrito</h2>
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />
+
+    <h2>Productos</h2>
     <asp:Label Text="" runat="server" ID="lblMensaje" />
-    <asp:Repeater ID="rptCarrito" runat="server">
-        <HeaderTemplate>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                    </tr>
-                </thead>
-                <tbody>
-        </HeaderTemplate>
+    <asp:Repeater ID="rptCarrito" runat="server" OnItemCommand="rptCarrito_ItemCommand">
         <ItemTemplate>
-            <tr>
-                <td>
-                    <div class="col-5">
-                        <img src="<%#Eval("UrlImagen") %>" class="img-fluid rounded-start" alt="...">
-                    </div>
-                </td>
-                <td><%# Eval("Nombre") %></td>
-                <td><%# Eval("Precio", "{0:C}") %></td>
-            </tr>
+            <div class="carrito-item">
+                <div class="col-3">
+                    <img src="<%#Eval("UrlImagen") %>" alt="...">
+                </div>
+                <div class="producto-info">
+                    <p><strong><%# Eval("Nombre") %></strong></p>
+                </div>
+                <div class="precio">
+                    <p><%# Eval("Precio", "{0:C}") %></p>
+                </div>
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <div class="acciones">
+                            <asp:Button ID="btnRestar" runat="server" CommandName="RestarCantidad" CommandArgument='<%# Eval("Id") %>' Text="-" CssClass="btn btn-outline-secondary btn-cantidad" />
+                            <span class="cantidad"><%# Eval("Cantidad") %></span>
+                            <asp:Button ID="btnSumar" runat="server" CommandName="SumarCantidad" CommandArgument='<%# Eval("Id") %>' Text="+" CssClass="btn btn-outline-secondary btn-cantidad" />
+
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <div>
+                    <asp:Button ID="btnEliminar" runat="server" CommandName="EliminarProducto" CommandArgument='<%# Eval("Id") %>' OnClick="btnEliminar_Click" Text="Eliminar" CssClass="btn btn-warning" />
+                </div>
+            </div>
         </ItemTemplate>
-        <FooterTemplate>
-            </tbody>
-            </table>
-        </FooterTemplate>
     </asp:Repeater>
-    <h4>Total: <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label></h4>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+             <h4>Total: <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label></h4>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+   
 </asp:Content>

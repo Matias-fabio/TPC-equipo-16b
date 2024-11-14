@@ -20,6 +20,7 @@ namespace ecommerce
                     rptCarrito.DataSource = carrito;
                     rptCarrito.DataBind();
 
+
                     if (carrito != null && carrito.Count > 0)
                     {
                         // Calcular el total 
@@ -29,12 +30,87 @@ namespace ecommerce
                 }
                 else
                 {
-                    
                     lblMensaje.Text = "Tu carrito está vacío.";
                 }
             }
 
 
+        }
+
+        protected void rptCarrito_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+            int articuloId = Convert.ToInt32(e.CommandArgument);
+
+            Articulo articulo = carrito.Find(a => a.Id == articuloId);
+
+            if (articulo != null)
+            {
+                switch (e.CommandName)
+                {
+                    case "SumarCantidad":
+                        articulo.Cantidad++;
+                        break;
+                    case "RestarCantidad":
+                        if (articulo.Cantidad > 1)
+                        {
+                            articulo.Cantidad--;
+                        }
+                        break;
+                    case "EliminarArticulo":
+                        carrito.Remove(articulo);
+                        break;
+                }
+
+                Session["Carrito"] = carrito;
+                rptCarrito.DataSource = carrito;
+                rptCarrito.DataBind();
+
+                decimal total = carrito.Sum(item => item.Precio * item.Cantidad);
+                lblTotal.Text = total.ToString("C");
+
+                if (carrito.Count == 0)
+                {
+                    lblMensaje.Text = "Tu carrito está vacío.";
+                    lblTotal.Text = "$0.00";
+                }
+            }
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Button btnEliminar = (Button)sender;
+            int idArticulo = Convert.ToInt32(btnEliminar.CommandArgument);
+
+            if (Session["Carrito"] != null)
+            {
+                List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+
+               
+                Articulo articuloAEliminar = carrito.FirstOrDefault(a => a.Id == idArticulo);
+
+                if (articuloAEliminar != null)
+                {
+                    
+                    carrito.Remove(articuloAEliminar);
+
+                    Session["Carrito"] = carrito;
+                    rptCarrito.DataSource = carrito;
+                    rptCarrito.DataBind();
+
+                    if (carrito != null && carrito.Count > 0)
+                    {
+                        decimal total = carrito.Sum(item => item.Precio * item.Cantidad);
+                        lblTotal.Text = total.ToString("C");
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "Tu carrito está vacío.";
+                        lblTotal.Text = "$0.00";
+                    }
+                }
+
+            }
         }
     }
 }
