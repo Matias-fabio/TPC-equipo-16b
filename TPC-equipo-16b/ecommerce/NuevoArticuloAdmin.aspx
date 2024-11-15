@@ -33,18 +33,19 @@
                 <div class="input-group has-validation">
                     <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" Text="" TextMode="Number"></asp:TextBox>
                 </div>
-            <div class="col-md-12">
-                <label for="validationCustomUsername" class="form-label">Descripcion</label>
-                <div class="input-group has-validation">
-                    <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control"></asp:TextBox>
+                <div class="col-md-12">
+                    <label for="validationCustomUsername" class="form-label">Descripcion</label>
+                    <div class="input-group has-validation">
+                        <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control"></asp:TextBox>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12" id="BotonNuevoArticulo">
-            <div class="d-grid gap-2 col-8 mx-auto">
-                <asp:LinkButton ID="BotonAceptar" runat="server" class="btn btn-primary" type="button">
+            <div class="col-12" id="BotonNuevoArticulo">
+                <div class="d-grid gap-2 col-8 mx-auto">
+                    <asp:LinkButton ID="BotonAceptar" runat="server" class="btn btn-primary" type="button">
                     <h3>Aceptar</h3>
-                </asp:LinkButton>
+                    </asp:LinkButton>
+                </div>
             </div>
         </div>
     </div>
