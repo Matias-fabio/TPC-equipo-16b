@@ -4,6 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Registro</h1>
     <div class="NuevoUsuario">
+
         <div class="col-md-12">
             <label for="validationCustomUsername" class="form-label">Email</label>
             <div class="input-group has-validation">
@@ -12,6 +13,7 @@
                     title="Ingrese una dirección de correo válida"></asp:TextBox>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Nombre</label>
@@ -26,6 +28,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Direccion</label>
@@ -47,6 +50,7 @@
                 <asp:TextBox ID="txtContraseña" runat="server" CssClass="form-control" Text="" type="password"></asp:TextBox>
             </div>
         </div>
+
         <asp:Label ID="lblError" runat="server" CssClass="text-danger" Visible="False"></asp:Label>
 
         <div class="col-12" id="BotonIngresarNuevoUsuario">
@@ -56,5 +60,6 @@
                 </asp:LinkButton>
             </div>
         </div>
+
     </div>
 </asp:Content>

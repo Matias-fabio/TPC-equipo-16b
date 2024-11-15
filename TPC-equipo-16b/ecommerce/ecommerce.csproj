@@ -81,6 +81,7 @@
     <Content Include="Js\js.js" />
     <Content Include="Login.aspx" />
     <Content Include="MarcasOpciones.aspx" />
+    <Content Include="NuevoArticuloAdmin.aspx" />
     <Content Include="ProductoInfo.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="RestablecerContraseña.aspx" />
@@ -171,6 +172,13 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="NuevoArticuloAdmin.aspx.cs">
+      <DependentUpon>NuevoArticuloAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevoArticuloAdmin.aspx.designer.cs">
+      <DependentUpon>NuevoArticuloAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProductoInfo.aspx.cs">
       <DependentUpon>ProductoInfo.aspx</DependentUpon>

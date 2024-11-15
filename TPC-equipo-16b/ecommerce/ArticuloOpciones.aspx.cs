@@ -18,5 +18,10 @@ namespace ecommerce
         {
             Response.Redirect("AdministradorInicio.aspx");
         }
+
+        protected void botonArticulo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("NuevoArticuloAdmin.aspx");
+        }
     }
 }
