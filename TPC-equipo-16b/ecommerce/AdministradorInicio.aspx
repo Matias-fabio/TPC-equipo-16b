@@ -4,13 +4,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="TituloAdmin">Administrador</h1>
     <div class="d-grid gap-4 col-6 mx-auto" id="CajaOpcionesAdmin">
-        <button  class="btn btn-primary" type="button">Articulo</button>
-        <button  class="btn btn-primary" type="button">Marcas</button>
-        <button  class="btn btn-primary" type="button">Categoria</button>
-        <button  class="btn btn-primary" type="button">Historial ventas</button>
-        <button  class="btn btn-primary" type="button">Usuarios</button>
-        <button  class="btn btn-primary" type="button">Button</button>
-        <button  class="btn btn-primary" type="button">Button</button>
+        <asp:LinkButton ID="botonArticulo" runat="server" CssClass="btn btn-primary btn-lg" OnClick="botonArticulo_Click">
+            <h5>Articulo</h5> 
+        </asp:LinkButton>
+        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary btn-lg">
+             <h5>Categoria</h5> 
+        </asp:LinkButton>
+        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn btn-primary btn-lg">
+            <h5>Marcas</h5> 
+        </asp:LinkButton>
+        <asp:LinkButton ID="LinkButton3" runat="server" CssClass="btn btn-primary btn-lg">
+            <h5>Usuarios</h5> 
+        </asp:LinkButton>
+        <asp:LinkButton ID="LinkButton4" runat="server" CssClass="btn btn-primary btn-lg" >
+            <h5>Historial ventas</h5> 
+        </asp:LinkButton>
     </div>
 
    

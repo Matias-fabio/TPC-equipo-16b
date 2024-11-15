@@ -85,6 +85,7 @@
     <Content Include="Web.config" />
     <Content Include="BuscarProducto.aspx" />
     <Content Include="AdministradorInicio.aspx" />
+    <Content Include="ArticuloOpciones.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ayuda.aspx.cs">
@@ -188,6 +189,13 @@
     </Compile>
     <Compile Include="AdministradorInicio.aspx.designer.cs">
       <DependentUpon>AdministradorInicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ArticuloOpciones.aspx.cs">
+      <DependentUpon>ArticuloOpciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArticuloOpciones.aspx.designer.cs">
+      <DependentUpon>ArticuloOpciones.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
