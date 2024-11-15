@@ -1,8 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="NuevoArticuloAdmin.aspx.cs" Inherits="ecommerce.NuevoArticuloAdmin" %>
+
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Nuevo Articulo</h1>
     <div class="ContenedorArticuloNuevo">
         <div class="col-md-12">
@@ -29,13 +31,12 @@
             <div class="col-md-12">
                 <label for="validationCustomUsername" class="form-label">Precio</label>
                 <div class="input-group has-validation">
-                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text="" type="number"></asp:TextBox>
+                    <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" Text="" TextMode="Number"></asp:TextBox>
                 </div>
-            </div>
             <div class="col-md-12">
                 <label for="validationCustomUsername" class="form-label">Descripcion</label>
                 <div class="input-group has-validation">
-                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" Text="" type=""></asp:TextBox>
+                    <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -47,5 +48,7 @@
             </div>
         </div>
     </div>
-   
 </asp:Content>
+
+
+
