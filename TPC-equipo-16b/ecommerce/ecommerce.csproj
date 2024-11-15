@@ -76,10 +76,11 @@
     <Content Include="DetalleCategoria.aspx" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="estilos\carrito.css" />
+    <Content Include="estilos\detalleProducto.css" />
     <Content Include="estilos\estilos.css" />
     <Content Include="Global.asax" />
     <Content Include="HistorialVentasOpciones.aspx" />
-    <Content Include="Js\js.js" />
+    <Content Include="Js\Script.js" />
     <Content Include="Login.aspx" />
     <Content Include="MarcasOpciones.aspx" />
     <Content Include="NuevoArticuloAdmin.aspx" />

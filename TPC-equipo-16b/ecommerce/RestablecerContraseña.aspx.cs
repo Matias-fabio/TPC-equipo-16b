@@ -48,6 +48,7 @@ namespace ecommerce
             {
                 lblError.Text = "Error al restablecer la contraseña"; 
                 lblError.Visible = true; lblMensaje.Visible = false;
+                throw ex;
             }
 
             

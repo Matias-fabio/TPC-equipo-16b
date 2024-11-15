@@ -10,19 +10,24 @@ namespace ecommerce
 {
     public partial class DetalleProducto : System.Web.UI.Page
     {
-      
+
         protected void Page_Load(object sender, EventArgs e)
         {
             NegocioArticulo negocio = new NegocioArticulo();
             if (!IsPostBack)
             {
                 string idProducto = Request.QueryString["Id"];
+
                 if (!string.IsNullOrEmpty(idProducto))
                 {
                     List<Articulo> producto = new List<Articulo>();
                     producto.Add(negocio.CargarProducto(int.Parse(idProducto)));
                     rptProducto.DataSource = producto;
                     rptProducto.DataBind();
+
+                    List<string> imagenesProducto = negocio.ObtenerImagenes(int.Parse(idProducto));
+                    rptImagenes.DataSource = imagenesProducto;
+                    rptImagenes.DataBind();
                 }
             }
         }
@@ -49,14 +54,14 @@ namespace ecommerce
 
                 if (articuloExistente != null)
                     articuloExistente.Cantidad++;
-                
+
                 else
                 {
 
                     producto.Cantidad = 1;
                     carrito.Add(producto);
                 }
-    
+
                 Session["Carrito"] = carrito;
 
                 decimal total = carrito.Sum(item => item.Precio * item.Cantidad);

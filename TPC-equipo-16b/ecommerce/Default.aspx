@@ -107,9 +107,7 @@
                             </div>
                         </asp:LinkButton>
                     </ItemTemplate>
-
-                </asp:Repeater>
-                <asp:Label ID="lblTotal" runat="server" Text="Total: $0.00"></asp:Label>
+                </asp:Repeater> 
             </div>
         </div>
     </section>

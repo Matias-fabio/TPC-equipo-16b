@@ -22,6 +22,9 @@ CREATE TABLE ARTICULOS(
 )
 GO
 
+
+
+
 TRUNCATE TABLE ARTICULOS
 GO
 
@@ -172,3 +175,28 @@ select * from Usuarios
 
 TRUNCATE TABLE Usuarios
 GO
+
+
+CREATE TABLE IMAGENES_ARTICULO (
+    Id_Img INT ,
+    Id_art INT ,
+    UrlImagen NVARCHAR(255),
+    CONSTRAINT PK_IMAGENES_ARTICULO PRIMARY KEY(Id_img),
+    CONSTRAINT FK_ARTICULO_IMG FOREIGN KEY(Id_art) REFERENCES ARTICULOS(ID)
+);
+GO
+
+INSERT INTO IMAGENES_ARTICULO(Id_Img, Id_art, UrlImagen) VALUES
+(1,1,'https://redragon.es/content/uploads/2021/04/DARK-AVENGER.png'),
+(2,1,'https://acdn.mitiendanube.com/stores/001/574/495/products/redragon-teclado-k568-dark-avenger-21-d8488808cf855d4ad116276016279618-240-0.png'),
+(3,1,'https://acdn.mitiendanube.com/stores/001/375/073/products/1602166650_k568_hq_81-4ad250b79b19b6973d16559401896465-1024-1024.png'),
+(4,1,'https://b3669556.smushcdn.com/3669556/wp-content/uploads/2023/11/K568RGB-SP-RED-PNG-WEB-7.png?lossy=2&strip=1&webp=1')
+GO
+
+TRUNCATE TABLE IMAGENES_ARTICULO
+GO
+
+SELECT * FROM IMAGENES_ARTICULO
+GO
+
+SELECT UrlImagen FROM IMAGENES_ARTICULO WHERE Id_art = 1

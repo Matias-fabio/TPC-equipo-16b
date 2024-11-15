@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -197,6 +198,36 @@ namespace Negocio
             }
 
             return lista;
+        }
+
+        public List<string> ObtenerImagenes(int idArt)
+        {
+            List<string> imagenes = new List<string>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT UrlImagen FROM IMAGENES_ARTICULO WHERE Id_art = @idArticulo");
+                datos.setearParametro("@idArticulo", idArt);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    imagenes.Add((string)datos.Lector["UrlImagen"]);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return imagenes;
         }
 
 
