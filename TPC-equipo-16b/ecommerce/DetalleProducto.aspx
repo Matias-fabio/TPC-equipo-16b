@@ -9,7 +9,7 @@
         <asp:Repeater ID="rptProducto" runat="server">
             <ItemTemplate>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 ">
                         <img id="imgPrincipal" src='<%# Eval("UrlImagen") %>' class="img-fluid rounded-start" alt="Imagen del producto" />
                     </div>
                     <div class="col-md-6">

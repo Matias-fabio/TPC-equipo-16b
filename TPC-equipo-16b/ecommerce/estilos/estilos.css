@@ -197,6 +197,7 @@ footer {
 /*card productos tendencias*/
 .card-tendencias {
     width: 24rem;
+    height: 200px;
     display: flex;
     flex-direction: row;
     align-items: stretch;
