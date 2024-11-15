@@ -190,7 +190,27 @@ INSERT INTO IMAGENES_ARTICULO(Id_Img, Id_art, UrlImagen) VALUES
 (1,1,'https://redragon.es/content/uploads/2021/04/DARK-AVENGER.png'),
 (2,1,'https://acdn.mitiendanube.com/stores/001/574/495/products/redragon-teclado-k568-dark-avenger-21-d8488808cf855d4ad116276016279618-240-0.png'),
 (3,1,'https://acdn.mitiendanube.com/stores/001/375/073/products/1602166650_k568_hq_81-4ad250b79b19b6973d16559401896465-1024-1024.png'),
-(4,1,'https://b3669556.smushcdn.com/3669556/wp-content/uploads/2023/11/K568RGB-SP-RED-PNG-WEB-7.png?lossy=2&strip=1&webp=1')
+(4,1,'https://b3669556.smushcdn.com/3669556/wp-content/uploads/2023/11/K568RGB-SP-RED-PNG-WEB-7.png?lossy=2&strip=1&webp=1'),
+(5,2,'https://resource.logitechg.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g203/g203-gallery-1.png?v=1'),
+(6,2,'https://resource.logitechg.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g203/g203-gallery-5.png?v=1'),
+(7,2,'https://static-geektopia.com/storage/geek/products/logitech/g203-prodigy/g102-g203-2.png'),
+(8,2,'https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/120072605_01/w=800,h=800,fit=pad'),
+(9,3,'https://images.samsung.com/is/image/samsung/p6pim/ar/lf24t350fhlczb/gallery/ar-t35f-388813-lf24t350fhlczb-456991993?$650_519_PNG$'),
+(10,3,'https://betterdeals.cw/cdn/shop/files/5010124_1500x.webp?v=1721074121'),
+(11,3,'https://www.casadelaudio.com/Image/0/750_750-553-SAM-411_-4.png'),
+(12,3,'https://fotopoint.com.ar/wp-content/uploads/2022/06/samsung-monitor-24-t35f-fotopoint1.webp'),
+(13,4,'https://www.gamerspoint.com.ar/wp-content/uploads/Memoria-Ram-Corsair-Vengeance-Rs-16gb-2x8-3600mhz-Rgb-Ddr4-Cl18-600x600.png'),
+(14,4,'https://www.invidcomputers.com/images/0000000000414765602990414765.png-1200Wx1200H'),
+(15,4,'https://i0.wp.com/www.aslanstoreuy.com/wp-content/uploads/2023/07/Memoria-RAM-Corsair-Vengeance-RGB-DDR5-Aslan-Store-11.webp?fit=600%2C600&ssl=1'),
+(16,4,'https://etchile.net/wp-content/uploads/2023/11/VENGEANCE_RGB_RS_14-PhotoRoom-600x600.png'),
+(17,5,'https://logg.api.cygnus.market/static/logg/Global/Procesador%20AMD%20Ryzen%207%205700X%204.6GHz%20AM4/da28f5f3752f4fb1a4d43a2c601c1eb5.webp'),
+(18,5,'https://acf.geeknetic.es/imgw/imagenes/Tutoriales/2020/1922-AMD-Ryzen-7-5800/1922-AMD-Ryzen-7-5800-1.jpg?f=webp'),
+(19,5,'https://www.exceed.rs/images/products/big/32327.jpg'),
+(20,5,'https://http2.mlstatic.com/D_NQ_NP_828419-MLU69999470484_062023-O.webp'),
+(21,6,''),
+(22,6,''),
+(23,6,''),
+(24,6,''),
 GO
 
 TRUNCATE TABLE IMAGENES_ARTICULO
@@ -199,4 +219,5 @@ GO
 SELECT * FROM IMAGENES_ARTICULO
 GO
 
-SELECT UrlImagen FROM IMAGENES_ARTICULO WHERE Id_art = 1
+SELECT * FROM ARTICULOS
+G
