@@ -18,5 +18,25 @@ namespace ecommerce
         {
             Response.Redirect("ArticuloOpciones.aspx");
         }
+
+        protected void BotonCategoria_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CategoriaOpciones.aspx");
+        }
+
+        protected void BotonMarcas_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MarcasOpciones.aspx");
+        }
+
+        protected void BotonUsuario_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("usuarioOpciones.aspx");
+        }
+
+        protected void botonHistoriaVentas_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("HistorialVentasOpciones.aspx");
+        }
     }
 }

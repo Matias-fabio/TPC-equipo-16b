@@ -7,16 +7,16 @@
         <asp:LinkButton ID="botonArticulo" runat="server" CssClass="btn btn-primary btn-lg" OnClick="botonArticulo_Click">
             <h5>Articulo</h5> 
         </asp:LinkButton>
-        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary btn-lg">
+        <asp:LinkButton ID="BotonCategoria" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonCategoria_Click">
              <h5>Categoria</h5> 
         </asp:LinkButton>
-        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn btn-primary btn-lg">
+        <asp:LinkButton ID="BotonMarcas" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonMarcas_Click">
             <h5>Marcas</h5> 
         </asp:LinkButton>
-        <asp:LinkButton ID="LinkButton3" runat="server" CssClass="btn btn-primary btn-lg">
+        <asp:LinkButton ID="BotonUsuario" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonUsuario_Click">
             <h5>Usuarios</h5> 
         </asp:LinkButton>
-        <asp:LinkButton ID="LinkButton4" runat="server" CssClass="btn btn-primary btn-lg" >
+        <asp:LinkButton ID="botonHistoriaVentas" runat="server" CssClass="btn btn-primary btn-lg" OnClick="botonHistoriaVentas_Click">
             <h5>Historial ventas</h5> 
         </asp:LinkButton>
     </div>

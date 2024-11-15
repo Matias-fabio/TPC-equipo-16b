@@ -77,15 +77,19 @@
     <Content Include="estilos\carrito.css" />
     <Content Include="estilos\estilos.css" />
     <Content Include="Global.asax" />
+    <Content Include="HistorialVentasOpciones.aspx" />
     <Content Include="Js\js.js" />
     <Content Include="Login.aspx" />
+    <Content Include="MarcasOpciones.aspx" />
     <Content Include="ProductoInfo.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="RestablecerContraseña.aspx" />
+    <Content Include="usuarioOpciones.aspx" />
     <Content Include="Web.config" />
     <Content Include="BuscarProducto.aspx" />
     <Content Include="AdministradorInicio.aspx" />
     <Content Include="ArticuloOpciones.aspx" />
+    <Content Include="CategoriaOpciones.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ayuda.aspx.cs">
@@ -140,12 +144,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HistorialVentasOpciones.aspx.cs">
+      <DependentUpon>HistorialVentasOpciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HistorialVentasOpciones.aspx.designer.cs">
+      <DependentUpon>HistorialVentasOpciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarcasOpciones.aspx.cs">
+      <DependentUpon>MarcasOpciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarcasOpciones.aspx.designer.cs">
+      <DependentUpon>MarcasOpciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
@@ -196,6 +214,20 @@
     </Compile>
     <Compile Include="ArticuloOpciones.aspx.designer.cs">
       <DependentUpon>ArticuloOpciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaOpciones.aspx.cs">
+      <DependentUpon>CategoriaOpciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaOpciones.aspx.designer.cs">
+      <DependentUpon>CategoriaOpciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="usuarioOpciones.aspx.cs">
+      <DependentUpon>usuarioOpciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usuarioOpciones.aspx.designer.cs">
+      <DependentUpon>usuarioOpciones.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
