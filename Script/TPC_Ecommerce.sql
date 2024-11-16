@@ -37,10 +37,10 @@ INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio
 ('PROD006', 'Gigabyte Aorus RTX 3070', 'Placa de video NVIDIA RTX 3070 con 8GB GDDR6', 1, 2, 199999.99, 'https://static.gigabyte.com/StaticFile/Image/Global/163e9f51ab41e2b931919e1dde162c0a/Product/29215'),
 ('PROD007', 'Gabinete ATX Level Up Cassiopeia', 'Gabinete ATX para PC con panel lateral de vidrio templado y RGB', 1, 10, 14999.99, 'https://tienda.anywayinsumos.com.ar/22766-medium_default/gabinete-gm-level-up-cassiopeia-mid-tower-atx-1fan-rgb-rear-378190447mm.jpg'),
 ('PROD008', 'Fuente AeroCool Dorado 750W ', 'Fuente de alimentación 80 Plus Gold 750W modular, 80 PLUS GOLD', 1, 9, 10999.99, 'https://aerocool.io/wp-content/uploads/2021/03/DORADO-Infographics-01-750.png'),
-('PROD009', 'Disco Duro 2TB', 'Disco duro mecánico 2TB para almacenamiento masivo', 1, 11, 8999.99, 'https://example.com/img/hdd-2tb.jpg'),
-('PROD010', 'Procesador Intel i7 12700K', 'Procesador Intel Core i7 12700K de 12 núcleos y 20 hilos', 1, 12, 179999.99, 'https://example.com/img/intel-i7.jpg'),
-('PROD011', 'SSD 1TB NVMe', 'Unidad SSD NVMe de 1TB con velocidad de lectura de 3500MB/s', 1, 11, 24999.99, 'https://example.com/img/ssd-1tb.jpg'),
-('PROD012', 'Placa Madre Z690', 'Placa madre para Intel Z690 con soporte para DDR5', 1, 6, 37999.99, 'https://example.com/img/placa-madre-z690.jpg'),
+('PROD009', 'Disco Duro 2TB', 'Disco duro mecánico 2TB para almacenamiento masivo', 1, 11, 8999.99, 'https://www.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/wd-purple-sata-hdd/gallery/wd-purple-surveillance-hard-drive-2tb.png.thumb.1280.1280.png'),
+('PROD010', 'Procesador Intel i7 12700K', 'Procesador Intel Core i7 12700K de 12 núcleos y 20 hilos', 1, 12, 179999.99, 'https://gamerloot.com.mx/wp-content/uploads/2024/06/Procesador-Intel-Core-i7-12700K.webp'),
+('PROD011', 'Aorus Gigabyte Disco Ssd 1tb M.2 Nvme Gen4', 'Unidad SSD NVMe de 1TB con velocidad de lectura de 3500MB/s', 1, 11, 24999.99, 'https://app.contabilium.com/files/explorer/7026/Productos-Servicios/concepto-5751641.png'),
+('PROD012', 'ROG MAXIMUS Z690 EXTREME', 'Placa madre para Intel Z690 con soporte para DDR5', 1, 6, 37999.99, 'https://dlcdnwebimgs.asus.com/gain/293AC7FB-F2DB-4559-A749-9AD4A23598EF/w717/h525'),
 ('PROD013', 'Cooler Líquido 240mm', 'Sistema de refrigeración líquida con radiador de 240mm', 1, 13, 19999.99, 'https://example.com/img/cooler-liquido.jpg'),
 ('PROD014', 'Auriculares Gamer 7.1', 'Auriculares gaming con sonido 7.1 envolvente y micrófono', 1, 5, 9999.99, 'https://example.com/img/auriculares-gamer.jpg'),
 ('PROD015', 'Redragon Gaia C211', 'Silla ergonómica para gaming con reposabrazos ajustable', 1, 4, 24999.99, 'https://redragon.es/content/uploads/2021/12/C221-BW-GAIA.png'),
@@ -58,7 +58,15 @@ INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio
 
 ;
 GO
+UPDATE ARTICULOS
+SET Nombre = 'ROG MAXIMUS Z690 EXTREME'
+WHERE Codigo = 'PROD011';
+GO
 
+UPDATE ARTICULOS
+SET ImgUrl = 'https://dlcdnwebimgs.asus.com/gain/293AC7FB-F2DB-4559-A749-9AD4A23598EF/w717/h525'
+WHERE Codigo = 'PROD012';
+GO
 
 CREATE TABLE CATEGORIAS(
     Id int IDENTITY(1,1) NOT NULL,
@@ -207,10 +215,33 @@ INSERT INTO IMAGENES_ARTICULO(Id_Img, Id_art, UrlImagen) VALUES
 (18,5,'https://acf.geeknetic.es/imgw/imagenes/Tutoriales/2020/1922-AMD-Ryzen-7-5800/1922-AMD-Ryzen-7-5800-1.jpg?f=webp'),
 (19,5,'https://www.exceed.rs/images/products/big/32327.jpg'),
 (20,5,'https://http2.mlstatic.com/D_NQ_NP_828419-MLU69999470484_062023-O.webp'),
-(21,6,''),
-(22,6,''),
-(23,6,''),
-(24,6,''),
+(21,6,'https://static.gigabyte.com/StaticFile/Image/Global/163e9f51ab41e2b931919e1dde162c0a/Product/29215'),
+(22,6,'https://static.gigabyte.com/StaticFile/Image/Global/43f240ef13daf8907ddacad9f38eaf06/Product/26294/png/1000'),
+(23,6,'https://www.liontech-gaming.com/wp-content/uploads/2023/11/RTX-3070-AORUS-MASTER-8GB.png'),
+(24,6,'https://rigstation.ae/cdn/shop/products/6_25accfcd-ee28-45df-90ab-80bf3ef17a31_436x436.png?v=1668265126'),
+(25,7,'https://tienda.anywayinsumos.com.ar/22766-medium_default/gabinete-gm-level-up-cassiopeia-mid-tower-atx-1fan-rgb-rear-378190447mm.jpg'),
+(26,7,'https://levelupworld.com/assets/img/dt/gabinetes/cassiopeia/cassiopeia1.png'),
+(27,7,'https://levelupworld.com/assets/img/dt/gabinetes/cassiopeia/cassiopeia2.png'),
+(28,8,'https://aerocool.io/wp-content/uploads/2021/03/DORADO-Infographics-01-750.png'),
+(29,8,'https://logg.api.cygnus.market/static/logg/Global/Fuente%20AeroCool%20DORADO%20750W%2080+Gold%20ARGB/feeadf50644840668557151b1719c9a6.webp'),
+(30,8,'https://aerocool.io/wp-content/uploads/2021/04/DORADO-750W-Txt-01.png'),
+(31,8,'https://aerocool.io/wp-content/uploads/2021/04/DORADO-Key-Visual-Responsive-Design-750.jpg'),
+(32,9,'https://www.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/wd-purple-sata-hdd/gallery/wd-purple-surveillance-hard-drive-2tb.png.thumb.1280.1280.png'),
+(33,9,'https://distecbc.com/wp-content/uploads/2022/04/Hardware-Discos-Duros-Internos-Western-Digital-WD20PURZ-161828-4Aay300nv8pgvAYy-removebg-preview.png'),
+(34,9,'https://essistemas.com/1095-medium_default/disco-duro-interno-western-digital-purple-35-1tb-sata-3-5400-rpm.jpg'),
+(36,10,''),
+(37,10,''),
+(38,10,''),
+(39,10,''),
+(40,11,'https://app.contabilium.com/files/explorer/7026/Productos-Servicios/concepto-5751641.png'),
+(41,11,'https://www.cncnet.com.ar/wp-content/uploads/2022/07/GP-ASM2NE6200TTTD-4-600x600.png'),
+(42,11,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLcV8-HUE1ewgfQDdB4b-InuabzQhocl7-wg&s'),
+(43,11,'https://www.gigabyte.com/FileUpload/Global/KeyFeature/1731/innergigabyteimages/efficiency.png'),
+(44,12,'https://dlcdnwebimgs.asus.com/gain/293AC7FB-F2DB-4559-A749-9AD4A23598EF/w717/h525'),
+(45,12,'https://cdn.inet.se/product/1600x900/1903625_0.jpg'),
+(46,12,'https://dlcdnwebimgs.asus.com/files/media/B9DF352A-7A21-4B18-BE82-6BE926565C5D/v2/img/connectivity/thunderbolt.png'),
+(47,12,'https://dlcdnwebimgs.asus.com/files/media/B9DF352A-7A21-4B18-BE82-6BE926565C5D/v2/img/kv/pd.png')
+
 GO
 
 TRUNCATE TABLE IMAGENES_ARTICULO
@@ -220,4 +251,4 @@ SELECT * FROM IMAGENES_ARTICULO
 GO
 
 SELECT * FROM ARTICULOS
-G
+GO
