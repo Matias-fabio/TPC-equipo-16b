@@ -17,7 +17,7 @@ namespace ecommerce
         protected void Page_Load(object sender, EventArgs e)
         {
             NegocioCategoria negocioCategoria = new NegocioCategoria();
-            ListaCategorias = negocioCategoria.listarCategorias();
+            ListaCategorias = negocioCategoria.listarCategoriasTop();
             repCategorias.DataSource = ListaCategorias;
             repCategorias.DataBind();
 

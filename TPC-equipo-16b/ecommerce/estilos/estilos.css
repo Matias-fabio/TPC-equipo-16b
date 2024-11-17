@@ -195,9 +195,14 @@ footer {
 }
 
 /*card productos tendencias*/
+.container-tendencias {
+    margin-bottom: 40px;
+}
+
+
 .card-tendencias {
-    width: 24rem;
-    height: 200px;
+    width: 21rem;
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -206,6 +211,7 @@ footer {
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
     background: #ffffff;
+
 }
 
     .card-tendencias:hover {
@@ -229,11 +235,16 @@ footer {
     .card-tendencias .card-body {
         padding: 1rem;
         flex: 1;
+      
     }
+.d-flex{
+    gap:10px;
+   
+}
 
-    .card-tendencias .card-text {
-        margin-bottom: 0.5rem;
-    }
+.card-tendencias .card-text {
+    margin-bottom: 0.5rem;
+}
 
     .card-tendencias h5.card-title,
     .card-tendencias h5.card-text {

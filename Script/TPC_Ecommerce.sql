@@ -41,14 +41,14 @@ INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio
 ('PROD010', 'Procesador Intel i7 12700K', 'Procesador Intel Core i7 12700K de 12 núcleos y 20 hilos', 1, 12, 179999.99, 'https://gamerloot.com.mx/wp-content/uploads/2024/06/Procesador-Intel-Core-i7-12700K.webp'),
 ('PROD011', 'Aorus Gigabyte Disco Ssd 1tb M.2 Nvme Gen4', 'Unidad SSD NVMe de 1TB con velocidad de lectura de 3500MB/s', 1, 11, 24999.99, 'https://app.contabilium.com/files/explorer/7026/Productos-Servicios/concepto-5751641.png'),
 ('PROD012', 'ROG MAXIMUS Z690 EXTREME', 'Placa madre para Intel Z690 con soporte para DDR5', 1, 6, 37999.99, 'https://dlcdnwebimgs.asus.com/gain/293AC7FB-F2DB-4559-A749-9AD4A23598EF/w717/h525'),
-('PROD013', 'Cooler Líquido 240mm', 'Sistema de refrigeración líquida con radiador de 240mm', 1, 13, 19999.99, 'https://example.com/img/cooler-liquido.jpg'),
-('PROD014', 'Auriculares Gamer 7.1', 'Auriculares gaming con sonido 7.1 envolvente y micrófono', 1, 5, 9999.99, 'https://example.com/img/auriculares-gamer.jpg'),
+('PROD013', 'Cooler Master ML240 Illusion White', 'Sistema de refrigeración líquida con radiador de 240mm', 1, 13, 19999.99, 'https://www.venex.com.ar/products_images/1678372857_whater-3.png'),
+('PROD014', 'Redragon pandora 7.1 auriculares gamer', 'Auriculares gaming con sonido 7.1 envolvente y micrófono', 1, 5, 9999.99, 'https://acdn.mitiendanube.com/stores/003/998/438/products/h350w-rgb-1-png-web-1-ee54ab129512d8cf4417177884697002-1024-1024.png'),
 ('PROD015', 'Redragon Gaia C211', 'Silla ergonómica para gaming con reposabrazos ajustable', 1, 4, 24999.99, 'https://redragon.es/content/uploads/2021/12/C221-BW-GAIA.png'),
-('PROD016', 'Router WiFi 6', 'Router de última generación con tecnología WiFi 6', 1, 5, 11999.99, 'https://example.com/img/router-wifi6.jpg'),
-('PROD017', 'Webcam Full HD', 'Cámara web Full HD 1080p con micrófono incorporado', 1, 5, 7999.99, 'https://example.com/img/webcam-fhd.jpg'),
-('PROD018', 'Micrófono Condensador USB', 'Micrófono condensador USB ideal para streaming y grabaciones', 1, 5, 40999.99, 'https://example.com/img/microfono-usb.jpg'),
-('PROD019', 'Base Refrigerante para Laptop', 'Base refrigerante para laptops de hasta 17 pulgadas con iluminación LED', 1, 13, 34999.99, 'https://example.com/img/base-refrigerante.jpg'),
-('PROD020', 'Kit de Limpieza para PC', 'Kit de limpieza profesional para PC y componentes electrónicos', 1, 5, 9899.99, 'https://example.com/img/kit-limpieza.jpg'),
+('PROD016', 'TP-LINK Archer AX72 Router WiFi 6', 'Router de última generación con tecnología WiFi 6', 1, 5, 11999.99, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMScoTNQfyQHFEktZYG6xhfdJ1pWCc0OSSug&s'),
+('PROD017', 'Logitech c920s webcam full hd', 'Cámara web Full HD 1080p con micrófono incorporado', 1, 5, 7999.99, 'https://logitechar.vtexassets.com/arquivos/ids/157219-800-800?v=637081483397370000&width=800&height=800&aspect=true'),
+('PROD018', 'Micrófono Condensador Usb Mackie Em-91cu', 'Micrófono condensador USB ideal para streaming y grabaciones', 1, 5, 40999.99, 'https://cdnx.jumpseller.com/guitarstore/image/18133102/resize/1800/1800?1648423789'),
+('PROD019', 'Base soporte Cooler Notebook Wesdar K-8028F', 'Base refrigerante para laptops de hasta 17 pulgadas con iluminación LED', 1, 13, 34999.99, 'https://images.fravega.com/f500/06d522be0df54361fd86d5b9fe17a303.png'),
+('PROD020', 'Kit de Limpieza para PC', 'Kit de limpieza profesional para PC y componentes electrónicos', 1, 5, 9899.99, 'https://www.gamerspoint.com.ar/wp-content/uploads/DELTA-KIT-LIMPIEZA-PARA-NOTEBOOKS.png'),
 ('PROD021', 'Corsair T3', 'silla gamer corsair t3, maximo confort', 1, 4, 2499.99, 'https://www.liontech-gaming.com/wp-content/uploads/2021/12/SILLA-GAMER-CORSAIR-T3-RUSH-CHARCOAL-500x538.webp'),
 ('PROD022', 'Shenlong SCH-RGB155', 'silla gamer Shenlong, con luces led RGB,  maximo confort', 1, 4, 356499.99, 'https://shenlong.com.ar/resources/users-uploads/galleries/256/productos/sch-rgb155-black.png'),
 ('PROD023', 'Notebook ROG Zephyrus', 'Intel® Core™ Ultra 9 de 16 Núcleos NVIDIA GeForce RTX 4070 32GB 1TB SSD 240HZ OLED GU605MI-QR118W', 1, 1, 3855000.75, 'https://tiendadiggit.com.ar/web/image/product.image/6477/image_1024/Notebook%20Gamer%20ROG%20Zephyrus%20G16%20Intel%C2%AE%20Core%E2%84%A2%20Ultra%209%20de%2016%20N%C3%BAcleos%20NVIDIA%20GeForce%20RTX%204070%2032GB%201TB%20SSD%20240HZ%20OLED%20GU605MI-QR118W?unique=b47f338'),
@@ -59,13 +59,13 @@ INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio
 ;
 GO
 UPDATE ARTICULOS
-SET Nombre = 'ROG MAXIMUS Z690 EXTREME'
-WHERE Codigo = 'PROD011';
+SET Nombre = 'Base soporte Cooler Notebook Wesdar K-8028F'
+WHERE Codigo = 'PROD019';
 GO
 
 UPDATE ARTICULOS
-SET ImgUrl = 'https://dlcdnwebimgs.asus.com/gain/293AC7FB-F2DB-4559-A749-9AD4A23598EF/w717/h525'
-WHERE Codigo = 'PROD012';
+SET ImgUrl = 'https://www.gamerspoint.com.ar/wp-content/uploads/DELTA-KIT-LIMPIEZA-PARA-NOTEBOOKS.png'
+WHERE Codigo = 'PROD020';
 GO
 
 CREATE TABLE CATEGORIAS(
@@ -229,10 +229,10 @@ INSERT INTO IMAGENES_ARTICULO(Id_Img, Id_art, UrlImagen) VALUES
 (32,9,'https://www.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/wd-purple-sata-hdd/gallery/wd-purple-surveillance-hard-drive-2tb.png.thumb.1280.1280.png'),
 (33,9,'https://distecbc.com/wp-content/uploads/2022/04/Hardware-Discos-Duros-Internos-Western-Digital-WD20PURZ-161828-4Aay300nv8pgvAYy-removebg-preview.png'),
 (34,9,'https://essistemas.com/1095-medium_default/disco-duro-interno-western-digital-purple-35-1tb-sata-3-5400-rpm.jpg'),
-(36,10,''),
-(37,10,''),
-(38,10,''),
-(39,10,''),
+(36,10,'https://gamerloot.com.mx/wp-content/uploads/2024/06/Procesador-Intel-Core-i7-12700K.webp'),
+(37,10,'https://cyrexstore.com/wp-content/uploads/2024/08/image-removebg-preview-87.png'),
+(38,10,'https://campcom.cl/wp-content/uploads/2023/06/largebinary-gaming-pc-02bl-12700k-leadtek-rtx3060ti-8gb-1024x1024.webp'),
+(39,10,'https://mindtech.ae/wp-content/uploads/intel-core-i7-12700k-01.webp'),
 (40,11,'https://app.contabilium.com/files/explorer/7026/Productos-Servicios/concepto-5751641.png'),
 (41,11,'https://www.cncnet.com.ar/wp-content/uploads/2022/07/GP-ASM2NE6200TTTD-4-600x600.png'),
 (42,11,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLcV8-HUE1ewgfQDdB4b-InuabzQhocl7-wg&s'),
@@ -240,8 +240,58 @@ INSERT INTO IMAGENES_ARTICULO(Id_Img, Id_art, UrlImagen) VALUES
 (44,12,'https://dlcdnwebimgs.asus.com/gain/293AC7FB-F2DB-4559-A749-9AD4A23598EF/w717/h525'),
 (45,12,'https://cdn.inet.se/product/1600x900/1903625_0.jpg'),
 (46,12,'https://dlcdnwebimgs.asus.com/files/media/B9DF352A-7A21-4B18-BE82-6BE926565C5D/v2/img/connectivity/thunderbolt.png'),
-(47,12,'https://dlcdnwebimgs.asus.com/files/media/B9DF352A-7A21-4B18-BE82-6BE926565C5D/v2/img/kv/pd.png')
-
+(47,12,'https://dlcdnwebimgs.asus.com/files/media/B9DF352A-7A21-4B18-BE82-6BE926565C5D/v2/img/kv/pd.png'),
+(48,13,'https://www.venex.com.ar/products_images/1678372857_whater-3.png'),
+(49,13,'https://www.venex.com.ar/products_images/1678372858_whater-4.png'),
+(50,13,'https://a.storyblok.com/f/281110/1500x1500/1d4dc412a2/masterliquid-ml240-illusion-white-01-gallery-01.png/m/960x0/smart'),
+(51,14,'https://acdn.mitiendanube.com/stores/003/998/438/products/h350w-rgb-1-png-web-1-ee54ab129512d8cf4417177884697002-1024-1024.png'),
+(52,14,'https://acdn.mitiendanube.com/stores/003/998/438/products/h350w-rgb-1-png-web-2-3ae78232bb7f4265c717177884690622-1024-1024.png'),
+(53,14,'https://acdn.mitiendanube.com/stores/003/998/438/products/h350w-rgb-1-png-web-4-e53e2881566875a58817177884700695-1024-1024.png'),
+(54,14,'https://redragon.es/content/uploads/2021/04/PANDORA-1.png'),
+(55,14,'https://realplaza.vtexassets.com/arquivos/ids/15794572/image-fa149aba917b43aca3307191a932650a.jpg?v=637460649714330000'),
+(56,14,'https://acdn.mitiendanube.com/stores/001/471/169/products/h350-pandora-pngweb-81-41f0ab71cb6f96739916229069432955-640-011-c9e750607a146f67ec16243803443289-1024-1024.png'),
+(57,15,'https://redragon.es/content/uploads/2021/12/C221-BW-GAIA.png'),
+(58,15,'https://acdn.mitiendanube.com/stores/003/998/438/products/c221-bw_hq_10-80f32b47ca7393fee517177937695784-1024-1024.png'),
+(59,15,'https://cdnx.jumpseller.com/mundotek/image/53153928/resize/640/640?1726024443'),
+(60,15,'https://www.mactoner.com.mx/wp-content/uploads/2022/12/SILRDG060_full.png'),
+(61,16,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMScoTNQfyQHFEktZYG6xhfdJ1pWCc0OSSug&s'),
+(62,16,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM6wkryr2IgIbMx_5mdUle5okBoTUFHvLFmw&s'),
+(63,17,'https://logitechar.vtexassets.com/arquivos/ids/157219-800-800?v=637081483397370000&width=800&height=800&aspect=true'),
+(64,17,'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/webcams/c920s/gallery/c920s-gallery-2.png?v=1'),
+(65,17,'https://www.gamerspoint.com.ar/wp-content/uploads/Captura-de-pantalla-2024-07-23-152320.png'),
+(66,18,'https://cdnx.jumpseller.com/guitarstore/image/18133102/resize/1800/1800?1648423789'),
+(67,18,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPV7Y9ldh53qu71zfuCc9hHpS1m06yukISQA&s'),
+(68,18,'https://cdnx.jumpseller.com/guitarstore/image/18133104/resize/1800/1800?1648423789'),
+(69,18,'https://factorysound.cl/43292-large_default/MAC-EM-91CU.jpg'),
+(70,19,'https://images.fravega.com/f500/06d522be0df54361fd86d5b9fe17a303.png'),
+(71,19,'https://www.megatone.net/images//Articulos/zoom2x/69/MKT0456ITB-2.png'),
+(72,19,'https://wx.mlcdn.com.br/ponzi/production/portaldalu/640.jpg'),
+(73,20,'https://www.gamerspoint.com.ar/wp-content/uploads/DELTA-KIT-LIMPIEZA-PARA-NOTEBOOKS.png'),
+(74,20,'https://http2.mlstatic.com/D_NQ_NP_652314-MLA49076121009_022022-O.webp'),
+(75,21,'https://www.liontech-gaming.com/wp-content/uploads/2021/12/SILLA-GAMER-CORSAIR-T3-RUSH-CHARCOAL-500x538.webp'),
+(76,21,'https://assets.corsair.com/image/upload/c_pad,q_auto,h_1024,w_1024,f_auto/products/Gaming-Chairs/CF-9010029-WW/Gallery/CORSAIR_T3_RUSH_CHARCOAL_02.webp'),
+(77,21,'https://res.cloudinary.com/corsair-pwa/image/upload/f_auto,q_auto/v1/akamai/pdp/T3-rush-2023/Panel4_ProductImage_Full-cutaway.png'),
+(78,22,'https://shenlong.com.ar/resources/users-uploads/galleries/256/productos/sch-rgb155-black.png'),
+(79,22,'https://shenlong.com.ar/resources/users-uploads/galleries/256/productos/sch-rgb155-black-2.png'),
+(80,22,'https://shenlong.com.ar/resources/users-uploads/galleries/256/productos/sch-rgb155-black-10.png'),
+(81,22,'https://shenlong.com.ar/resources/users-uploads/galleries/256/productos/sch-rgb155-black-4.png'),
+(82,23,'https://soundata.com.py/cdn/shop/files/GA401IHR-HZ045T_2.png?v=1714075597&width=1445'),
+(83,23,'https://dlcdnwebimgs.asus.com/gain/6A42560A-BF3E-4940-9AE6-DF6D3794C70A'),
+(84,23,'https://tiendadiggit.com.ar/web/image/product.image/9144/image_1024/Notebook%20Gamer%20ROG%20Zephyrus%20Duo%2016%20GX650RX-LO146W%20NVIDIA%C2%AE%20GeForce%20RTX%E2%84%A2%203080%20Ryzen%209%2032GB%201TB%20SSD?unique=04fef76'),
+(85,23,'https://tiendadiggit.com.ar/web/image/product.image/4316/image_1024/Notebook%20Rog%20Zephyrus%20G14%C2%A0GA401QC-K2105W%20Ryzen%207%2016gb%20512gb?unique=0f68524'),
+(86,24,'https://statics.globaldrop.com.ar/bartez-02-2024/1002_09-05-2024-10-05-58-xenia_15g_pd_2000x2000_01.png'),
+(87,24,'https://i0.wp.com/itseller.uy/wp-content/uploads/2020/07/Xenia3.png'),
+(88,24,'https://statics.globaldrop.com.ar/bartez-02-2024/1002_09-05-2024-10-05-49-xenia_15g_pd_2000x2000_14.png'),
+(89,24,'https://webapi3.adata.com/storage/product/xenia_15g_plk_004.png'),
+(90,25,'https://www.venex.com.ar/products_images/1668189743_ag323fcxe_3.png'),
+(91,25,'https://www.venex.com.ar/products_images/1668189743_ag323fcxe_2.png'),
+(92,25,'https://www.venex.com.ar/products_images/1668189743_ag323fcxe_4.png'),
+(93,25,'https://www.venex.com.ar/products_images/1668189743_ag323fcxe_1.png'),
+(94,25,'https://mmd-aoc2.oss-cn-hongkong.aliyuncs.com/Products/Monitors/AGON/AGON3/AG323FCXE/AG323FCXE_F.png'),
+(95,26,'https://logg.api.cygnus.market/static/logg/Global/Procesador_Intel_Core_i5_13400F_4.6GHz_20MB_Raptor_Lake_LGA1700_c_Cooler/13b46ae6ba40462d895a7bc90b18d91c.webp'),
+(96,26,'https://solidhardware.store/wp-content/uploads/2023/11/intel12400ftray.png'),
+(97,26,'https://cdn.salla.sa/dPlRDp/58eb643b-175f-4d21-b369-f748b2588b64-1000x915.70881226054-3dPF7ZRzE3D3lsuoTssed9gx8enx44xRNZDTlHeM.png'),
+(98,26,'https://img.evetech.co.za/repository/components/intel-core-i5-13400f-processor-600px-v03.webp')
 GO
 
 TRUNCATE TABLE IMAGENES_ARTICULO

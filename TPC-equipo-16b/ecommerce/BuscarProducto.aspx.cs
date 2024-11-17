@@ -36,5 +36,13 @@ namespace ecommerce
             }
         }
 
+        protected void VerDetalles_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "VerDetalles")
+            {
+                string idProducto = e.CommandArgument.ToString();
+                Response.Redirect("DetalleProducto.aspx?Id=" + idProducto);
+            }
+        }
     }
 }

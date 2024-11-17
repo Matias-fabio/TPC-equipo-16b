@@ -230,7 +230,42 @@ namespace Negocio
             return imagenes;
         }
 
+        public List<Articulo> listarArticulosPaginacion(int paginaActual, int cantidad)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_PAGINACION");
+                datos.setearParametro("@Offset", (paginaActual - 1) * cantidad);
+                datos.setearParametro("@cantidad", cantidad);
+                datos.ejecutarLectura();
 
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo
+                    {
+                        Id = (int)datos.Lector["ID"],
+                        Codigo = (string)datos.Lector["Codigo"],
+                        Nombre = (string)datos.Lector["NombreArticulo"],
+                        Descripcion = (string)datos.Lector["DescripcionArticulo"],
+                        Precio = (decimal)datos.Lector["Precio"],
+                        categoria = (string)datos.Lector["NombreCategoria"],
+                        UrlImagen = (string)datos.Lector["Img"]
+                    };
+                    lista.Add(aux);
+                }
 
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
