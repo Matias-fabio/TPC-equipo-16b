@@ -8,10 +8,10 @@
         <asp:LinkButton ID="botonArticulo" runat="server" CssClass="btn btn-primary btn-lg" OnClick="botonArticulo_Click">
             <h5>Agregar articulo</h5> 
         </asp:LinkButton>
-        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary btn-lg">
+        <asp:LinkButton ID="EliminarArticulo" runat="server" CssClass="btn btn-primary btn-lg" OnClick="EliminarArticulo_Click">
             <h5>Eliminar Articulo</h5> 
         </asp:LinkButton>
-        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn btn-primary btn-lg">
+        <asp:LinkButton ID="ModificarArticulo" runat="server" CssClass="btn btn-primary btn-lg" OnClick="ModificarArticulo_Click">
             <h5>Modificar articulo</h5> 
         </asp:LinkButton>
         <asp:LinkButton ID="ArticuloVolver" runat="server" CssClass="btn btn-primary btn-lg" OnClick="ArticuloVolver_Click">

@@ -23,5 +23,16 @@ namespace ecommerce
         {
             Response.Redirect("NuevoArticuloAdmin.aspx");
         }
+
+
+        protected void ModificarArticulo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ModificarArticulo.aspx");
+        }
+
+        protected void EliminarArticulo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EliminarArticulo.aspx");
+        }
     }
 }

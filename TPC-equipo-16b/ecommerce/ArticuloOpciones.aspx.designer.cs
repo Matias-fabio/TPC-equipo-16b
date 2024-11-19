@@ -24,22 +24,22 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.LinkButton botonArticulo;
 
         /// <summary>
-        /// Control LinkButton1.
+        /// Control EliminarArticulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton EliminarArticulo;
 
         /// <summary>
-        /// Control LinkButton2.
+        /// Control ModificarArticulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.LinkButton ModificarArticulo;
 
         /// <summary>
         /// Control ArticuloVolver.

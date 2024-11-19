@@ -75,6 +75,7 @@
     <Content Include="Default.aspx" />
     <Content Include="DetalleCategoria.aspx" />
     <Content Include="DetalleProducto.aspx" />
+    <Content Include="EliminarArticulo.aspx" />
     <Content Include="estilos\carrito.css" />
     <Content Include="estilos\detalleProducto.css" />
     <Content Include="estilos\estilos.css" />
@@ -83,6 +84,7 @@
     <Content Include="Js\Script.js" />
     <Content Include="Login.aspx" />
     <Content Include="MarcasOpciones.aspx" />
+    <Content Include="ModificarArticulo.aspx" />
     <Content Include="NuevoArticuloAdmin.aspx" />
     <Content Include="ProductoInfo.aspx" />
     <Content Include="Registro.aspx" />
@@ -144,6 +146,13 @@
     <Compile Include="DetalleProducto.aspx.designer.cs">
       <DependentUpon>DetalleProducto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EliminarArticulo.aspx.cs">
+      <DependentUpon>EliminarArticulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EliminarArticulo.aspx.designer.cs">
+      <DependentUpon>EliminarArticulo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,6 +183,13 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarArticulo.aspx.cs">
+      <DependentUpon>ModificarArticulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarArticulo.aspx.designer.cs">
+      <DependentUpon>ModificarArticulo.aspx</DependentUpon>
     </Compile>
     <Compile Include="NuevoArticuloAdmin.aspx.cs">
       <DependentUpon>NuevoArticuloAdmin.aspx</DependentUpon>

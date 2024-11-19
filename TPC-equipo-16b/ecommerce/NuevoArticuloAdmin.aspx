@@ -17,15 +17,16 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <label for="validationCustomUsername" class="form-label">Marca</label>
+                <label for="ddlMarca" class="form-label">Marca</label>
                 <div class="input-group has-validation">
-                    <asp:TextBox ID="txtMarca" runat="server" CssClass="form-control" Text="" type="text"></asp:TextBox>
+                    <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
             </div>
+
             <div class="col-md-6">
-                <label for="validationCustomUsername" class="form-label">Categoria</label>
+                <label for="ddlCategoria" class="form-label">Categoría</label>
                 <div class="input-group has-validation">
-                    <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control" Text="" type="text"></asp:TextBox>
+                    <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
             </div>
             <div class="col-md-12">
@@ -43,7 +44,10 @@
             <div class="col-12" id="BotonNuevoArticulo">
                 <div class="d-grid gap-2 col-8 mx-auto">
                     <asp:LinkButton ID="BotonAceptar" runat="server" class="btn btn-primary" type="button">
-                    <h3>Aceptar</h3>
+                        <h3>Aceptar</h3>
+                    </asp:LinkButton>
+                    <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click">
+                        <h3>Volver</h3>
                     </asp:LinkButton>
                 </div>
             </div>
