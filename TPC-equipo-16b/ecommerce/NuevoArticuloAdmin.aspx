@@ -15,6 +15,7 @@
                 </asp:TextBox>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-6">
                 <label for="ddlMarca" class="form-label">Marca</label>
@@ -41,14 +42,23 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12" id="BotonNuevoArticulo">
-                <div class="d-grid gap-2 col-8 mx-auto">
-                    <asp:LinkButton ID="BotonAceptar" runat="server" class="btn btn-primary" type="button">
-                        <h3>Aceptar</h3>
-                    </asp:LinkButton>
-                    <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click">
+            <div class="col-md-12">
+                <label for="validationCustomUsername" class="form-label">URL de la imagen del nuevo producto</label>
+                <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text="" type=""
+                    title="Ingrese URL de la imagen">
+                </asp:TextBox>
+            </div>
+            <div class="col-md-12">
+                <asp:Label ID="lblMensaje" runat="server" CssClass="text-danger"></asp:Label>
+                <div class="col-12" id="BotonNuevoArticulo">
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <asp:LinkButton ID="BotonAceptar" runat="server" class="btn btn-primary" type="button" onclick="BotonAceptar_Click">
+                        <h3>Aceptar nuevo articulo!!</h3>
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click">
                         <h3>Volver</h3>
-                    </asp:LinkButton>
+                        </asp:LinkButton>
+                    </div>
                 </div>
             </div>
         </div>

@@ -14,6 +14,7 @@ namespace ecommerce
 
         NegocioCategoria NegocioCategoria = new NegocioCategoria();
         NegocioMarca NegocioMarca = new NegocioMarca();
+        NegocioArticulo NegocioArticulo = new NegocioArticulo();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -21,9 +22,12 @@ namespace ecommerce
             {
                 CargarCategorias();
                 CargarMarcas();
+                
             }
 
         }
+
+    
 
         private void CargarCategorias()
         {
@@ -48,5 +52,47 @@ namespace ecommerce
         {
             Response.Redirect("ArticuloOpciones.aspx");
         }
+
+        protected void BotonAceptar_Click(object sender, EventArgs e)
+        {
+            string nombreArticulo = txtNombreArticulo.Text.Trim();
+            string descripcion = txtDescripcion.Text.Trim();
+            decimal precio;
+            string urlImagen = TextBox1.Text.Trim();
+
+            if (!decimal.TryParse(txtPrecio.Text, out precio))
+            {
+                lblMensaje.Text = "Por favor, ingrese un precio válido.";
+                return;
+            }
+
+            if (string.IsNullOrEmpty(nombreArticulo) || ddlMarca.SelectedValue == "" || ddlCategoria.SelectedValue == "")
+            {
+                lblMensaje.Text = "Todos los campos son obligatorios.";
+                return;
+            }
+
+            Articulo articuloExistente = NegocioArticulo.ObtenerArticuloPorNombre(nombreArticulo);
+            if (articuloExistente != null)
+            {
+                lblMensaje.Text = "Este artículo ya existe.";
+            }
+            else
+            {
+                Articulo nuevoArticulo = new Articulo
+                {
+                    Nombre = nombreArticulo,
+                    Descripcion = descripcion,
+                    Precio = precio,
+                    UrlImagen = urlImagen,
+                    IdCategoria = int.Parse(ddlCategoria.SelectedValue),
+                    IdMarca = int.Parse(ddlMarca.SelectedValue)
+                };
+                NegocioArticulo.AgregarArticulo(nuevoArticulo);
+                lblMensaje.Text = "Artículo agregado exitosamente.";
+            }
+        }
+
+
     }
 }

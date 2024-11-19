@@ -1,12 +1,7 @@
 ﻿using Datos;
 using Dominio;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Negocio
 {
@@ -267,5 +262,83 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public Articulo ObtenerArticuloPorNombre(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Articulo aux = null;
+            try
+            {
+                string consulta = @"
+                    SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.ImgUrl, C.Nombre AS Categoria, M.Nombre AS NombreMarca
+                    FROM ARTICULOS A
+                    INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id
+                    INNER JOIN MARCAS M ON A.IdMarca = M.Id
+                    WHERE A.Nombre = @Nombre";
+
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@Nombre", nombre);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    aux = new Articulo();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+                    aux.categoria = (string)datos.Lector["Categoria"];
+                    aux.UrlImagen = (string)datos.Lector["ImgUrl"];
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void AgregarArticulo(Articulo nuevoArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                // Obtener el próximo ID disponible
+                datos.setearConsulta("SELECT ISNULL(MAX(Id), 0) + 1 FROM ARTICULOS");
+                datos.ejecutarLectura();
+                int nextId = 1;
+                if (datos.Lector.Read())
+                {
+                    nextId = (int)datos.Lector[0];
+                }
+
+                // Generar el código del producto
+                string codigoProducto = "PROD" + nextId.ToString("D4");
+
+                // Insertar el nuevo artículo con el código generado
+                datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio, ImgUrl) VALUES (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio, @imgUrl)");
+                datos.setearParametro("@codigo", codigoProducto);
+                datos.setearParametro("@nombre", nuevoArticulo.Nombre);
+                datos.setearParametro("@descripcion", nuevoArticulo.Descripcion ?? (object)DBNull.Value);
+                datos.setearParametro("@idMarca", nuevoArticulo.IdMarca);
+                datos.setearParametro("@idCategoria", nuevoArticulo.IdCategoria);
+                datos.setearParametro("@precio", nuevoArticulo.Precio);
+                datos.setearParametro("@imgUrl", nuevoArticulo.UrlImagen ?? (object)DBNull.Value);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
     }
 }
