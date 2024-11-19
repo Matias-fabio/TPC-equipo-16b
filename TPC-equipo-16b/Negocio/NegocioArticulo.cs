@@ -304,21 +304,34 @@ namespace Negocio
         public void AgregarArticulo(Articulo nuevoArticulo)
         {
             AccesoDatos datos = new AccesoDatos();
+            int nextId = 1;
+
             try
             {
                 // Obtener el próximo ID disponible
-                datos.setearConsulta("SELECT ISNULL(MAX(Id), 0) + 1 FROM ARTICULOS");
+                datos.setearConsulta("SELECT ISNULL(MAX(Id), 0)+ 1 FROM ARTICULOS");
                 datos.ejecutarLectura();
-                int nextId = 1;
                 if (datos.Lector.Read())
                 {
                     nextId = (int)datos.Lector[0];
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion(); // Cerrar la conexión después de obtener el próximo ID
+            }
 
+            try
+            {
                 // Generar el código del producto
-                string codigoProducto = "PROD" + nextId.ToString("D4");
+                string codigoProducto = "PROD" + nextId.ToString("D3");
 
                 // Insertar el nuevo artículo con el código generado
+                datos = new AccesoDatos(); // Crear una nueva instancia de AccesoDatos
                 datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio, ImgUrl) VALUES (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio, @imgUrl)");
                 datos.setearParametro("@codigo", codigoProducto);
                 datos.setearParametro("@nombre", nuevoArticulo.Nombre);
@@ -335,7 +348,7 @@ namespace Negocio
             }
             finally
             {
-                datos.cerrarConexion();
+                datos.cerrarConexion(); // Cerrar la conexión después de insertar el nuevo artículo
             }
         }
 

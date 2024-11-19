@@ -11,29 +11,23 @@ namespace ecommerce
 {
     public partial class NuevoArticuloAdmin : System.Web.UI.Page
     {
-
         NegocioCategoria NegocioCategoria = new NegocioCategoria();
         NegocioMarca NegocioMarca = new NegocioMarca();
         NegocioArticulo NegocioArticulo = new NegocioArticulo();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 CargarCategorias();
                 CargarMarcas();
-                
             }
-
         }
-
-    
 
         private void CargarCategorias()
         {
-
-            List<Categoria> listaCategorias = NegocioCategoria.listarCategorias(); 
-            ddlCategoria.DataSource = listaCategorias; 
+            List<Categoria> listaCategorias = NegocioCategoria.listarCategorias();
+            ddlCategoria.DataSource = listaCategorias;
             ddlCategoria.DataTextField = "Nombre"; // Esto muestra el nombre en el DropDownList
             ddlCategoria.DataValueField = "Id"; // Esto es el valor seleccionado, en este caso el Id
             ddlCategoria.DataBind();
@@ -43,8 +37,8 @@ namespace ecommerce
         {
             List<Marca> listaMarca = NegocioMarca.listarMarcas();
             ddlMarca.DataSource = listaMarca;
-            ddlMarca.DataTextField = "Id";
-            ddlMarca.DataTextField = "Nombre";         
+            ddlMarca.DataTextField = "Nombre"; // Esto muestra el nombre en el DropDownList
+            ddlMarca.DataValueField = "Id"; // Esto es el valor seleccionado, en este caso el Id
             ddlMarca.DataBind();
         }
 
@@ -72,6 +66,14 @@ namespace ecommerce
                 return;
             }
 
+            // Validar que IdCategoria e IdMarca son números válidos
+            int idCategoria, idMarca;
+            if (!int.TryParse(ddlCategoria.SelectedValue, out idCategoria) || !int.TryParse(ddlMarca.SelectedValue, out idMarca))
+            {
+                lblMensaje.Text = "Selecciona una categoría y una marca válidas.";
+                return;
+            }
+
             Articulo articuloExistente = NegocioArticulo.ObtenerArticuloPorNombre(nombreArticulo);
             if (articuloExistente != null)
             {
@@ -85,14 +87,12 @@ namespace ecommerce
                     Descripcion = descripcion,
                     Precio = precio,
                     UrlImagen = urlImagen,
-                    IdCategoria = int.Parse(ddlCategoria.SelectedValue),
-                    IdMarca = int.Parse(ddlMarca.SelectedValue)
+                    IdCategoria = idCategoria,
+                    IdMarca = idMarca
                 };
                 NegocioArticulo.AgregarArticulo(nuevoArticulo);
                 lblMensaje.Text = "Artículo agregado exitosamente.";
             }
         }
-
-
     }
 }
