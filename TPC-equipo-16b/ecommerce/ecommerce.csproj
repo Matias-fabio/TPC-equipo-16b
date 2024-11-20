@@ -68,6 +68,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EliminarCategoriaAdmin.aspx" />
+    <Content Include="ModificarCategoria.aspx" />
+    <Content Include="NuevaCategoriaAdmin.aspx" />
     <Content Include="Ayuda.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Checkout.aspx" />
@@ -97,6 +100,27 @@
     <Content Include="CategoriaOpciones.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EliminarCategoriaAdmin.aspx.cs">
+      <DependentUpon>EliminarCategoriaAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EliminarCategoriaAdmin.aspx.designer.cs">
+      <DependentUpon>EliminarCategoriaAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarCategoria.aspx.cs">
+      <DependentUpon>ModificarCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarCategoria.aspx.designer.cs">
+      <DependentUpon>ModificarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaCategoriaAdmin.aspx.cs">
+      <DependentUpon>NuevaCategoriaAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevaCategoriaAdmin.aspx.designer.cs">
+      <DependentUpon>NuevaCategoriaAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Ayuda.aspx.cs">
       <DependentUpon>Ayuda.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

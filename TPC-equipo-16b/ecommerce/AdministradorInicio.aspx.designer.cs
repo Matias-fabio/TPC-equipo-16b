@@ -42,15 +42,6 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.LinkButton BotonMarcas;
 
         /// <summary>
-        /// Control BotonUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BotonUsuario;
-
-        /// <summary>
         /// Control botonHistoriaVentas.
         /// </summary>
         /// <remarks>

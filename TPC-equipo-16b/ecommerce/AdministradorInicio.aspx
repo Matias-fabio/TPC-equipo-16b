@@ -13,9 +13,6 @@
         <asp:LinkButton ID="BotonMarcas" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonMarcas_Click">
             <h5>Marcas</h5> 
         </asp:LinkButton>
-        <asp:LinkButton ID="BotonUsuario" runat="server" CssClass="btn btn-primary btn-lg" OnClick="BotonUsuario_Click">
-            <h5>Usuarios</h5> 
-        </asp:LinkButton>
         <asp:LinkButton ID="botonHistoriaVentas" runat="server" CssClass="btn btn-primary btn-lg" OnClick="botonHistoriaVentas_Click">
             <h5>Historial ventas</h5> 
         </asp:LinkButton>

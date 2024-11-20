@@ -11,17 +11,35 @@ namespace ecommerce
 {
 
 
-    public partial class WebForm4
+    public partial class ModificarCategoria
     {
 
         /// <summary>
-        /// Control botonAgregar.
+        /// Control ddlcategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton botonAgregar;
+        protected global::System.Web.UI.WebControls.DropDownList ddlcategoria;
+
+        /// <summary>
+        /// Control DropDownList1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DropDownList1;
+
+        /// <summary>
+        /// Control lblMensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
         /// Control BotonEliminar.
@@ -33,21 +51,12 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.LinkButton BotonEliminar;
 
         /// <summary>
-        /// Control BotonModificar.
+        /// Control BotonVolver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BotonModificar;
-
-        /// <summary>
-        /// Control Volver.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Volver;
+        protected global::System.Web.UI.WebControls.LinkButton BotonVolver;
     }
 }

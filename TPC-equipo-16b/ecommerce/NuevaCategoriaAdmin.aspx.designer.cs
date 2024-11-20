@@ -11,43 +11,43 @@ namespace ecommerce
 {
 
 
-    public partial class WebForm4
+    public partial class AgregarCategoria
     {
 
         /// <summary>
-        /// Control botonAgregar.
+        /// Control txtNombreArticulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton botonAgregar;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreArticulo;
 
         /// <summary>
-        /// Control BotonEliminar.
+        /// Control lblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BotonEliminar;
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
-        /// Control BotonModificar.
+        /// Control BotonAceptar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BotonModificar;
+        protected global::System.Web.UI.WebControls.LinkButton BotonAceptar;
 
         /// <summary>
-        /// Control Volver.
+        /// Control BotonVolver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Volver;
+        protected global::System.Web.UI.WebControls.LinkButton BotonVolver;
     }
 }
