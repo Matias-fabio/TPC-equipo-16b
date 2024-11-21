@@ -165,6 +165,63 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void ModificarCategoria(Categoria categoria)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE CATEGORIAS SET Nombre = @nombre, Descripcion = @descripcion, UrlImagen = @urlImagen WHERE Id = @id");
+                datos.setearParametro("@nombre", categoria.Nombre);
+                datos.setearParametro("@descripcion", categoria.Descripcion);
+                datos.setearParametro("@urlImagen", categoria.UrlImagen);
+                datos.setearParametro("@id", categoria.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public Categoria obtenerCategoriasPorId(int id)
+        {
+            Categoria categoria = null;
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT Id, Nombre, Descripcion, UrlImagen FROM CATEGORIAS WHERE Id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    categoria = new Categoria
+                    {
+                        Id = (int)datos.Lector["Id"],
+                        Nombre = (string)datos.Lector["Nombre"],
+                        Descripcion = datos.Lector["Descripcion"] as string,
+                        UrlImagen = datos.Lector["UrlImagen"] as string
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return categoria;
+        }
+
 
     }
 }
