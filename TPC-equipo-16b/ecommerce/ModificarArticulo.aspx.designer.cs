@@ -33,22 +33,22 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.TextBox txtNombreArticulo;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control TextCategoriaVieja.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox TextCategoriaVieja;
 
         /// <summary>
-        /// Control TextMarca.
+        /// Control TextMarcaVieja.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextMarca;
+        protected global::System.Web.UI.WebControls.TextBox TextMarcaVieja;
 
         /// <summary>
         /// Control ddlCategoria.
@@ -69,22 +69,22 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.DropDownList ddlMarca;
 
         /// <summary>
-        /// Control TextBox2.
+        /// Control TextPrecioViejo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox TextPrecioViejo;
 
         /// <summary>
-        /// Control TextBox3.
+        /// Control TextPrecioNuevo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox TextPrecioNuevo;
 
         /// <summary>
         /// Control BotonModificar.

@@ -371,5 +371,48 @@ namespace Negocio
                 accesoDatos.cerrarConexion();
             }
         }
+
+        public Articulo obtenerArticuloPorId(int id)
+        {
+            Articulo articulo = null;
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.IdMarca, a.IdCategoria, a.Precio, a.ImgUrl, c.Nombre AS Categoria, m.Nombre AS Marca FROM ARTICULOS a INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id INNER JOIN MARCAS m ON a.IdMarca = m.Id WHERE a.Id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    articulo = new Articulo
+                    {
+                        Id = (int)datos.Lector["Id"],
+                        Codigo = (string)datos.Lector["Codigo"],
+                        Nombre = (string)datos.Lector["Nombre"],
+                        Descripcion = datos.Lector["Descripcion"] as string,
+                        IdMarca = (int)datos.Lector["IdMarca"],
+                        IdCategoria = (int)datos.Lector["IdCategoria"],
+                        Precio = (decimal)datos.Lector["Precio"],
+                        UrlImagen = datos.Lector["ImgUrl"] as string,
+                        categoria = (string)datos.Lector["Categoria"],
+                        Marca = (string)datos.Lector["Marca"]
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return articulo;
+        }
+
+
+
     }
 }
