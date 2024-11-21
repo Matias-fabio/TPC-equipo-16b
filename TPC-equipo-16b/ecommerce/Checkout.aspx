@@ -253,15 +253,13 @@
     </div>
     <script>
         function showStep(step) {
-            // Ocultar todos los pasos
+
             document.querySelectorAll('.step-content').forEach(function (content) {
                 content.classList.add('d-none');
             });
 
-            // Mostrar el paso actual
             document.getElementById(`step${step}Content`).classList.remove('d-none');
 
-            // Actualizar visualmente los pasos
             document.querySelectorAll('.step').forEach(function (stepElement, index) {
                 if (index + 1 <= step) {
                     stepElement.classList.add('text-primary', 'fw-bold');
