@@ -95,5 +95,76 @@ namespace Negocio
             return categoria;
         }
 
+        public bool CategoriaExiste(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool existe = false;
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM CATEGORIAS WHERE Nombre = @nombre");
+                datos.setearParametro("@nombre", nombre);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    existe = datos.Lector.GetInt32(0) > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return existe;
+        }
+
+        public void AgregarCategoria(Categoria nuevaCategoria)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO CATEGORIAS (Nombre, Descripcion, UrlImagen) VALUES (@nombre, @descripcion, @urlImagen)");
+                datos.setearParametro("@nombre", nuevaCategoria.Nombre);
+                datos.setearParametro("@descripcion", nuevaCategoria.Descripcion);
+                datos.setearParametro("@urlImagen", nuevaCategoria.UrlImagen);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+        public void EliminarCategoria(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("DELETE FROM CATEGORIAS WHERE Id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
