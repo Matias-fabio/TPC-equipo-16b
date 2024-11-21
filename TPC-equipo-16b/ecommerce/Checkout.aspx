@@ -9,12 +9,13 @@
     <div class="container mt-5">
         <h2 class="text-center mb-4">Checkout</h2>
         <div class="row">
-            <div class="steps mb-4 ">
-                <span class="step" id="step1">1. Datos Personales</span>
-                <span class="step" id="step2">2. Datos de Envío</span>
-                <span class="step" id="step3">3. Datos de Pago</span>
-            </div>
+
             <div class="col-md-8">
+                <div class="steps mb-4 " style="display: flex; justify-content: space-between;">
+                    <h5 class="step text-muted" id="step1">1. Datos Personales</h5>
+                    <h5 class="step text-muted" id="step2">2. Datos de Envío</h5>
+                    <h5 class="step text-muted" id="step3">3. Datos de Pago</h5>
+                </div>
                 <section class="card">
                     <div class="card-body">
                         <article id="checkoutSteps">
@@ -72,7 +73,7 @@
                             <%//Datos Envio %>
                             <div class="step-content d-none" id="step2Content">
                                 <h4>Datos de Envío</h4>
-                                <div class="card mb-3">
+                                <div class="card-de mb-3">
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <asp:TextBox ID="txtDireccion" CssClass="form-control" runat="server" Placeholder="Dirección *"></asp:TextBox>
@@ -87,16 +88,24 @@
                                                 <asp:TextBox ID="txtProv" CssClass="form-control" runat="server" Placeholder="Provincia"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="mb-3 col">
-                                            <label for="inputNombre" class="form-label">Zona de envio: </label>
-                                            <asp:DropDownList ID="ddlZonaEnvio" CssClass="form-select" runat="server" AutoPostBack="true">
-                                                <asp:ListItem Text="Seleccionar zona *" Value="0"></asp:ListItem>
-                                            </asp:DropDownList>
-                                            <asp:Label ID="lblCostoEnvio" CssClass="form-text" runat="server" Text="Costo de envío: $0"></asp:Label>
-                                        </div>
+                                        <asp:UpdatePanel runat="server">
+                                            <ContentTemplate>
+                                                <div class="mb-3 col">
+                                                    <label for="inputNombre" class="form-label">Zona de envio: </label>
+                                                    <asp:DropDownList ID="ddlZonaEnvio" CssClass="form-select" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlZonaEnvio_SelectedIndexChanged">
+                                                        <asp:ListItem Text="Seleccionar zona *" Value="0"></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                    <div class="image-container d-flex justify-content-center align-items-center" style="width: 640px; height: 490px; overflow: hidden; object-fit: cover;">
+                                                        <img src="https://droppers.com.ar/media/wysiwyg/newsletter/tarifario_envios_octubre.png" alt="Información de envíos" class="img-fluid" style="max-width: 100%; max-height: 100%;" />
+                                                    </div>
+                                                    <asp:Label ID="lblCostoEnvio" CssClass="form-text" runat="server" Text="Costo de envío: $0"></asp:Label>
+                                                </div>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+
                                         <div class="d-flex justify-content-between">
                                             <asp:Button ID="btnBack1" CssClass="btn btn-secondary" runat="server" Text="Volver" OnClientClick="showStep(1); return false;" />
-                                            <asp:Button ID="btnNext2" CssClass="btn btn-primary" runat="server" Text="Siguiente" OnClientClick="showStep(3); return false;" />
+                                            <asp:Button ID="btnNext2" CssClass="btn btn-warning" runat="server" Text="Siguiente" OnClientClick="showStep(3); return false;" />
                                         </div>
                                     </div>
                                 </div>
@@ -140,25 +149,67 @@
             </div>
 
             <article class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h4>Detalle de la Compra</h4>
-                        <ul class="list-group mb-3">
-                            <asp:Repeater ID="rptDetalleCompra" runat="server">
-                                <ItemTemplate>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <span><%# Eval("NombreProducto") %></span>
-                                        <span>$<%# Eval("Precio") %></span>
-                                    </li>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </ul>
-                        <div class="d-flex justify-content-between">
-                            <strong>Total:</strong>
-                            <asp:Label ID="lblTotal" CssClass="fw-bold" runat="server" Text="$0"></asp:Label>
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <div class="card" style="border: none;">
+                            <div class="card-body" style="margin: 20px;">
+                                <h4>Detalle de la Compra</h4>
+                                <ul class="list-group mb-3">
+                                    <asp:Repeater ID="rptDetalleCompra" runat="server" OnItemCommand="rptDetalleCompra_ItemCommand">
+                                        <ItemTemplate>
+                                            <li class="list-group-item d-flex justify-content-between" style="border: none; margin-bottom: 30px;">
+                                                <div class=" d-flex" style="flex-direction: column; gap:20px;">
+                                                    <div class="image-container d-flex justify-content-center "
+                                                        style="width: 100px; height: 60px; overflow: hidden;">
+                                                        <img src="<%# Eval("UrlImagen") %>" alt="..." class="img-fluid">
+                                                    </div>
+                                                    <asp:UpdatePanel runat="server">
+                                                        <ContentTemplate>
+                                                            <div class="acciones d-flex  align-items-center" style="width: 50px; ">
+                                                                <asp:Button ID="btnRestar" runat="server" CommandName="RestarCantidad" CommandArgument='<%# Eval("Id") %>' Text="-" CssClass="btn btn-outline-secondary btn-cantidad" BorderStyle="None" />
+                                                                <span class=""><%# Eval("Cantidad") %></span>
+                                                                <asp:Button ID="btnSumar" runat="server" CommandName="SumarCantidad" CommandArgument='<%# Eval("Id") %>' Text="+" CssClass="btn btn-outline-secondary btn-cantidad"  BorderStyle="None" />
+
+                                                            </div>
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </div>
+
+                                                <span><%# Eval("Nombre") %></span>
+                                                <span>$<%# Eval("Precio") %></span>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </ul>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <p class="card-text mb-0">Tenes un cupon? Ingresa tu Codigo.</p>
+                                    <asp:TextBox ID="txtbCupon" runat="server" CssClass="form-control underline-textbox"></asp:TextBox>
+                                </div>
+                                <hr class="w-100 mb-3 text-muted">
+                                <div class="row" style="gap: 14px">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Subtotal:</span>
+                                        <asp:Label ID="lblTotal" CssClass="" runat="server" Text="$0"></asp:Label>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="form-text">Cupon:</span>
+                                        <asp:Label ID="LblCupon" CssClass="form-text" runat="server" Text="Descuento"></asp:Label>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <asp:Label ID="LblCT" CssClass="form-text" runat="server" Text="Costo de envío: "></asp:Label>
+                                        <asp:Label ID="LblST" CssClass="form-text" runat="server" Text="$0"></asp:Label>
+                                    </div>
+                                </div>
+                                <hr class="w-100 mb-3 text-muted">
+                                <div class="d-flex justify-content-between">
+                                    <h4>Total</h4>
+                                    <asp:Label ID="Label1" CssClass="form-text" runat="server" Text="$0"></asp:Label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
             </article>
         </div>
     </div>

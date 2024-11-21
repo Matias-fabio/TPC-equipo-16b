@@ -17,6 +17,23 @@ namespace ecommerce
         {
             if (!IsPostBack)
             {
+                if (Session["Carrito"] != null)
+                {
+                    List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+                    rptDetalleCompra.DataSource = carrito;
+                    rptDetalleCompra.DataBind();
+
+
+                    if (carrito != null && carrito.Count > 0)
+                    {
+                        decimal total = (decimal)Session["TotalCarrito"];
+                        lblTotal.Text = total.ToString("C");
+                    }
+                }
+                else
+                {
+                    //lblMensaje.Text = "Tu carrito está vacío.";
+                }
                 try
                 {
                     NegocioEnvios negocioEnvios = new NegocioEnvios();
@@ -24,6 +41,7 @@ namespace ecommerce
 
                     ddlZonaEnvio.DataSource = listaEnvios;
                     ddlZonaEnvio.DataTextField = "Descripcion";
+                    ddlZonaEnvio.DataValueField = "Precio";
                     ddlZonaEnvio.DataBind();
 
                 }
@@ -78,6 +96,73 @@ namespace ecommerce
             }
         }
 
+        protected void ddlZonaEnvio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlZonaEnvio.SelectedValue != "0")
+            {
+                string precio = ddlZonaEnvio.SelectedValue;
+                lblCostoEnvio.Text = $"Costo de envío: ${precio}";
+                LblST.Text = $" ${precio}";
+            }
+            else
+            {
+                lblCostoEnvio.Text = "Costo de envío: $0";
+            }
+        }
 
+        protected void rptDetalleCompra_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
+            int articuloId = Convert.ToInt32(e.CommandArgument);
+
+            Articulo articulo = carrito.Find(a => a.Id == articuloId);
+
+            if (articulo != null)
+            {
+                switch (e.CommandName)
+                {
+                    case "SumarCantidad":
+                        articulo.Cantidad++;
+                        break;
+                    case "RestarCantidad":
+                        if (articulo.Cantidad > 1)
+                        {
+                            articulo.Cantidad--;
+                        }
+                        break;
+                    case "EliminarArticulo":
+                        carrito.Remove(articulo);
+                        break;
+                }
+
+                Session["Carrito"] = carrito;
+                rptDetalleCompra.DataSource = carrito;
+                rptDetalleCompra.DataBind();
+
+                // Calcular el subtotal
+                decimal subtotal = carrito.Sum(item => item.Precio * item.Cantidad);
+                lblTotal.Text = subtotal.ToString("C");
+
+                // Calcular el costo de envío
+                decimal costoEnvio = 0;
+                if (ddlZonaEnvio.SelectedValue != "0")
+                {
+                    costoEnvio = Convert.ToDecimal(ddlZonaEnvio.SelectedValue);
+                }
+
+                // Actualizar el costo de envío en la interfaz
+                LblST.Text = $"${costoEnvio}";
+
+                // Actualizar el total (subtotal + costo de envío)
+                decimal total = subtotal + costoEnvio;
+                Label1.Text = total.ToString("C");
+
+                if (carrito.Count == 0)
+                {
+                    lblTotal.Text = "$0.00";
+                    Label1.Text = "$0.00"; // Si el carrito está vacío
+                }
+            }
+        }
     }
 }
