@@ -69,5 +69,23 @@ namespace ecommerce
             TextPrecioViejo.Text = articulo.Precio.ToString("F2");
         }
 
+        protected void BotonModificar_Click(object sender, EventArgs e)
+        {
+            int articuloId = int.Parse(ddlArticulos.SelectedValue);
+
+            Articulo articuloModificado = new Articulo
+            {
+                Id = articuloId,
+                Nombre = txtNombreArticulo.Text,
+                IdCategoria = int.Parse(ddlCategoria.SelectedValue),
+                IdMarca = int.Parse(ddlMarca.SelectedValue),
+                Precio = decimal.Parse(TextPrecioNuevo.Text),
+            };
+
+            NegocioArticulo.ModificarArticulo(articuloModificado);
+            lblMensaje.Text = "Modificación exitosa.";
+            lblMensaje.Visible = true;
+           
+        }
     }
 }

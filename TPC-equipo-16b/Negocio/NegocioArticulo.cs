@@ -412,7 +412,26 @@ namespace Negocio
             return articulo;
         }
 
+        public void ModificarArticulo(Articulo articulo)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setearConsulta("UPDATE ARTICULOS SET Nombre = @nombre, IdCategoria = @idCategoria, IdMarca = @idMarca, Precio = @precio WHERE Id = @id");
+                accesoDatos.setearParametro("@nombre", articulo.Nombre);
+                accesoDatos.setearParametro("@idCategoria", articulo.IdCategoria);
+                accesoDatos.setearParametro("@idMarca", articulo.IdMarca);
+                accesoDatos.setearParametro("@precio", articulo.Precio);
+                accesoDatos.setearParametro("@id", articulo.Id);
+                accesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex) { throw ex; }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
 
+        }
 
     }
 }

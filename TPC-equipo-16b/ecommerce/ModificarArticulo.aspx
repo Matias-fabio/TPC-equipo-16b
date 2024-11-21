@@ -58,7 +58,8 @@
         </div>
         <div class="col-12" id="BotonNuevoArticulo">
             <div class="d-grid gap-2 col-8 mx-auto">
-                <asp:LinkButton ID="BotonModificar" runat="server" class="btn btn-primary" type="button">
+                <asp:Label ID="lblMensaje" runat="server" CssClass="alert alert-success" Visible="False"></asp:Label>
+                <asp:LinkButton ID="BotonModificar" runat="server" class="btn btn-primary" type="button" OnClick="BotonModificar_Click">
                     <h3>Modificar articulo</h3>
                 </asp:LinkButton>
                 <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click">
