@@ -186,6 +186,51 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.Panel pnlTarjeta;
 
         /// <summary>
+        /// Control updCard.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updCard;
+
+        /// <summary>
+        /// Control lblCardNumero.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCardNumero;
+
+        /// <summary>
+        /// Control lblCardTitual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCardTitual;
+
+        /// <summary>
+        /// Control lblCardVencimiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCardVencimiento;
+
+        /// <summary>
+        /// Control lblCardCVV.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCardCVV;
+
+        /// <summary>
         /// Control txtNumeroTarjeta.
         /// </summary>
         /// <remarks>
@@ -231,6 +276,15 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.Panel pnlTranferencia;
 
         /// <summary>
+        /// Control fUComprobante.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fUComprobante;
+
+        /// <summary>
         /// Control btnBack2.
         /// </summary>
         /// <remarks>
@@ -247,6 +301,15 @@ namespace ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnFinalizarCompra;
+
+        /// <summary>
+        /// Control updDetalle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updDetalle;
 
         /// <summary>
         /// Control rptDetalleCompra.

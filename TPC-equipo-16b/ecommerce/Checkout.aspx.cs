@@ -139,30 +139,95 @@ namespace ecommerce
                 rptDetalleCompra.DataSource = carrito;
                 rptDetalleCompra.DataBind();
 
-                // Calcular el subtotal
                 decimal subtotal = carrito.Sum(item => item.Precio * item.Cantidad);
                 lblTotal.Text = subtotal.ToString("C");
 
-                // Calcular el costo de envío
                 decimal costoEnvio = 0;
                 if (ddlZonaEnvio.SelectedValue != "0")
                 {
                     costoEnvio = Convert.ToDecimal(ddlZonaEnvio.SelectedValue);
                 }
 
-                // Actualizar el costo de envío en la interfaz
                 LblST.Text = $"${costoEnvio}";
-
-                // Actualizar el total (subtotal + costo de envío)
                 decimal total = subtotal + costoEnvio;
                 Label1.Text = total.ToString("C");
 
                 if (carrito.Count == 0)
                 {
                     lblTotal.Text = "$0.00";
-                    Label1.Text = "$0.00"; // Si el carrito está vacío
+                    Label1.Text = "$0.00";
                 }
             }
+        }
+
+        protected void rblMetodoPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+                switch (rblMetodoPago.SelectedValue)
+                {
+                    case "Tarjeta":
+                        pnlTarjeta.Visible = true;
+                        pnlTranferencia.Visible = false;
+                        break;
+
+                    case "Transferencia":
+                        pnlTarjeta.Visible = false;
+                        pnlTranferencia.Visible = true;
+                        break;
+
+                    default:
+                        pnlTarjeta.Visible = false;
+                        pnlTranferencia.Visible = false;
+                        break;
+                
+            }
+
+        }
+
+        protected void txtNumeroTarjeta_TextChanged(object sender, EventArgs e)
+        {
+            lblCardNumero.Text = string.IsNullOrEmpty(txtNumeroTarjeta.Text) ? "#### #### #### ####" : txtNumeroTarjeta.Text;
+
+            string numeroTarjeta = txtNumeroTarjeta.Text;
+
+            string formatoTarjeta = string.Empty;
+            for (int i = 0; i < numeroTarjeta.Length; i++)
+            {
+                if (i > 0 && i % 4 == 0)
+                    formatoTarjeta += " ";
+
+                formatoTarjeta += numeroTarjeta[i];
+            }
+            lblCardNumero.Text = formatoTarjeta;
+            txtNumeroTarjeta.Text = formatoTarjeta;
+
+        }
+
+        protected void txtNombreTitular_TextChanged(object sender, EventArgs e)
+        {
+            lblCardTitual.Text = string.IsNullOrEmpty(txtNombreTitular.Text) ? "Nombre del titular" : txtNombreTitular.Text;
+        }
+
+        protected void txtFechaVencimiento_TextChanged(object sender, EventArgs e)
+        {
+            lblCardVencimiento.Text = string.IsNullOrEmpty(txtFechaVencimiento.Text) ? "MM/YY" : txtFechaVencimiento.Text;
+            string fechaVencimineto = txtFechaVencimiento.Text;
+
+            string formatoFecha = string.Empty;
+            for(int i = 0; i <  fechaVencimineto.Length; i++)
+            {
+                if (i > 0 && i % 2 == 0)
+                    formatoFecha += "/";
+                formatoFecha += fechaVencimineto[i];
+            }
+
+            lblCardVencimiento.Text = formatoFecha;
+            txtFechaVencimiento.Text = formatoFecha;
+
+        }
+
+        protected void txtCVV_TextChanged(object sender, EventArgs e)
+        {
+            lblCardCVV.Text = string.IsNullOrEmpty(txtCVV.Text) ? "CVV" : txtCVV.Text;
         }
     }
 }

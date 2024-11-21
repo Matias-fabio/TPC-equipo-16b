@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="ecommerce.Checkout" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="estilos/checkout.css" rel="stylesheet" />
 </asp:Content>
 
 
@@ -93,7 +94,7 @@
                                                 <div class="mb-3 col">
                                                     <label for="inputNombre" class="form-label">Zona de envio: </label>
                                                     <asp:DropDownList ID="ddlZonaEnvio" CssClass="form-select" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlZonaEnvio_SelectedIndexChanged">
-                                                        <asp:ListItem Text="Seleccionar zona *" Value="0"></asp:ListItem>
+                                                        <asp:ListItem Text="Seleccionar zona *" Value="0"></asp:ListItem> 
                                                     </asp:DropDownList>
                                                     <div class="image-container d-flex justify-content-center align-items-center" style="width: 640px; height: 490px; overflow: hidden; object-fit: cover;">
                                                         <img src="https://droppers.com.ar/media/wysiwyg/newsletter/tarifario_envios_octubre.png" alt="Información de envíos" class="img-fluid" style="max-width: 100%; max-height: 100%;" />
@@ -114,33 +115,71 @@
                             <%//Datos pago %>
                             <div class="step-content d-none" id="step3Content">
                                 <h4>Datos de Pago</h4>
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <asp:RadioButtonList ID="rblMetodoPago" CssClass="form-check" RepeatDirection="Horizontal" runat="server" AutoPostBack="true">
-                                            <asp:ListItem Text="Tarjeta de crédito" Value="Tarjeta"></asp:ListItem>
-                                            <asp:ListItem Text="Transferencia/Mercado Pago" Value="Transferencia"></asp:ListItem>
-                                        </asp:RadioButtonList>
-                                        <asp:Panel ID="pnlTarjeta" runat="server" Visible="true">
-                                            <div class="mb-3">
-                                                <asp:TextBox ID="txtNumeroTarjeta" CssClass="form-control" runat="server" Placeholder="Número de tarjeta"></asp:TextBox>
+                                <div class="card-dp mb-3">
+                                    <asp:UpdatePanel runat="server">
+                                        <ContentTemplate>
+                                            <div class="card-body">
+                                                <asp:RadioButtonList ID="rblMetodoPago" CssClass="form-check" RepeatDirection="Horizontal" runat="server" AutoPostBack="true" OnSelectedIndexChanged="rblMetodoPago_SelectedIndexChanged">
+                                                    <asp:ListItem Text="Tarjeta de crédito" Value="Tarjeta"></asp:ListItem>
+                                                    <asp:ListItem Text="Transferencia/Mercado Pago" Value="Transferencia"></asp:ListItem>
+                                                </asp:RadioButtonList>
+                                                <asp:Panel ID="pnlTarjeta" runat="server" Visible="false">
+                                                    <asp:UpdatePanel ID="updCard" runat="server">
+                                                        <ContentTemplate>
+                                                            <div class="card-tarjeta">
+                                                                <div class="numero">
+                                                                    <asp:Label ID="lblCardNumero" runat="server" Text="#### #### #### ####"></asp:Label>
+                                                                </div>
+                                                                <div class="titular">
+                                                                    <asp:Label ID="lblCardTitual" runat="server" Text="Nombre del titular"></asp:Label>
+                                                                </div>
+                                                                <div class="vencimineto">
+                                                                    <label>Vencimiento:</label>
+                                                                    <asp:Label ID="lblCardVencimiento" runat="server" Text="MM/YY"></asp:Label>
+                                                                </div>
+                                                                <div class="cvv">
+                                                                    <asp:Label ID="lblCardCVV" runat="server" Text="CVV"></asp:Label>
+                                                                </div>
+                                                            </div>
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                    <div class="mb-3">
+                                                        <asp:TextBox ID="txtNumeroTarjeta" CssClass="form-control" runat="server" Placeholder="Número de tarjeta" AutoPostBack="true" OnTextChanged="txtNumeroTarjeta_TextChanged"></asp:TextBox>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <asp:TextBox ID="txtNombreTitular" CssClass="form-control" runat="server" Placeholder="Nombre del titular" AutoPostBack="true" OnTextChanged="txtNombreTitular_TextChanged"></asp:TextBox>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <asp:TextBox ID="txtFechaVencimiento" CssClass="form-control" runat="server" Placeholder="Fecha de vencimiento (MM/YY)" AutoPostBack="true" OnTextChanged="txtFechaVencimiento_TextChanged"></asp:TextBox>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <asp:TextBox ID="txtCVV" CssClass="form-control" runat="server" Placeholder="CVV" AutoPostBack="true" OnTextChanged="txtCVV_TextChanged"></asp:TextBox>
+                                                    </div>
+                                                </asp:Panel>
+                                                <asp:Panel ID="pnlTranferencia" runat="server" Visible="false">
+                                                    <h3>Pasos para realizar tu transferencia</h3>
+                                                    <p>Por favor, sigue los pasos detallados a continuación para completar tu compra:</p>
+                                                    <ul class="card-body">
+                                                        <li>Realiza una transferencia bancaria o envio dinero a través de Mercado Pago.</li>
+                                                        <li>Utiliza los siguientes datos para completar la operación:</li>
+                                                        <li>
+                                                            <p class="card-text"><strong>Banco:</strong> Banco Santander Rio.</p>
+                                                            <p class="card-text"><strong>CBU:</strong> 1234567890123456789012</p>
+                                                            <p class="card-text"><strong>Alias:</strong> Alias.Transferencia</p>
+                                                            <p class="card-text"><strong>Cuenta a nombre de:</strong> Empresa E-Commerce S.A.</p>
+                                                        </li>
+                                                        <li>Una vez finalizada la transferencia, adjunta el comprobante  a continuación y haz clic en "Finalizar compra".</li>
+                                                        <li>Al procesar correctamente el pago de notificara en el mail registrado(revisar SPAM).</li>
+                                                    </ul>
+                                                    <asp:FileUpload ID="fUComprobante" runat="server" CssClass="form-control" />
+                                                </asp:Panel>
+                                                <div class="d-flex justify-content-between">
+                                                    <asp:Button ID="btnBack2" CssClass="btn btn-secondary" runat="server" Text="Volver" OnClientClick="showStep(2); return false;" />
+                                                    <asp:Button ID="btnFinalizarCompra" CssClass="btn btn-success" runat="server" Text="Finalizar Compra" OnClick="btnFinalizarCompra_Click" />
+                                                </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <asp:TextBox ID="txtNombreTitular" CssClass="form-control" runat="server" Placeholder="Nombre del titular"></asp:TextBox>
-                                            </div>
-                                            <div class="mb-3">
-                                                <asp:TextBox ID="txtFechaVencimiento" CssClass="form-control" runat="server" Placeholder="Fecha de vencimiento (MM/YY)"></asp:TextBox>
-                                            </div>
-                                            <div class="mb-3">
-                                                <asp:TextBox ID="txtCVV" CssClass="form-control" runat="server" Placeholder="CVV"></asp:TextBox>
-                                            </div>
-                                        </asp:Panel>
-                                        <asp:Panel ID="pnlTranferencia" runat="server" Visible="false">
-                                        </asp:Panel>
-                                        <div class="d-flex justify-content-between">
-                                            <asp:Button ID="btnBack2" CssClass="btn btn-secondary" runat="server" Text="Volver" OnClientClick="showStep(2); return false;" />
-                                            <asp:Button ID="btnFinalizarCompra" CssClass="btn btn-success" runat="server" Text="Finalizar Compra" OnClick="btnFinalizarCompra_Click" />
-                                        </div>
-                                    </div>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
                                 </div>
                             </div>
                         </article>
@@ -149,7 +188,7 @@
             </div>
 
             <article class="col-md-4">
-                <asp:UpdatePanel runat="server">
+                <asp:UpdatePanel ID="updDetalle" runat="server">
                     <ContentTemplate>
                         <div class="card" style="border: none;">
                             <div class="card-body" style="margin: 20px;">
@@ -158,17 +197,17 @@
                                     <asp:Repeater ID="rptDetalleCompra" runat="server" OnItemCommand="rptDetalleCompra_ItemCommand">
                                         <ItemTemplate>
                                             <li class="list-group-item d-flex justify-content-between" style="border: none; margin-bottom: 30px;">
-                                                <div class=" d-flex" style="flex-direction: column; gap:20px;">
+                                                <div class=" d-flex" style="flex-direction: column; gap: 20px;">
                                                     <div class="image-container d-flex justify-content-center "
                                                         style="width: 100px; height: 60px; overflow: hidden;">
                                                         <img src="<%# Eval("UrlImagen") %>" alt="..." class="img-fluid">
                                                     </div>
                                                     <asp:UpdatePanel runat="server">
                                                         <ContentTemplate>
-                                                            <div class="acciones d-flex  align-items-center" style="width: 50px; ">
+                                                            <div class="acciones d-flex  align-items-center" style="width: 50px;">
                                                                 <asp:Button ID="btnRestar" runat="server" CommandName="RestarCantidad" CommandArgument='<%# Eval("Id") %>' Text="-" CssClass="btn btn-outline-secondary btn-cantidad" BorderStyle="None" />
                                                                 <span class=""><%# Eval("Cantidad") %></span>
-                                                                <asp:Button ID="btnSumar" runat="server" CommandName="SumarCantidad" CommandArgument='<%# Eval("Id") %>' Text="+" CssClass="btn btn-outline-secondary btn-cantidad"  BorderStyle="None" />
+                                                                <asp:Button ID="btnSumar" runat="server" CommandName="SumarCantidad" CommandArgument='<%# Eval("Id") %>' Text="+" CssClass="btn btn-outline-secondary btn-cantidad" BorderStyle="None" />
 
                                                             </div>
                                                         </ContentTemplate>
@@ -209,7 +248,6 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-
             </article>
         </div>
     </div>
@@ -232,7 +270,6 @@
                 }
             });
         }
-
 
     </script>
 </asp:Content>

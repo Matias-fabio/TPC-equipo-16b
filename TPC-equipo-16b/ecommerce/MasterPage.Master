@@ -42,7 +42,7 @@
                                 <asp:UpdatePanel runat="server">
                                     <ContentTemplate>
                                         <i class="fa-solid fa-cart-shopping"></i>
-                                        <asp:label text="" runat="server" CssClass="badge bg-warning text-dark" ID="lblCantidadCarrito" />
+                                        <asp:label text="" runat="server" CssClass="badge bg-warning text-dark" ID="lblCantidadCarrito" AutoPostback="true" />
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                             </asp:LinkButton>

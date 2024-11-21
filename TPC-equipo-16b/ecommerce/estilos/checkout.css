@@ -1,0 +1,50 @@
+﻿
+
+
+
+/*
+    Datos de pago
+*/
+.card-tarjeta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 320px;
+    height: 200px;
+    background: rgb(230,93,126);
+    background: linear-gradient(90deg, rgba(230,93,126,1) 0%, rgba(255,132,30,1) 25%, rgba(230,196,56,1) 100%);
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    margin: 30px;
+}
+
+
+    .card-tarjeta .numero {
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .card-tarjeta .titular {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+.card-tarjetad .vencimiento {
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+.card-tarjetad .cvv {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
