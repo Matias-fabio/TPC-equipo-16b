@@ -75,7 +75,7 @@ namespace Negocio
                     Datos.setearParametro("@IDAdmin", 1);
                     Datos.setearParametro("@Nombre", cliente.Nombre);
                     Datos.setearParametro("@Apellido", cliente.Apellido);
-                    Datos.setearParametro("@Direccion", cliente.Direccion);
+                    Datos.setearParametro("@Direccion", cliente.Direccion ?? (object)DBNull.Value);
                     Datos.setearParametro("@Telefono", cliente.Telefono);
                     Datos.setearParametro("@Email", cliente.Email);
                     Datos.setearParametro("@Contraseña", cliente.Contraseña);

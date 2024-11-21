@@ -18,7 +18,7 @@
                 <section class="card">
                     <div class="card-body">
                         <article id="checkoutSteps">
-
+                            <%//Datos personales %>
                             <div class="step-content" id="step1Content">
                                 <h4>Datos Personales</h4>
                                 <div class="card-dp mb-3">
@@ -38,12 +38,13 @@
                                                 <asp:Panel ID="pnlPassword" runat="server" Visible="false">
                                                     <div class="row">
                                                         <div class="col">
-                                                            <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" Placeholder="Contraseña *"></asp:TextBox>
+                                                            <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" TextMode="Password" Placeholder="Contraseña *"></asp:TextBox>
                                                         </div>
                                                         <div class="col">
-                                                            <asp:TextBox ID="txtPasswordRep" CssClass="form-control" runat="server" Placeholder="Repetir contraseña *"></asp:TextBox>
+                                                            <asp:TextBox ID="txtPasswordRep" CssClass="form-control" runat="server" TextMode="Password" Placeholder="Repetir contraseña *"></asp:TextBox>
                                                         </div>
                                                     </div>
+                                                    <asp:Label ID="lblError" CssClass="text-danger" runat="server" Visible="false"></asp:Label>
                                                 </asp:Panel>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
@@ -62,19 +63,19 @@
                                             <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server" Placeholder="Telefono(opcional)"></asp:TextBox>
                                         </div>
                                         <div class="text-end">
-                                            <asp:Button ID="btnNext1" CssClass="btn btn-primary" runat="server" Text="Siguiente" OnClientClick="showStep(2); return false;" />
+                                            <asp:Button ID="btnNext1" CssClass="btn btn-warning" runat="server" Text="Siguiente" OnClientClick="showStep(2); return false;" OnClick="btnNext1_Click" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-
+                            <%//Datos Envio %>
                             <div class="step-content d-none" id="step2Content">
                                 <h4>Datos de Envío</h4>
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <div class="mb-3">
-                                            <asp:TextBox ID="txtDireccion" CssClass="form-control" runat="server" Placeholder="Dirección"></asp:TextBox>
+                                            <asp:TextBox ID="txtDireccion" CssClass="form-control" runat="server" Placeholder="Dirección *"></asp:TextBox>
                                         </div>
                                         <div class="row g-3">
                                             <div class="col">
@@ -89,7 +90,7 @@
                                         <div class="mb-3 col">
                                             <label for="inputNombre" class="form-label">Zona de envio: </label>
                                             <asp:DropDownList ID="ddlZonaEnvio" CssClass="form-select" runat="server" AutoPostBack="true">
-                                                <asp:ListItem Text="Seleccione una zona" Value="0"></asp:ListItem>
+                                                <asp:ListItem Text="Seleccionar zona *" Value="0"></asp:ListItem>
                                             </asp:DropDownList>
                                             <asp:Label ID="lblCostoEnvio" CssClass="form-text" runat="server" Text="Costo de envío: $0"></asp:Label>
                                         </div>
@@ -101,7 +102,7 @@
                                 </div>
                             </div>
 
-
+                            <%//Datos pago %>
                             <div class="step-content d-none" id="step3Content">
                                 <h4>Datos de Pago</h4>
                                 <div class="card mb-3">
@@ -128,7 +129,7 @@
                                         </asp:Panel>
                                         <div class="d-flex justify-content-between">
                                             <asp:Button ID="btnBack2" CssClass="btn btn-secondary" runat="server" Text="Volver" OnClientClick="showStep(2); return false;" />
-                                            <asp:Button ID="btnFinalizarCompra" CssClass="btn btn-success" runat="server" Text="Finalizar Compra" />
+                                            <asp:Button ID="btnFinalizarCompra" CssClass="btn btn-success" runat="server" Text="Finalizar Compra" OnClick="btnFinalizarCompra_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -161,5 +162,26 @@
             </article>
         </div>
     </div>
+    <script>
+        function showStep(step) {
+            // Ocultar todos los pasos
+            document.querySelectorAll('.step-content').forEach(function (content) {
+                content.classList.add('d-none');
+            });
 
+            // Mostrar el paso actual
+            document.getElementById(`step${step}Content`).classList.remove('d-none');
+
+            // Actualizar visualmente los pasos
+            document.querySelectorAll('.step').forEach(function (stepElement, index) {
+                if (index + 1 <= step) {
+                    stepElement.classList.add('text-primary', 'fw-bold');
+                } else {
+                    stepElement.classList.remove('text-primary', 'fw-bold');
+                }
+            });
+        }
+
+
+    </script>
 </asp:Content>
