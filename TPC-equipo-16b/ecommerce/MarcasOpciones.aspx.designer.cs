@@ -15,39 +15,39 @@ namespace ecommerce
     {
 
         /// <summary>
-        /// Control botonArticulo.
+        /// Control botonAgregar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton botonArticulo;
+        protected global::System.Web.UI.WebControls.LinkButton botonAgregar;
 
         /// <summary>
-        /// Control BotonCategoria.
+        /// Control BotonEliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BotonCategoria;
+        protected global::System.Web.UI.WebControls.LinkButton BotonEliminar;
 
         /// <summary>
-        /// Control BotonMarcas.
+        /// Control BotonModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BotonMarcas;
+        protected global::System.Web.UI.WebControls.LinkButton BotonModificar;
 
         /// <summary>
-        /// Control botonHistoriaVentas.
+        /// Control botonvolver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton botonHistoriaVentas;
+        protected global::System.Web.UI.WebControls.LinkButton botonvolver;
     }
 }

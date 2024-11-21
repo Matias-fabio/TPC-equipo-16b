@@ -13,5 +13,24 @@ namespace ecommerce
         {
 
         }
+        protected void botonvolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdministradorInicio.aspx");
+        }
+
+        protected void BotonModificar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ModificarMarcaAdmin.aspx");
+        }
+
+        protected void BotonEliminar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EliminarMarcaAdmin.aspx");
+        }
+
+        protected void botonAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("NuevaMarcaAdmin.aspx");
+        }
     }
 }
