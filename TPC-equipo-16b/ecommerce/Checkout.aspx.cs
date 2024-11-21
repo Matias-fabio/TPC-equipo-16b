@@ -13,5 +13,10 @@ namespace ecommerce
         {
 
         }
+
+        protected void chkCrearCuenta_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlPassword.Visible = chkCrearCuenta.Checked;
+        }
     }
 }
