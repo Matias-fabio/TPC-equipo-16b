@@ -327,3 +327,20 @@ footer {
 #BotonNuevoArticulo {
     padding-top: 100px;
 }
+
+#CartaInicio {
+    border: none;
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+
+#BotonAceptar #botonNuevoUsuario #BotonContraseña {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+}
+
+#ContenedorLogin{
+    padding-bottom:100px;
+}

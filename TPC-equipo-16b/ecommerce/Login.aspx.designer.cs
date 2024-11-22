@@ -51,15 +51,6 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.LinkButton BotonAceptar;
 
         /// <summary>
-        /// Control BotonContraseña.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BotonContraseña;
-
-        /// <summary>
         /// Control botonNuevoUsuario.
         /// </summary>
         /// <remarks>
@@ -67,5 +58,14 @@ namespace ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton botonNuevoUsuario;
+
+        /// <summary>
+        /// Control BotonContraseña.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton BotonContraseña;
     }
 }
