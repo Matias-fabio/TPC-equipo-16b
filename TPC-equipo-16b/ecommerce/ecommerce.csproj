@@ -72,6 +72,7 @@
     <Content Include="EliminarCategoriaAdmin.aspx" />
     <Content Include="EliminarMarcaAdmin.aspx" />
     <Content Include="estilos\checkout.css" />
+    <Content Include="MasStock.aspx" />
     <Content Include="ModificarCategoria.aspx" />
     <Content Include="ModificarMarcaAdmin.aspx" />
     <Content Include="NuevaCategoriaAdmin.aspx" />
@@ -125,6 +126,13 @@
     </Compile>
     <Compile Include="EliminarMarcaAdmin.aspx.designer.cs">
       <DependentUpon>EliminarMarcaAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasStock.aspx.cs">
+      <DependentUpon>MasStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasStock.aspx.designer.cs">
+      <DependentUpon>MasStock.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModificarCategoria.aspx.cs">
       <DependentUpon>ModificarCategoria.aspx</DependentUpon>

@@ -9,6 +9,9 @@
         <asp:LinkButton ID="btnInventario" runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnInventario_Click">
             <h5>Inventario</h5> 
         </asp:LinkButton>
+        <asp:LinkButton ID="InventarioStock" runat="server" CssClass="btn btn-primary btn-lg" OnClick="InventarioStock_Click">
+            <h5>Agregar stock</h5> 
+        </asp:LinkButton>
         <asp:LinkButton ID="botonArticulo" runat="server" CssClass="btn btn-primary btn-lg" OnClick="botonArticulo_Click">
             <h5>Agregar articulo</h5> 
         </asp:LinkButton>

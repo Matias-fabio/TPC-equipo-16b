@@ -39,5 +39,10 @@ namespace ecommerce
         {
             Response.Redirect("ArticuloStock.aspx");
         }
+
+        protected void InventarioStock_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MasStock.aspx");
+        }
     }
 }
