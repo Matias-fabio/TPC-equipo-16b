@@ -1,10 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ArticuloOpciones.aspx.cs" Inherits="ecommerce.WebForm3" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Articulos</h1>
 
     <div class="d-grid gap-4 col-6 mx-auto" id="OpcionesArticulo">
+        <asp:LinkButton ID="btnInventario" runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnInventario_Click">
+            <h5>Inventario</h5> 
+        </asp:LinkButton>
         <asp:LinkButton ID="botonArticulo" runat="server" CssClass="btn btn-primary btn-lg" OnClick="botonArticulo_Click">
             <h5>Agregar articulo</h5> 
         </asp:LinkButton>

@@ -34,5 +34,10 @@ namespace ecommerce
         {
             Response.Redirect("EliminarArticulo.aspx");
         }
+
+        protected void btnInventario_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ArticuloStock.aspx");
+        }
     }
 }
