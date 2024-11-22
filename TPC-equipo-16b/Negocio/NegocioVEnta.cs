@@ -50,13 +50,13 @@ namespace Negocio
                     Venta aux = new Venta();
                     aux.NumVenta = (int)datos.Lector["NumVenta"];
                     aux.Cliente.Nombre = (string)datos.Lector["Cliente"];
-                    aux.Cliente.Email = (string)datos.Lector["email"];
-                    aux.FechaVenta = (DateTime)datos.Lector["FechaVenta"];
+                    aux.Cliente.Email = (string)datos.Lector["Email"];
+                    aux.FechaVenta = (DateTime)datos.Lector["Fecha"];
                     aux.MetodoPago = (string)datos.Lector["MetodoPago"];
                     aux.Envio.Descripcion = (string)datos.Lector["Envio"];
                     aux.TotalVenta = (decimal)datos.Lector["ImporteTotal"];
-                    aux.Estado.NombreEstdo = (string)datos.Lector["Estaado"];
-
+                    aux.Estado.NombreEstado = (string)datos.Lector["Estado"];
+                 
                     listaVenta.Add(aux);
                 }
 

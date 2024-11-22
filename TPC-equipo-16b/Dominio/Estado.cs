@@ -9,7 +9,7 @@ namespace Dominio
     public class Estado
     {
         public int Id { get; set; }
-        public string NombreEstdo { get; set; }
+        public string NombreEstado { get; set; }
 
     }
 }

@@ -84,21 +84,16 @@ namespace ecommerce
                 cliente.Apellido = txtApellido.Text;
                 cliente.Telefono = txtTelefono.Text;
                 cliente.Direccion = txtDireccion.Text;
-
+                
+                negocioUsuario.AgregarUsuario(cliente);
                 // Registtro de ventas
                 Venta venta = new Venta();
                 venta.FechaVenta = DateTime.UtcNow;
-                if (rblMetodoPago.SelectedItem.Value == "tarjeta")
-                    venta.MetodoPago = "tarjeta";
-                else
-                    venta.MetodoPago = "transferencia";
+                venta.MetodoPago = rblMetodoPago.SelectedItem.Value == "tarjeta" ? "tarjeta" : "transferencia";
                 venta.TotalVenta = decimal.Parse(Label1.Text);
-
                 venta.Envio.Id = int.Parse(ddlZonaEnvio.SelectedValue);
 
                 negocioVenta.registrarVenta(venta);
-
-                negocioUsuario.AgregarUsuario(cliente);
                 lblError.Visible = false;
             }
             catch (Exception ex)
