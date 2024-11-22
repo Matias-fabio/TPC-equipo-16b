@@ -9,7 +9,7 @@
                 <asp:Label runat="server" CssClass="text-body-secondary opacity-75" ID="lblCategoria" Text=" "></asp:Label></h3>
 
             <div class="row">
- 
+
                 <aside class="col-md-2">
                     <h5 class="text-body-secondary opacity-75 mb-3">Categorías</h5>
                     <ul class="list-group">
@@ -35,14 +35,13 @@
                             <asp:Label runat="server" CssClass="text-body-secondary opacity-75" ID="Label1" Text=" "></asp:Label>
                         </h3>
                         <div>
-                            <asp:DropDownList ID="ddlOrdenar" runat="server" CssClass="form-select " AutoPostBack="true">
+                            <asp:DropDownList ID="ddlOrdenar" runat="server" CssClass="form-select " AutoPostBack="true" OnSelectedIndexChanged="ddlOrdenar_SelectedIndexChanged">
                                 <asp:ListItem Text="Destacados" Value="" />
                                 <asp:ListItem Text="Precio: Menor a Mayor" Value="Asc" />
                                 <asp:ListItem Text="Precio: Mayor a Menor" Value="Desc" />
                             </asp:DropDownList>
                         </div>
                     </div>
-
                     <div class="row g-4">
                         <asp:Repeater runat="server" ID="repCardArt">
                             <ItemTemplate>

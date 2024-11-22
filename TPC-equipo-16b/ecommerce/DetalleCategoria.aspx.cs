@@ -130,5 +130,36 @@ namespace ecommerce
                 }
             }
         }
+
+        protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string ordenSeleccionado = ddlOrdenar.SelectedValue;
+
+            if (string.IsNullOrEmpty(ordenSeleccionado))
+            {
+                CargarArticulos();
+            }
+            else
+            {
+                OrdenarArticulosPorPrecio(ordenSeleccionado);
+            }
+        }
+
+        private void OrdenarArticulosPorPrecio(string orden)
+        {
+            if (ListaArticulos != null)
+            {
+                if (orden == "Asc")
+                {
+                    ListaArticulos.Sort((a, b) => a.Precio.CompareTo(b.Precio));
+                }
+                else if (orden == "Desc")
+                {
+                    ListaArticulos.Sort((a, b) => b.Precio.CompareTo(a.Precio));
+                }
+                repCardArt.DataSource = ListaArticulos;
+                repCardArt.DataBind();
+            }
+        }
     }
 }
