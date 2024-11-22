@@ -94,7 +94,7 @@
                                                 <div class="mb-3 col">
                                                     <label for="inputNombre" class="form-label">Zona de envio: </label>
                                                     <asp:DropDownList ID="ddlZonaEnvio" CssClass="form-select" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlZonaEnvio_SelectedIndexChanged">
-                                                        <asp:ListItem Text="Seleccionar zona *" Value="0"></asp:ListItem> 
+                                                        <asp:ListItem Text="Seleccionar zona *" Value="0"></asp:ListItem>
                                                     </asp:DropDownList>
                                                     <div class="image-container d-flex justify-content-center align-items-center" style="width: 640px; height: 490px; overflow: hidden; object-fit: cover;">
                                                         <img src="https://droppers.com.ar/media/wysiwyg/newsletter/tarifario_envios_octubre.png" alt="Información de envíos" class="img-fluid" style="max-width: 100%; max-height: 100%;" />
@@ -251,6 +251,29 @@
             </article>
         </div>
     </div>
+    <!-- Modal de Agradecimiento -->
+    <!-- Modal de Agradecimiento -->
+    <div class="modal fade" id="modalAgradecimiento" tabindex="-1" role="dialog" aria-labelledby="modalAgradecimientoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content bg-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAgradecimientoLabel">¡Gracias por tu compra!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <h5 class="modal-title">Gracias por tu compra</h5>
+                    <p>Tu compra ha sido registrada correctamente.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         function showStep(step) {
 
@@ -270,4 +293,5 @@
         }
 
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </asp:Content>

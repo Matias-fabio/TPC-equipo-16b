@@ -13,22 +13,23 @@ namespace Negocio
         public void registrarVenta(Venta venta)
         {
             AccesoDatos datos = new AccesoDatos();
-
             try
             {
-                datos.setearProcedimiento("SP_RegistrarVenta");
-                datos.setearParametro("@Idusuario",venta.Cliente);
-                datos.setearParametro("@TotalVenta", venta.TotalVenta);
+                string consulta = "INSERT INTO VENTAS (IdUsuario, FechaVenta, MetodoPago, IdCostoEnvio, TotalVenta, IdEstado) " +
+                                  "VALUES (@IdUsuario, @FechaVenta, @MetodoPago, @IdCostoEnvio, @TotalVenta, @IdEstado);";
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@IdUsuario", venta.Cliente.ID);
+                datos.setearParametro("@FechaVenta", venta.FechaVenta);
                 datos.setearParametro("@MetodoPago", venta.MetodoPago);
-                datos.setearParametro("@IdCostoEnvio", venta.Envio);
-                datos.setearParametro("@IdEstado", venta.Estado);
+                datos.setearParametro("@IdCostoEnvio", venta.Envio.Id); 
+                datos.setearParametro("@TotalVenta", venta.TotalVenta);
+                datos.setearParametro("@IdEstado", venta.Estado.Id); 
 
                 datos.ejecutarAccion();
-
             }
             catch (Exception ex)
             {
-
+ 
                 throw ex;
             }
             finally
@@ -36,6 +37,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
 
         public List<Venta> listarVentas()
         {

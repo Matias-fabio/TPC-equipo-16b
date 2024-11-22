@@ -48,3 +48,18 @@
     font-size: 1rem;
     letter-spacing: 1px;
 }
+/*Modal*/
+#modalAgradecimiento .modal-content {
+    background-color: white;
+    border-radius: 10px; 
+    padding: 20px;
+}
+
+#modalAgradecimiento .modal-header, #modalAgradecimiento .modal-footer {
+    border: none; 
+}
+
+.modal-body fa-regular{
+    font-size: 30px;
+    color: forestgreen;
+}

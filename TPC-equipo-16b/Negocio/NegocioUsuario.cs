@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Negocio
 {
@@ -127,6 +128,36 @@ namespace Negocio
             }
         }
 
+        public void ObtenerUsuarioId(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT * FROM Usuarios WHERE ID = @ID");
+                datos.setearParametro("@ID", id);
+                datos.ejecutarLectura();
 
+                if (datos.Lector.Read())
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.ID = (int)datos.Lector["ID"];
+                    cliente.Nombre = (string)datos.Lector["Nombre"];
+                    cliente.Apellido = (string)datos.Lector["Apellido"];
+                    cliente.Email = (string)datos.Lector["Email"];
+                    cliente.Contraseña = (string)datos.Lector["Contraseña"];
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

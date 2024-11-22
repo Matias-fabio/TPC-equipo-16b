@@ -65,7 +65,7 @@ namespace ecommerce
         protected void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
             NegocioUsuario negocioUsuario = new NegocioUsuario();
-            NegocioVenta negocioVenta = new NegocioVenta();
+            //NegocioVenta negocioVenta = new NegocioVenta();
             try
             {
                 if (chkCrearCuenta.Checked)
@@ -87,21 +87,26 @@ namespace ecommerce
                 
                 negocioUsuario.AgregarUsuario(cliente);
                 // Registtro de ventas
-                Venta venta = new Venta();
-                venta.FechaVenta = DateTime.UtcNow;
-                venta.MetodoPago = rblMetodoPago.SelectedItem.Value == "tarjeta" ? "tarjeta" : "transferencia";
-                venta.TotalVenta = decimal.Parse(Label1.Text);
-                venta.Envio.Id = int.Parse(ddlZonaEnvio.SelectedValue);
+                //Venta venta = new Venta();
+                //venta.FechaVenta = DateTime.UtcNow;
+                //venta.MetodoPago = rblMetodoPago.SelectedItem.Value == "tarjeta" ? "tarjeta" : "transferencia";
+                //venta.TotalVenta = decimal.Parse(Label1.Text);
+                //venta.Envio.Id = int.Parse(ddlZonaEnvio.SelectedValue);
 
-                negocioVenta.registrarVenta(venta);
-                lblError.Visible = false;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", "$('#modalAgradecimiento').modal('show');", true);
+
+                // Redirigir después de 3 segundos
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Redirigir", "setTimeout(function(){ window.location.href = 'Default.aspx'; }, 3000);", true);
+                //negocioVenta.registrarVenta(venta);
+                //Response.Redirect("Default.aspx");
+                //lblError.Visible = false;
             }
             catch (Exception ex)
             {
-                lblError.Text = "Error al registrar al cliente: " + ex.Message;
-                lblError.Text = "error al registrar la venta" + ex.Message;
-                lblError.Visible = true;
-
+                //lblError.Text = "Error al registrar al cliente: " + ex.Message;
+                //lblError.Text = "error al registrar la venta" + ex.Message;
+                //lblError.Visible = true;
+                throw ex;
             }
         }
 
