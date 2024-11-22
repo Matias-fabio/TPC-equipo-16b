@@ -16,12 +16,20 @@ namespace Negocio
 
             try
             {
+                datos.setearProcedimiento("SP_RegistrarVenta");
+                datos.setearParametro("@Idusuario",venta.Cliente);
+                datos.setearParametro("@TotalVenta", venta.TotalVenta);
+                datos.setearParametro("@MetodoPago", venta.MetodoPago);
+                datos.setearParametro("@IdCostoEnvio", venta.Envio);
+                datos.setearParametro("@IdEstado", venta.Estado);
+
+                datos.ejecutarAccion();
 
             }
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally
             {
@@ -31,7 +39,7 @@ namespace Negocio
 
         public List<Venta> listarVentas()
         {
-            List<Venta> listaVenta = new List<Venta> ();
+            List<Venta> listaVenta = new List<Venta>();
             AccesoDatos datos = new AccesoDatos();
             try
             {

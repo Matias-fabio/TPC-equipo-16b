@@ -13,7 +13,7 @@
                 <aside class="col-md-2">
                     <h5 class="text-body-secondary opacity-75 mb-3">Categorías</h5>
                     <ul class="list-group">
-                        <asp:Repeater ID="repCategorias" runat="server">
+                        <asp:Repeater ID="repCategorias" runat="server" OnItemCommand="repCategorias_ItemCommand">
                             <ItemTemplate>
                                 <li class="list-group-item">
                                     <asp:LinkButton

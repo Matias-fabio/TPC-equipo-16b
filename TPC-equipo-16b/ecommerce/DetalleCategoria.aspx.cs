@@ -91,5 +91,44 @@ namespace ecommerce
                 Response.Redirect("DetalleProducto.aspx?Id=" + idProducto);
             }
         }
+
+        protected void repCategorias_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "FiltrarCategoria")
+            {
+                string categoriaID = e.CommandArgument.ToString();
+                NegocioArticulo negocioArticulo = new NegocioArticulo();
+
+                try
+                {
+                    if (string.IsNullOrEmpty(categoriaID))
+                    {
+                        // Si no se pasa un ID de categoría, se cargan todos los productos
+                        ListaArticulos = negocioArticulo.listarArticulosPaginacion(1, 15);
+                        lblCategoria.Text = "Todos los productos";
+                    }
+                    else
+                    {
+                        // Si hay una categoría seleccionada, se filtran los productos
+                        ListaArticulos = negocioArticulo.CargarProductosPorCategoria(categoriaID);
+                        NegocioCategoria negocioCategoria = new NegocioCategoria();
+                        CategoriaSeleccionada = negocioCategoria.ObtenerCategoriaPorId(categoriaID);
+
+                        if (CategoriaSeleccionada != null)
+                        {
+                            lblCategoria.Text = CategoriaSeleccionada.Nombre;
+                        }
+                    }
+
+                    Session["ListaArticulos"] = ListaArticulos;
+                    repCardArt.DataSource = ListaArticulos;
+                    repCardArt.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

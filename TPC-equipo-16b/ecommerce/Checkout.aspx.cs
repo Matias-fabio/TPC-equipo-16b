@@ -65,7 +65,7 @@ namespace ecommerce
         protected void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
             NegocioUsuario negocioUsuario = new NegocioUsuario();
-
+            NegocioVenta negocioVenta = new NegocioVenta();
             try
             {
                 if (chkCrearCuenta.Checked)
@@ -85,6 +85,18 @@ namespace ecommerce
                 cliente.Telefono = txtTelefono.Text;
                 cliente.Direccion = txtDireccion.Text;
 
+                // Registtro de ventas
+                Venta venta = new Venta();
+                venta.FechaVenta = DateTime.UtcNow;
+                if (rblMetodoPago.SelectedItem.Value == "tarjeta")
+                    venta.MetodoPago = "tarjeta";
+                else
+                    venta.MetodoPago = "transferencia";
+                venta.TotalVenta = decimal.Parse(Label1.Text);
+
+                venta.Envio.Id = int.Parse(ddlZonaEnvio.SelectedValue);
+
+                negocioVenta.registrarVenta(venta);
 
                 negocioUsuario.AgregarUsuario(cliente);
                 lblError.Visible = false;
@@ -92,7 +104,9 @@ namespace ecommerce
             catch (Exception ex)
             {
                 lblError.Text = "Error al registrar al cliente: " + ex.Message;
+                lblError.Text = "error al registrar la venta" + ex.Message;
                 lblError.Visible = true;
+
             }
         }
 
@@ -162,23 +176,23 @@ namespace ecommerce
 
         protected void rblMetodoPago_SelectedIndexChanged(object sender, EventArgs e)
         {
-                switch (rblMetodoPago.SelectedValue)
-                {
-                    case "Tarjeta":
-                        pnlTarjeta.Visible = true;
-                        pnlTranferencia.Visible = false;
-                        break;
+            switch (rblMetodoPago.SelectedValue)
+            {
+                case "Tarjeta":
+                    pnlTarjeta.Visible = true;
+                    pnlTranferencia.Visible = false;
+                    break;
 
-                    case "Transferencia":
-                        pnlTarjeta.Visible = false;
-                        pnlTranferencia.Visible = true;
-                        break;
+                case "Transferencia":
+                    pnlTarjeta.Visible = false;
+                    pnlTranferencia.Visible = true;
+                    break;
 
-                    default:
-                        pnlTarjeta.Visible = false;
-                        pnlTranferencia.Visible = false;
-                        break;
-                
+                default:
+                    pnlTarjeta.Visible = false;
+                    pnlTranferencia.Visible = false;
+                    break;
+
             }
 
         }
@@ -213,7 +227,7 @@ namespace ecommerce
             string fechaVencimineto = txtFechaVencimiento.Text;
 
             string formatoFecha = string.Empty;
-            for(int i = 0; i <  fechaVencimineto.Length; i++)
+            for (int i = 0; i < fechaVencimineto.Length; i++)
             {
                 if (i > 0 && i % 2 == 0)
                     formatoFecha += "/";
