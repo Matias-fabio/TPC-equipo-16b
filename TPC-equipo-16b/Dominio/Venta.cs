@@ -9,11 +9,11 @@ namespace Dominio
     public class Venta
     {
         public int NumVenta { get; set; }
-        public int IdCliente { get; set; }
+        public Cliente Cliente { get; set; }
         public DateTime FechaVenta { get; set; }
         public decimal TotalVenta { get; set; }
         public string MetodoPago { get; set; }
-        public int CostoEnvio { get; set; }
-        public string Estado { get; set; }
+        public Envio Envio { get; set; }
+        public Estado Estado { get; set; }
     }
 }
