@@ -22,34 +22,28 @@ namespace ecommerce
             string confirmarContraseña = txtContraseña2.Text;
 
             NegocioUsuario negocioUsuario = new NegocioUsuario();
-           
-            try
-            {
-                if (nuevaContraseña != confirmarContraseña)
-                {
-                    lblError.Text = "Las contraseñas no coinciden";
-                    lblError.Visible = true;
-                }
-                bool Resultado = negocioUsuario.RestablecerContraseña(email, nuevaContraseña);
-                if (Resultado)
-                {
-                    lblMensaje.Text = "La contraseña se ha restablecido correctamente.";
-                    lblMensaje.Visible = true; lblError.Visible = false;
-                    Response.Redirect("Login.aspx");
-                }
-                else
-                {
-                    lblError.Text = "El email no está registrado.";
-                    lblError.Visible = true; lblMensaje.Visible = false;
-                }
 
-            }
-            catch (Exception ex)
+
+            if (nuevaContraseña != confirmarContraseña)
             {
-                lblError.Text = "Error al restablecer la contraseña"; 
-                lblError.Visible = true; lblMensaje.Visible = false;
-                throw ex;
+                lblError.Text = "Las contraseñas no coinciden";
+                lblError.Visible = true;
             }
+            bool Resultado = negocioUsuario.RestablecerContraseña(email, nuevaContraseña);
+            if (Resultado)
+            {
+                lblMensaje.Text = "La contraseña se ha restablecido correctamente.";
+                lblMensaje.Visible = true; lblError.Visible = false;
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                lblError.Text = "El email no está registrado.";
+                lblError.Visible = true; lblMensaje.Visible = false;
+            }
+
+           
+            
 
             
         }

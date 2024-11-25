@@ -28,6 +28,7 @@ CREATE TABLE ARTICULOS (
     ID INT IDENTITY(1,1) NOT NULL,
     Codigo VARCHAR(10) NULL,
     Nombre VARCHAR(50) NULL,
+    Stock int not null,
     Descripcion VARCHAR(200) NULL,
     IdMarca INT NOT NULL,
     IdCategoria INT NOT NULL,
@@ -404,8 +405,31 @@ GO
 -- GO
 
 
--- DECLARE @IdUsuario int = 1, @FechaVenta date = getdate(), @MetodoPago varchar(50) = 'transferencia', @IdCostoEnvio int = 3, @TotalVenta Decimal(8,2) = 50000, @IdEstado char(6) = 'EST001'
--- INSERT INTO VENTAS (IdUsuario, FechaVenta, MetodoPago, IdCostoEnvio, TotalVenta, IdEstado)
--- VALUES (@IdUsuario, @FechaVenta, @MetodoPago, @IdCostoEnvio, @TotalVenta, @IdEstado);
+DECLARE @IdUsuario int = 1, @FechaVenta date = getdate(), @MetodoPago varchar(50) = 'transferencia', @IdCostoEnvio int = 3, @TotalVenta Decimal(8,2) = 50000, @IdEstado char(6) = 'EST001'
+INSERT INTO VENTAS (IdUsuario, FechaVenta, MetodoPago, IdCostoEnvio, TotalVenta, IdEstado)
+VALUES (@IdUsuario, @FechaVenta, @MetodoPago, @IdCostoEnvio, @TotalVenta, @IdEstado);
+GO
+
+
+-- CREATE TABLE ARTICULOS(
+--     ID INT IDENTITY(1,1) NOT NULL,
+--     Codigo VARCHAR(10) NULL,
+--     Nombre VARCHAR(50) NULL,
+--     Descripcion VARCHAR(200) NULL,
+--     IdMarca INT NOT NULL,
+--     IdCategoria INT NOT NULL,
+--     Precio DECIMAL(10,2) NULL,
+--     ImgUrl VARCHAR(300) NULL,
+--     Cantidad Int,
+--     CONSTRAINT PK_ARTICULOS PRIMARY KEY (ID),
+--     CONSTRAINT FK_ARTICULOS_MARCAS FOREIGN KEY (IdMarca) REFERENCES MARCAS(Id),
+--     CONSTRAINT FK_ARTICULOS_CATEGORIAS FOREIGN KEY (IdCategoria) REFERENCES CATEGORIAS(Id)
+-- )
 -- GO
 
+INSERT INTO USUARIOS (IDAdmin, Nombre, Apellido, Direccion, Telefono, Email, Contraseña)
+VALUES (2, 'admin', 'admin', '1234 Calle Falsa', '1234567890', 'admin', 'admin');
+SELECT * FROM USUARIOS WHERE Email = 'admin';
+
+
+SELECT * from USUARIOS

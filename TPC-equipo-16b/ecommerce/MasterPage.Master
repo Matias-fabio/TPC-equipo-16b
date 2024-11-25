@@ -38,6 +38,11 @@
                             </asp:LinkButton>
                         </li>
                         <li class="nav-item">
+                            <asp:LinkButton ID="btnDesloguear" runat="server" CssClass="nav-link nav-header" OnClick="btnDesloguear_Click" Visible="False"> 
+                                <i class="fa-solid fa-door-open"></i> Salir 
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item">
                             <asp:LinkButton ID="btnCarrito" runat="server" CssClass="nav-link nav-header" OnClick="btnCarrito_Click">
                                  
                                 <asp:UpdatePanel runat="server">

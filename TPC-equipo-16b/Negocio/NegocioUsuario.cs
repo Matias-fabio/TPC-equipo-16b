@@ -12,19 +12,19 @@ namespace Negocio
 {
     public class NegocioUsuario
     {
-        public Cliente IngresarUsuario(string email, string Contraseña)
+        public Cliente IngresarUsuario(string email, string contraseña)
         {
             AccesoDatos Datos = new AccesoDatos();
             Cliente cliente = null;
 
             try
             {
-                Datos.setearConsulta("SELECT ID, Email, Contraseña FROM Usuarios WHERE Email = @Email AND Contraseña = @Contraseña");
+                Datos.setearConsulta("SELECT ID, Email, Contraseña, IDAdmin FROM Usuarios WHERE Email = @Email AND Contraseña = @Contraseña");
 
                 Datos.setearParametro("@Email", email);
-                Datos.setearParametro("@Contraseña", Contraseña);
+                Datos.setearParametro("@Contraseña", contraseña);
 
-                Console.WriteLine($"Email: {email}, Contraseña: {Contraseña}");
+                Console.WriteLine($"Email: {email}, Contraseña: {contraseña}");
 
                 Datos.ejecutarLectura();
 
@@ -34,6 +34,7 @@ namespace Negocio
                     cliente.ID = (int)Datos.Lector["ID"];
                     cliente.Email = (string)Datos.Lector["Email"];
                     cliente.Contraseña = (string)Datos.Lector["Contraseña"];
+                    cliente.IDAdmin = (int)Datos.Lector["IDAdmin"]; // Asignar el IDAdmin
                 }
                 else
                 {
@@ -54,35 +55,35 @@ namespace Negocio
         }
 
 
+
         public void AgregarUsuario(Cliente cliente)
         {
             AccesoDatos Datos = new AccesoDatos();
             try
             {
+                // Verificar si el email ya existe
+                Datos.setearConsulta("SELECT COUNT(*) FROM Usuarios WHERE Email = @Email");
+                Datos.setearParametro("@Email", cliente.Email);
+                Datos.ejecutarLectura();
+                if (Datos.Lector.Read() && Convert.ToInt32(Datos.Lector[0]) > 0)
                 {
-                    // Verificar si el email ya existe
-                    Datos.setearConsulta("SELECT COUNT(*) FROM Usuarios WHERE Email = @Email"); 
-                    Datos.setearParametro("@Email", cliente.Email); 
-                    Datos.ejecutarLectura();
-                    if (Datos.Lector.Read() && Convert.ToInt32(Datos.Lector[0]) > 0)
-                    {
-                        throw new Exception("El email ya está registrado.");
-                    }
-                    Datos.cerrarConexion();
-                    Datos.limpiarParametros();
-
-                    Datos.setearConsulta("INSERT INTO Usuarios (IDAdmin, Nombre, Apellido, Direcion, Telefono, Email, Contraseña) VALUES " +
-                        "(@IDAdmin, @Nombre, @Apellido, @Direccion, @Telefono, @Email, @Contraseña)");
-                    Datos.setearParametro("@IDAdmin", 1);
-                    Datos.setearParametro("@Nombre", cliente.Nombre);
-                    Datos.setearParametro("@Apellido", cliente.Apellido);
-                    Datos.setearParametro("@Direccion", cliente.Direccion ?? (object)DBNull.Value);
-                    Datos.setearParametro("@Telefono", cliente.Telefono);
-                    Datos.setearParametro("@Email", cliente.Email);
-                    Datos.setearParametro("@Contraseña", cliente.Contraseña);
-
-                    Datos.ejecutarAccion();
+                    throw new Exception("El email ya está registrado.");
                 }
+                Datos.cerrarConexion();
+                Datos.limpiarParametros();
+
+                // Insertar nuevo usuario
+                Datos.setearConsulta("INSERT INTO Usuarios (IDAdmin, Nombre, Apellido, Direccion, Telefono, Email, Contraseña) VALUES " +
+                                     "(@IDAdmin, @Nombre, @Apellido, @Direccion, @Telefono, @Email, @Contraseña)");
+                Datos.setearParametro("@IDAdmin", 1); // IDAdmin predeterminado a 1 para Cliente
+                Datos.setearParametro("@Nombre", cliente.Nombre);
+                Datos.setearParametro("@Apellido", cliente.Apellido);
+                Datos.setearParametro("@Direccion", cliente.Direccion);
+                Datos.setearParametro("@Telefono", cliente.Telefono);
+                Datos.setearParametro("@Email", cliente.Email);
+                Datos.setearParametro("@Contraseña", cliente.Contraseña);
+
+                Datos.ejecutarAccion();
             }
             catch (Exception Ex)
             {
@@ -93,6 +94,7 @@ namespace Negocio
                 Datos.cerrarConexion();
             }
         }
+
         public bool RestablecerContraseña(string email, string newPassword)
         {
             AccesoDatos Datos = new AccesoDatos();
@@ -103,20 +105,26 @@ namespace Negocio
                 Datos.setearConsulta("SELECT COUNT(*) FROM Usuarios WHERE Email = @Email");
                 Datos.setearParametro("@Email", email);
                 Datos.ejecutarLectura();
-
+              
+                
                 if (Datos.Lector.Read() && Convert.ToInt32(Datos.Lector[0]) > 0)
                 {
+                    
+                    Datos.cerrarConexion();
+                    Datos.limpiarParametros();
                     // Si el email existe, actualizar la contraseña
                     Datos.setearConsulta("UPDATE Usuarios SET Contraseña = @NuevaContraseña WHERE Email = @Email");
                     Datos.setearParametro("@NuevaContraseña", newPassword);
                     Datos.setearParametro("@Email", email);
                     Datos.ejecutarAccion();
                     return true;
+                    
                 }
                 else
                 {
                     return false;
                 }
+                
             }
             catch (Exception Ex)
             {
