@@ -11,7 +11,13 @@ namespace ecommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Session["IDAdmin"] == null || Convert.ToInt32(Session["IDAdmin"])!= 2)
+                {
+                    Response.Redirect("Error.aspx");
+                }
+            }
         }
 
         protected void botonArticulo_Click(object sender, EventArgs e)
