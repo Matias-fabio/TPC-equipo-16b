@@ -11,7 +11,7 @@ namespace Dominio
         public int IdDetalleVenta { get; set; } 
         public int NumVenta { get; set; }
         public int IdArticulo { get; set; }
-        public Articulo Articulo { get; set; }
+        public Articulo Articulo { get; set; } = new Articulo();
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }
     }

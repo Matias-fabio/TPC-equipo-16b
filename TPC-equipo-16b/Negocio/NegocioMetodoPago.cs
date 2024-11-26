@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,42 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public List<MetodoPago> ObtenerMetodosPago()
+        {
+            List<MetodoPago> listaMetodosPago = new List<MetodoPago>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT IdMetodoPago, MetodoPago FROM MetodoPago");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    MetodoPago metodo = new MetodoPago
+                    {
+                        IdMetodoPago = (int)datos.Lector["IdMetodoPago"],
+                        MetodoNombre = (string)datos.Lector["MetodoPago"]
+                    };
+                    listaMetodosPago.Add(metodo);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los métodos de pago", ex);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return listaMetodosPago;
+        }
     }
 
 }
+
+
+
+
+
+

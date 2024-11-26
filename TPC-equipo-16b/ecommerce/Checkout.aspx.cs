@@ -134,6 +134,7 @@ namespace ecommerce
                 {
                     DetalleVenta detalleVenta = new DetalleVenta
                     {
+                        
                         NumVenta = numVenta,
                         IdArticulo = articulo.Id,
                         Cantidad = articulo.Cantidad,
@@ -143,7 +144,7 @@ namespace ecommerce
                 }
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", "$('#modalAgradecimiento').modal('show');", true);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Redirigir", "setTimeout(function(){ window.location.href = 'Default.aspx'; }, 3000);", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Redirigir", "setTimeout(function(){ window.location.href = 'Default.aspx'; }, 2000);", true);
 
                 lblError.Visible = false;
             }

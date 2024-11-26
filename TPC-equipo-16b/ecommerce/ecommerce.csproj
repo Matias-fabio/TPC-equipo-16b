@@ -80,7 +80,6 @@
     <Content Include="Ayuda.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Checkout.aspx" />
-    <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleCategoria.aspx" />
     <Content Include="DetalleProducto.aspx" />
@@ -100,6 +99,7 @@
     <Content Include="Registro.aspx" />
     <Content Include="RestablecerContraseña.aspx" />
     <Content Include="usuarioOpciones.aspx" />
+    <Content Include="VentaDetallada.aspx" />
     <Content Include="Web.config" />
     <Content Include="BuscarProducto.aspx" />
     <Content Include="AdministradorInicio.aspx" />
@@ -183,13 +183,6 @@
     </Compile>
     <Compile Include="Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Dashboard.aspx.designer.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -327,6 +320,13 @@
     </Compile>
     <Compile Include="usuarioOpciones.aspx.designer.cs">
       <DependentUpon>usuarioOpciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VentaDetallada.aspx.cs">
+      <DependentUpon>VentaDetallada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VentaDetallada.aspx.designer.cs">
+      <DependentUpon>VentaDetallada.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
