@@ -67,5 +67,34 @@ namespace Negocio
             }
             return envio;
         }
+
+        public bool IdZonaEnvioExiste(int idZonaEnvio)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM PRECIO_ENVIOS WHERE idZona = @idZona");
+                datos.setearParametro("@idZona", idZonaEnvio);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read() && (int)datos.Lector[0] > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
