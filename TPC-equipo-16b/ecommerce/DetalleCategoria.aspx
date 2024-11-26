@@ -46,7 +46,7 @@
                         <asp:Repeater runat="server" ID="repCardArt">
                             <ItemTemplate>
                                 <div class="col-md-4 d-flex">
-                                    <asp:LinkButton runat="server" CommandName="VerDetalles" ID="VerDetalles" CommandArgument='<%# Eval("ID") %>' OnCommand="VerDetalles_Command" CssClass="link-button text-decoration-none text-body-secondary">
+                                    <asp:LinkButton runat="server" CommandName="VerDetalles" ID="VerDetalles" CommandArgument='<%# Eval("Id") %>' OnCommand="VerDetalles_Command" CssClass="link-button text-decoration-none text-body-secondary">
                                         <div class="card-tendencias mb-3 mx-2">
                                             <div class="row g-0 align-items-center" style="flex: 1;">
                                                 <div class="col-5">

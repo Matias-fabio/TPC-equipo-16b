@@ -50,6 +50,7 @@
     <Compile Include="Envios.cs" />
     <Compile Include="Estado.cs" />
     <Compile Include="Marca.cs" />
+    <Compile Include="MetodoPago.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Venta.cs" />
   </ItemGroup>

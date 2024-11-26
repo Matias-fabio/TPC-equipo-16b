@@ -58,7 +58,7 @@ namespace ecommerce
             {
                 if (string.IsNullOrEmpty(categoriaID))
                 {
-                    ListaArticulos = negocioArticulo.listarArticulosPaginacion(1, 15);
+                    ListaArticulos = negocioArticulo.listarArticulosPaginacion(1, 26);
                     lblCategoria.Text = "Todos los productos";
                 }
                 else

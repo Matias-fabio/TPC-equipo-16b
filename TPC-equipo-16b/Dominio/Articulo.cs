@@ -18,7 +18,7 @@ namespace Dominio
         public int IdMarca { get; set; }
         public string categoria { get; set; }
         public string Marca { get; set; }
-        public int Cantidad { get; set; } = 1;
+        public int Cantidad { get; set; } 
     }
 
 }

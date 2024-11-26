@@ -14,19 +14,20 @@ namespace Negocio
             try
             {
 
-                datos.setearConsulta("SELECT  A.Id, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, A.Precio, A.ImgUrl AS Img, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca FROM ARTICULOS A JOIN CATEGORIAS C ON A.IdCategoria = C.Id JOIN MARCAS M ON A.IdMarca = M.Id;");
+                datos.setearConsulta("SELECT  A.IdArticulo, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, A.Precio, A.ImgUrl AS Img, A.Stock, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca FROM ARTICULOS A JOIN CATEGORIAS C ON A.IdCategoria = C.Id JOIN MARCAS M ON A.IdMarca = M.Id;");
                 //pasar consulta a stored procedure
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
-                    aux.Id = (int)datos.Lector["ID"];
+                    aux.Id = (int)datos.Lector["IdArticulo"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["NombreArticulo"];
                     aux.Descripcion = (string)datos.Lector["DescripcionArticulo"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.categoria = (string)datos.Lector["NombreCategoria"];
                     aux.UrlImagen = (string)datos.Lector["Img"];
+                    aux.Cantidad = (int)datos.Lector["Stock"];
                     lista.Add(aux);
                 }
 
@@ -46,13 +47,13 @@ namespace Negocio
             try
             {
 
-                datos.setearConsulta("SELECT TOP 6 A.Id, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, A.Precio, A.ImgUrl AS Img, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca FROM ARTICULOS A JOIN CATEGORIAS C ON A.IdCategoria = C.Id JOIN MARCAS M ON A.IdMarca = M.Id;");
+                datos.setearConsulta("SELECT TOP 6 A.IdArticulo, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, A.Precio, A.ImgUrl AS Img, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca FROM ARTICULOS A JOIN CATEGORIAS C ON A.IdCategoria = C.Id JOIN MARCAS M ON A.IdMarca = M.Id;");
                 //pasar consulta a stored procedure
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
-                    aux.Id = (int)datos.Lector["ID"];
+                    aux.Id = (int)datos.Lector["IdArticulo"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["NombreArticulo"];
                     aux.Descripcion = (string)datos.Lector["DescripcionArticulo"];
@@ -76,7 +77,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "SELECT A.Id, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, A.Precio, A.ImgUrl AS Img, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca " +
+                string consulta = "SELECT A.IdArticulo, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, A.Precio, A.ImgUrl AS Img, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca " +
                                   "FROM ARTICULOS A " +
                                   "JOIN CATEGORIAS C ON A.IdCategoria = C.Id " +
                                   "JOIN MARCAS M ON A.IdMarca = M.Id " +
@@ -89,7 +90,7 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
-                    aux.Id = (int)datos.Lector["ID"];
+                    aux.Id = (int)datos.Lector["IdArticulo"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["NombreArticulo"];
                     aux.Descripcion = (string)datos.Lector["DescripcionArticulo"];
@@ -119,11 +120,11 @@ namespace Negocio
             try
             {
                 string consulta = @"
-                SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.ImgUrl, C.Nombre AS Categoria, M.Nombre AS NombreMarca
+                SELECT A.IdArticulo, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.ImgUrl, C.Nombre AS Categoria, M.Nombre AS NombreMarca
                 FROM ARTICULOS A
                 INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id
                 INNER JOIN MARCAS M ON A.IdMarca = M.Id
-                WHERE A.Id = @IdProducto";
+                WHERE A.IdArticulo = @IdProducto";
 
                 //pasar consulta a stored procedure
                 datos.setearConsulta(consulta);
@@ -131,7 +132,7 @@ namespace Negocio
                 datos.ejecutarLectura();
                 if (datos.Lector.Read())
                 {
-                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Id = (int)datos.Lector["IdArticulo"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
@@ -159,7 +160,7 @@ namespace Negocio
             try
             {
                 Datos.setearConsulta(@"
-                    SELECT a.ID, a.Codigo, a.Nombre, a.Descripcion, a.Precio, a.ImgUrl, 
+                    SELECT a.IdArticulo, a.Codigo, a.Nombre, a.Descripcion, a.Precio, a.ImgUrl, 
                     m.Nombre AS Marca, c.Nombre AS Categoria
                     FROM ARTICULOS a
                     INNER JOIN MARCAS m ON a.IdMarca = m.Id
@@ -172,7 +173,7 @@ namespace Negocio
                 while (Datos.Lector.Read())
                 {
                     Articulo art = new Articulo();
-                    art.Id = (int)Datos.Lector["ID"];
+                    art.Id = (int)Datos.Lector["IdArticulo"];
                     art.Codigo = (string)Datos.Lector["Codigo"];
                     art.Nombre = (string)Datos.Lector["Nombre"];
                     art.Descripcion = (string)Datos.Lector["Descripcion"];
@@ -240,7 +241,7 @@ namespace Negocio
                 {
                     Articulo aux = new Articulo
                     {
-                        Id = (int)datos.Lector["ID"],
+                        Id = (int)datos.Lector["IdArticulo"],
                         Codigo = (string)datos.Lector["Codigo"],
                         Nombre = (string)datos.Lector["NombreArticulo"],
                         Descripcion = (string)datos.Lector["DescripcionArticulo"],
@@ -269,7 +270,7 @@ namespace Negocio
             try
             {
                 string consulta = @"
-                    SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.ImgUrl, C.Nombre AS Categoria, M.Nombre AS NombreMarca
+                    SELECT A.IdArticulo, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.ImgUrl, C.Nombre AS Categoria, M.Nombre AS NombreMarca
                     FROM ARTICULOS A
                     INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id
                     INNER JOIN MARCAS M ON A.IdMarca = M.Id
@@ -309,7 +310,7 @@ namespace Negocio
             try
             {
                 // Obtener el próximo ID disponible
-                datos.setearConsulta("SELECT ISNULL(MAX(Id), 0)+ 1 FROM ARTICULOS");
+                datos.setearConsulta("SELECT ISNULL(MAX(IdArticulo), 0)+ 1 FROM ARTICULOS");
                 datos.ejecutarLectura();
                 if (datos.Lector.Read())
                 {
@@ -357,7 +358,7 @@ namespace Negocio
             AccesoDatos accesoDatos = new AccesoDatos();
             try
             {
-                accesoDatos.setearConsulta("DELETE from ARTICULOS where Id = @id");
+                accesoDatos.setearConsulta("DELETE from ARTICULOS where IdArticulo = @id");
                 accesoDatos.setearParametro("@id", IdArticulo);
                 accesoDatos.ejecutarAccion();
 
@@ -379,7 +380,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.IdMarca, a.IdCategoria, a.Precio, a.ImgUrl, c.Nombre AS Categoria, m.Nombre AS Marca FROM ARTICULOS a INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id INNER JOIN MARCAS m ON a.IdMarca = m.Id WHERE a.Id = @id");
+                datos.setearConsulta("SELECT a.IdArticulo, a.Codigo, a.Nombre, a.Descripcion, a.IdMarca, a.IdCategoria, a.Precio, a.ImgUrl, c.Nombre AS Categoria, m.Nombre AS Marca FROM ARTICULOS a INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id INNER JOIN MARCAS m ON a.IdMarca = m.Id WHERE a.IdArticulo = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarLectura();
 
@@ -387,7 +388,7 @@ namespace Negocio
                 {
                     articulo = new Articulo
                     {
-                        Id = (int)datos.Lector["Id"],
+                        Id = (int)datos.Lector["IdArticulo"],
                         Codigo = (string)datos.Lector["Codigo"],
                         Nombre = (string)datos.Lector["Nombre"],
                         Descripcion = datos.Lector["Descripcion"] as string,
@@ -417,7 +418,7 @@ namespace Negocio
             AccesoDatos accesoDatos = new AccesoDatos();
             try
             {
-                accesoDatos.setearConsulta("UPDATE ARTICULOS SET Nombre = @nombre, IdCategoria = @idCategoria, IdMarca = @idMarca, Precio = @precio WHERE Id = @id");
+                accesoDatos.setearConsulta("UPDATE ARTICULOS SET Nombre = @nombre, IdCategoria = @idCategoria, IdMarca = @idMarca, Precio = @precio WHERE IdArticulo = @id");
                 accesoDatos.setearParametro("@nombre", articulo.Nombre);
                 accesoDatos.setearParametro("@idCategoria", articulo.IdCategoria);
                 accesoDatos.setearParametro("@idMarca", articulo.IdMarca);

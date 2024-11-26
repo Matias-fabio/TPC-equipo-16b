@@ -27,7 +27,7 @@
                             <td><%# Eval("Cliente.Nombre") %></td>
                             <td><%# Eval("Cliente.Email") %></td>
                             <td><%# Eval("FechaVenta", "{0:dd/MM/yyyy}") %></td>
-                            <td><%# Eval("MetodoPago") %></td>
+                            <td><%# Eval("MetodoPago.MetodoNombre") %></td>
                             <td><%# Eval("Envio.Descripcion") %></td>
                             <td><%# Eval("TotalVenta", "{0:C}") %></td>
                             <td><%# Eval("Estado.NombreEstado") %></td>

@@ -11,10 +11,10 @@ namespace Dominio
         public int NumVenta { get; set; }
         public Cliente Cliente { get; set; } = new Cliente();
         public DateTime FechaVenta { get; set; }
-        public string MetodoPago { get; set; }
+        public MetodoPago MetodoPago { get; set; } = new MetodoPago();
         public Envio Envio { get; set; } = new Envio();
         public decimal TotalVenta { get; set; }
         public Estado Estado { get; set; } = new Estado();
-        List<DetalleVenta> listaDetalleVenta { get; set; }
+        List<DetalleVenta> listaDetalleVenta { get; set; } = new List<DetalleVenta>();
     }
 }

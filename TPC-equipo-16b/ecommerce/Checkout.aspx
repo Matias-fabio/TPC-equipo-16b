@@ -70,8 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <%//Datos Envio %>
+                            <%-- Datos Envío --%>
                             <div class="step-content d-none" id="step2Content">
                                 <h4>Datos de Envío</h4>
                                 <div class="card-de mb-3">
@@ -81,18 +80,18 @@
                                         </div>
                                         <div class="row g-3">
                                             <div class="col">
-                                                <label for="inputNombre" class="form-label">Ciudad</label>
+                                                <label for="inputCiudad" class="form-label">Ciudad</label>
                                                 <asp:TextBox ID="txtCiudad" CssClass="form-control" runat="server" Placeholder="Ciudad"></asp:TextBox>
                                             </div>
                                             <div class="col">
-                                                <label for="inputApellido" class="form-label">Provincia</label>
+                                                <label for="inputProvincia" class="form-label">Provincia</label>
                                                 <asp:TextBox ID="txtProv" CssClass="form-control" runat="server" Placeholder="Provincia"></asp:TextBox>
                                             </div>
                                         </div>
                                         <asp:UpdatePanel runat="server">
                                             <ContentTemplate>
                                                 <div class="mb-3 col">
-                                                    <label for="inputNombre" class="form-label">Zona de envio: </label>
+                                                    <label for="inputZonaEnvio" class="form-label">Zona de envío:</label>
                                                     <asp:DropDownList ID="ddlZonaEnvio" CssClass="form-select" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlZonaEnvio_SelectedIndexChanged">
                                                         <asp:ListItem Text="Seleccionar zona *" Value="0"></asp:ListItem>
                                                     </asp:DropDownList>
@@ -103,7 +102,6 @@
                                                 </div>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
-
                                         <div class="d-flex justify-content-between">
                                             <asp:Button ID="btnBack1" CssClass="btn btn-secondary" runat="server" Text="Volver" OnClientClick="showStep(1); return false;" />
                                             <asp:Button ID="btnNext2" CssClass="btn btn-warning" runat="server" Text="Siguiente" OnClientClick="showStep(3); return false;" />
@@ -259,7 +257,6 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalAgradecimientoLabel">¡Gracias por tu compra!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                       
                     </button>
                 </div>
                 <div class="modal-body">

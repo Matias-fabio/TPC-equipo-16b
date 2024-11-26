@@ -19,7 +19,7 @@ namespace Negocio
 
             try
             {
-                Datos.setearConsulta("SELECT ID, Email, Contraseña, IDAdmin FROM Usuarios WHERE Email = @Email AND Contraseña = @Contraseña");
+                Datos.setearConsulta("SELECT ID, Email, Contraseña, IdRol FROM Usuarios WHERE Email = @Email AND Contraseña = @Contraseña");
 
                 Datos.setearParametro("@Email", email);
                 Datos.setearParametro("@Contraseña", contraseña);
@@ -34,7 +34,7 @@ namespace Negocio
                     cliente.ID = (int)Datos.Lector["ID"];
                     cliente.Email = (string)Datos.Lector["Email"];
                     cliente.Contraseña = (string)Datos.Lector["Contraseña"];
-                    cliente.IDAdmin = (int)Datos.Lector["IDAdmin"]; // Asignar el IDAdmin
+                    cliente.IDAdmin = (int)Datos.Lector["IdRol"]; // Asignar el IDAdmin
                 }
                 else
                 {
@@ -54,8 +54,6 @@ namespace Negocio
             return cliente;
         }
 
-
-
         public void AgregarUsuario(Cliente cliente)
         {
             AccesoDatos Datos = new AccesoDatos();
@@ -73,12 +71,12 @@ namespace Negocio
                 Datos.limpiarParametros();
 
                 // Insertar nuevo usuario
-                Datos.setearConsulta("INSERT INTO Usuarios (IDAdmin, Nombre, Apellido, Direccion, Telefono, Email, Contraseña) VALUES " +
-                                     "(@IDAdmin, @Nombre, @Apellido, @Direccion, @Telefono, @Email, @Contraseña)");
-                Datos.setearParametro("@IDAdmin", 1); // IDAdmin predeterminado a 1 para Cliente
+                Datos.setearConsulta("INSERT INTO Usuarios (IdRol, Nombre, Apellido, Direccion, Telefono, Email, Contraseña) VALUES " +
+                                     "(@IdRol, @Nombre, @Apellido, @Direccion, @Telefono, @Email, @Contraseña)");
+                Datos.setearParametro("@IdRol", 1); // IDAdmin predeterminado a 1 para Cliente
                 Datos.setearParametro("@Nombre", cliente.Nombre);
                 Datos.setearParametro("@Apellido", cliente.Apellido);
-                Datos.setearParametro("@Direccion", cliente.Direccion);
+                Datos.setearParametro("@Direccion", cliente.Direccion ?? (object)DBNull.Value);
                 Datos.setearParametro("@Telefono", cliente.Telefono);
                 Datos.setearParametro("@Email", cliente.Email);
                 Datos.setearParametro("@Contraseña", cliente.Contraseña);
@@ -106,10 +104,8 @@ namespace Negocio
                 Datos.setearParametro("@Email", email);
                 Datos.ejecutarLectura();
               
-                
                 if (Datos.Lector.Read() && Convert.ToInt32(Datos.Lector[0]) > 0)
                 {
-                    
                     Datos.cerrarConexion();
                     Datos.limpiarParametros();
                     // Si el email existe, actualizar la contraseña
@@ -118,7 +114,6 @@ namespace Negocio
                     Datos.setearParametro("@Email", email);
                     Datos.ejecutarAccion();
                     return true;
-                    
                 }
                 else
                 {
@@ -153,13 +148,37 @@ namespace Negocio
                     cliente.Apellido = (string)datos.Lector["Apellido"];
                     cliente.Email = (string)datos.Lector["Email"];
                     cliente.Contraseña = (string)datos.Lector["Contraseña"];
-
-
                 }
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
+        public int ObtenerUltimoIDUsuario()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT TOP 1 ID FROM Usuarios ORDER BY ID DESC");
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    return (int)datos.Lector["ID"];
+                }
+                else
+                {
+                    throw new Exception("No se pudo obtener el último ID de usuario.");
+                }
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally
