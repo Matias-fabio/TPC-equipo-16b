@@ -84,7 +84,29 @@ namespace Negocio
             }
         }
 
-        public void EliminarMarca(int id)
+        public bool ArticulosAsociados(int IDMarca)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setearConsulta("SELECT COUNT(*) FROM ARTICULOS WHERE IdMarca = @IdMarca");
+                accesoDatos.setearParametro("@IdMarca", IDMarca); accesoDatos.ejecutarLectura(); 
+                if (accesoDatos.Lector.Read()) {
+                    int count = (int)accesoDatos.Lector[0];
+                    return count > 0; 
+                }
+                return false;
+            }
+            catch(Exception ex) { 
+                throw ex; 
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
+
+        public bool EliminarMarca(int id)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -93,6 +115,7 @@ namespace Negocio
                 datos.setearConsulta("DELETE FROM MARCAS WHERE Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
+                return true;
             }
             catch (Exception ex)
             {

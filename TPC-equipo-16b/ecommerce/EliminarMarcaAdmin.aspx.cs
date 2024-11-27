@@ -33,13 +33,27 @@ namespace ecommerce
         {
             int MarcaId = int.Parse(ddlMarca.SelectedValue);
 
-            NegocioMarca.EliminarMarca(MarcaId);
-
-            lblMensaje.Text = "Marca eliminada exitosamente."; 
-            lblMensaje.CssClass = "text-success";
+            if (NegocioMarca.ArticulosAsociados(MarcaId))
+            {
+                lblMensaje.Text = "No se puede eliminar esta marca ya que hay artículos que la usan. Por favor, elimine los artículos o muévalos a otra marca.";
+                lblMensaje.CssClass = "text-danger";
+            }
+            else
+            {
+                bool Exito = NegocioMarca.EliminarMarca(MarcaId);
+                if (Exito)
+                {
+                    lblMensaje.Text = "Marca eliminada exitosamente";
+                    lblMensaje.CssClass = "text-success";
+                    CargarMarca();
+                }
+                else
+                {
+                    lblMensaje.Text = "Error al eliminar la marca."; 
+                    lblMensaje.CssClass = "text-danger";
+                }
+            }
             lblMensaje.Visible = true;
-
-            CargarMarca();
         }
 
         protected void BotonVolver_Click(object sender, EventArgs e)

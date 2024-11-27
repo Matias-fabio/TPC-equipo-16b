@@ -36,12 +36,14 @@ namespace ecommerce
             if (int.TryParse(ddlArticulos.SelectedValue, out IdArticulo))
             {
                 NegocioArticulo.EliminarArticulo(IdArticulo);
-                lblMensaje.Text = "Articulo eliminado con exito";
+                lblMensaje.Text = "Artículo desactivado con éxito."; 
+                lblMensaje.CssClass = "text-success";
                 CargarArticulo();
             }
             else
             {
                 lblMensaje.Text = "Por favor selecione un articulo";
+                lblMensaje.CssClass = "text-danger";
             }
         }
 

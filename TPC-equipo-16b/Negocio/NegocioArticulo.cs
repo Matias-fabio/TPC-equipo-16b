@@ -358,7 +358,8 @@ namespace Negocio
             AccesoDatos accesoDatos = new AccesoDatos();
             try
             {
-                accesoDatos.setearConsulta("DELETE from ARTICULOS where IdArticulo = @id");
+
+                accesoDatos.setearConsulta("UPDATE ARTICULOS SET Estado = 0 WHERE IdArticulo = @id");
                 accesoDatos.setearParametro("@id", IdArticulo);
                 accesoDatos.ejecutarAccion();
 
