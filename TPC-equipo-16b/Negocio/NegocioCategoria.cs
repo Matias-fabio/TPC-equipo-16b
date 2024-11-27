@@ -145,8 +145,36 @@ namespace Negocio
             }
         }
 
+        public bool TieneArticulosAsociados(int idCategoria)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setearConsulta("SELECT COUNT(*) FROM ARTICULOS WHERE IdCategoria = @IdCategoria");
+                accesoDatos.setearParametro("@IdCategoria", idCategoria);
+                accesoDatos.ejecutarLectura();
+                if (accesoDatos.Lector.Read())
+                {
+                    int count = (int)accesoDatos.Lector[0];
+                    return count > 0;
+                }
+                return false;
 
-        public void EliminarCategoria(int id)
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+
+                accesoDatos.cerrarConexion();
+
+            }
+        }
+
+
+        public bool EliminarCategoria(int id)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -155,7 +183,8 @@ namespace Negocio
                 datos.setearConsulta("DELETE FROM CATEGORIAS WHERE Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
-            }
+                return true;
+            }   
             catch (Exception ex)
             {
                 throw ex;

@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <asp:Label ID="lblMensaje" runat="server" CssClass="text-danger"></asp:Label>
+            <asp:Label ID="lblMensaje" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
             <div class="col-12" id="BotonNuevoArticulo">
                 <div class="d-grid gap-2 col-8 mx-auto">
                     <asp:LinkButton ID="BotonEliminar" runat="server" class="btn btn-primary" type="button" OnClick="BotonEliminar_Click">

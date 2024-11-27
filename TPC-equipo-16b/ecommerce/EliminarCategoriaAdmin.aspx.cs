@@ -37,10 +37,31 @@ namespace ecommerce
         protected void BotonEliminar_Click(object sender, EventArgs e)
         {
             int CategoriaId = int.Parse(ddlCategoria.SelectedValue);
-            NegocioCategoria.EliminarCategoria(CategoriaId);
-            lblMensaje.Text = "Categoría eliminada exitosamente."; 
-            lblMensaje.CssClass = "text-success"; 
-            lblMensaje.Visible = true; // Recargar las categorías
+            if (NegocioCategoria.TieneArticulosAsociados(CategoriaId))
+            {
+                lblMensaje.Text = "No se puede eliminar esta categoría ya que hay artículos que la usan. Por favor, elimine los artículos o muévalos a otra categoría.";
+                lblMensaje.CssClass = "text-danger";
+                
+            }
+            else
+            {
+                bool Exito = NegocioCategoria.EliminarCategoria(CategoriaId);
+                if (Exito)
+                {
+                    lblMensaje.Text = "Categoria eliminada exitosamente";
+                    lblMensaje.CssClass = "text-success";
+                    CargarCategoria();
+                }
+                else
+                {
+                    lblMensaje.Text = "Error al eliminar la categoría."; 
+                    lblMensaje.CssClass = "text-danger";
+                }
+                
+            }
+
+            lblMensaje.Visible = true;
+
         }
     }
 }
