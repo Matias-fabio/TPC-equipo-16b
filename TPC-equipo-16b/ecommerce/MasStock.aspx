@@ -7,19 +7,20 @@
        <div class="col-md-12">
            <label for="ddlArticulos" class="form-label">Selecione categoria a agregar sotck</label>
            <div class="input-group has-validation">
-               <asp:DropDownList ID="ddlArticulos" runat="server" CssClass="form-control"></asp:DropDownList>
+               <asp:DropDownList ID="ddlArticulos" runat="server" CssClass="form-control" 
+                    AutoPostBack="true" OnSelectedIndexChanged="ddlArticulos_SelectedIndexChanged"></asp:DropDownList>
            </div>
        </div>
        <div class="col-md-12">
-           <label for="validationCustomUsername" class="form-label">Stock ahora</label>
+           <label for="txtStockActual" class="form-label">Stock actual</label>
            <div class="input-group has-validation">
-               <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" Text="" TextMode="Number">1</asp:TextBox>
+               <asp:TextBox ID="txtStockActual" runat="server" CssClass="form-control" Text="" TextMode="Number" ReadOnly="True"></asp:TextBox>
            </div>
        </div>
        <div class="col-md-12">
            <label for="validationCustomUsername" class="form-label">Cantidad stock que quieras agregar</label>
            <div class="input-group has-validation">
-               <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text="" TextMode="Number"></asp:TextBox>
+               <asp:TextBox ID="txtStockMas" runat="server" CssClass="form-control" Text="" TextMode="Number"></asp:TextBox>
            </div>
        </div>
      
@@ -27,7 +28,7 @@
            <asp:Label ID="lblMensaje" runat="server" CssClass="text-danger"></asp:Label>
            <div class="col-12" id="BotonNuevoArticulo">
                <div class="d-grid gap-2 col-8 mx-auto">
-                   <asp:LinkButton ID="BotonAgregar" runat="server" class="btn btn-primary" type="button" >
+                   <asp:LinkButton ID="BotonAgregar" runat="server" class="btn btn-primary" type="button" OnClick="BotonAgregar_Click">
                      <h3>Subir Stock</h3>
                    </asp:LinkButton>
                    <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click">

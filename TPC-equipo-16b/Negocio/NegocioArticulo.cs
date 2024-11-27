@@ -380,7 +380,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT a.IdArticulo, a.Codigo, a.Nombre, a.Descripcion, a.IdMarca, a.IdCategoria, a.Precio, a.ImgUrl, c.Nombre AS Categoria, m.Nombre AS Marca FROM ARTICULOS a INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id INNER JOIN MARCAS m ON a.IdMarca = m.Id WHERE a.IdArticulo = @id");
+                datos.setearConsulta("SELECT a.IdArticulo, a.Codigo, a.Nombre, a.Descripcion, a.IdMarca, a.IdCategoria, a.Precio, a.ImgUrl, a.Stock ,c.Nombre AS Categoria, m.Nombre AS Marca FROM ARTICULOS a INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id INNER JOIN MARCAS m ON a.IdMarca = m.Id WHERE a.IdArticulo = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarLectura();
 
@@ -397,7 +397,8 @@ namespace Negocio
                         Precio = (decimal)datos.Lector["Precio"],
                         UrlImagen = datos.Lector["ImgUrl"] as string,
                         categoria = (string)datos.Lector["Categoria"],
-                        Marca = (string)datos.Lector["Marca"]
+                        Marca = (string)datos.Lector["Marca"],
+                        Cantidad = (int)datos.Lector["Stock"]
                     };
                 }
             }
@@ -434,5 +435,24 @@ namespace Negocio
 
         }
 
+        public bool ActualizarStock(int IdArticulo, int NuevoStock)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE ARTICULOS SET Stock = @NuevoStock WHERE IdArticulo = @IdArticulo");
+                datos.setearParametro("@NuevoStock", NuevoStock); 
+                datos.setearParametro("@IdArticulo", IdArticulo);
+                datos.ejecutarAccion();
+                return true;
+            }
+            catch (Exception ex)
+            { 
+              throw ex; 
+            }
+            finally { 
+                datos.cerrarConexion(); 
+            }
+        }
     }
 }

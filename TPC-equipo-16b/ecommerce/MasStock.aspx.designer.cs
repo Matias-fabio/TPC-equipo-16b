@@ -24,22 +24,22 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.DropDownList ddlArticulos;
 
         /// <summary>
-        /// Control txtPrecio.
+        /// Control txtStockActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrecio;
+        protected global::System.Web.UI.WebControls.TextBox txtStockActual;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control txtStockMas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtStockMas;
 
         /// <summary>
         /// Control lblMensaje.
