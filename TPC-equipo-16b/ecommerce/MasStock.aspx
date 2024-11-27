@@ -23,6 +23,8 @@
                <asp:TextBox ID="txtStockMas" runat="server" CssClass="form-control" Text="" TextMode="Number"></asp:TextBox>
            </div>
        </div>
+       <asp:RequiredFieldValidator ID="rfvmasStock" runat="server" ControlToValidate="txtStockMas"
+        ErrorMessage="El campo de stock es obligatorio." CssClass="text-danger" />
      
        <div class="col-md-12">
            <asp:Label ID="lblMensaje" runat="server" CssClass="text-danger"></asp:Label>
@@ -31,7 +33,7 @@
                    <asp:LinkButton ID="BotonAgregar" runat="server" class="btn btn-primary" type="button" OnClick="BotonAgregar_Click">
                      <h3>Subir Stock</h3>
                    </asp:LinkButton>
-                   <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click">
+                   <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click" CausesValidation="false">
                      <h3>Volver</h3>
                    </asp:LinkButton>
                </div>
