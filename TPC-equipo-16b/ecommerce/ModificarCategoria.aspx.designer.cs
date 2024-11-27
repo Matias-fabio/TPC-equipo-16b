@@ -33,6 +33,15 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.TextBox NuevaCategoria;
 
         /// <summary>
+        /// Control rfvModCategoria.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvModCategoria;
+
+        /// <summary>
         /// Control Descripcionvieja.
         /// </summary>
         /// <remarks>
@@ -51,6 +60,15 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionNueva;
 
         /// <summary>
+        /// Control rfvDescripcionNueva.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDescripcionNueva;
+
+        /// <summary>
         /// Control urlvieja.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox urlnueva;
+
+        /// <summary>
+        /// Control rfvurlImagen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvurlImagen;
 
         /// <summary>
         /// Control lblMensaje.

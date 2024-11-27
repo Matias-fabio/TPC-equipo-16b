@@ -8,6 +8,8 @@
         <div class="input-group has-validation">
             <asp:TextBox ID="txtNombremarca" runat="server" CssClass="form-control" Text="" title="Ingrese nombre de la categoría"></asp:TextBox>
         </div>
+        <asp:RequiredFieldValidator ID="rfvNombreMarca" runat="server" ControlToValidate="txtNombremarca"
+ErrorMessage="El campo de nombre marca es obligatorio." CssClass="text-danger" Display="Dynamic" />
     </div>
 
     <div class="col-md-12">
@@ -16,6 +18,8 @@
             title="Ingrese URL de la imagen">
         </asp:TextBox>
     </div>
+            <asp:RequiredFieldValidator ID="rfvurlimagen" runat="server" ControlToValidate="txturlImagen"
+ErrorMessage="El campo de url imagen es obligatorio." CssClass="text-danger" Display="Dynamic" />
 
     <asp:Label ID="Label1" runat="server" CssClass="text-success" Visible="False"></asp:Label>
     <div class="col-md-12">
@@ -25,7 +29,7 @@
                 <asp:LinkButton ID="BotonAceptar" runat="server" class="btn btn-primary" type="button" OnClick="BotonAceptar_Click">
                     <h3>Aceptar nueva marca!!</h3>
                 </asp:LinkButton>
-                <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click">
+                <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click" CausesValidation="false">
                     <h3>Volver</h3>
                 </asp:LinkButton>
             </div>

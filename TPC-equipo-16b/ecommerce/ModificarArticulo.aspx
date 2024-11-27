@@ -17,6 +17,8 @@
                     title="Ingrese nuevo nombre que le quieras poner al producto">
                 </asp:TextBox>
             </div>
+            <asp:RequiredFieldValidator ID="rfvArticulo" runat="server" ControlToValidate="txtNombreArticulo"
+                ErrorMessage="El campo de nuevo nombre del articulo es obligatorio." CssClass="text-danger" Display="Dynamic" />
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -54,6 +56,8 @@
                 <div class="input-group has-validation">
                     <asp:TextBox ID="TextPrecioNuevo" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
+                <asp:RequiredFieldValidator ID="rfvNuevoPrecio" runat="server" ControlToValidate="TextPrecioNuevo"
+                    ErrorMessage="El campo de precio modificado es obligatorio." CssClass="text-danger" Display="Dynamic" />
             </div>
         </div>
         <div class="col-12" id="BotonNuevoArticulo">
@@ -62,7 +66,7 @@
                 <asp:LinkButton ID="BotonModificar" runat="server" class="btn btn-primary" type="button" OnClick="BotonModificar_Click">
                     <h3>Modificar articulo</h3>
                 </asp:LinkButton>
-                <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click">
+                <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click" CausesValidation="false"> 
                     <h3>Volver</h3>
                 </asp:LinkButton>
             </div>

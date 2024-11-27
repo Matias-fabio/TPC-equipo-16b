@@ -15,6 +15,8 @@
             <div class="input-group has-validation">
                 <asp:TextBox ID="NuevaCategoria" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
+            <asp:RequiredFieldValidator ID="rfvModCategoria" runat="server" ControlToValidate="NuevaCategoria"
+                ErrorMessage="El campo de nombre categoria modificado es obligatorio." CssClass="text-danger" Display="Dynamic" />
         </div>
         <div class="col-md-12">
             <label for="validationCustomUsername" class="form-label">Descripción vieja</label>
@@ -27,6 +29,8 @@
                     <asp:TextBox ID="txtDescripcionNueva" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
+            <asp:RequiredFieldValidator ID="rfvDescripcionNueva" runat="server" ControlToValidate="txtDescripcionNueva"
+                ErrorMessage="El campo de descripcion modificado es obligatorio." CssClass="text-danger" Display="Dynamic" />
         </div>
         <div class="col-md-12">
             <label for="validationCustomUsername" class="form-label">URL de la imagen de la categoría vieja</label>
@@ -36,6 +40,8 @@
             <label for="validationCustomUsername" class="form-label">URL de la imagen de la categoría nueva</label>
             <asp:TextBox ID="urlnueva" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
+        <asp:RequiredFieldValidator ID="rfvurlImagen" runat="server" ControlToValidate="urlnueva"
+            ErrorMessage="El campo de url imagen es obligatorio." CssClass="text-danger" Display="Dynamic" />
     </div>
 
     <div class="col-md-12">
@@ -45,7 +51,7 @@
                 <asp:LinkButton ID="BotonModificar" runat="server" class="btn btn-primary" type="button" OnClick="BotonModificar_Click">
                     <h3>Modificar categoría!!</h3>
                 </asp:LinkButton>
-                <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click">
+                <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click" CausesValidation="false">
                     <h3>Volver</h3>
                 </asp:LinkButton>
             </div>

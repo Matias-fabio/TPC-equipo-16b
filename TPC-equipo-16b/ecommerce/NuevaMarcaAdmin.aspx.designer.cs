@@ -24,6 +24,15 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.TextBox txtNombremarca;
 
         /// <summary>
+        /// Control rfvNombreMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombreMarca;
+
+        /// <summary>
         /// Control txturlImagen.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txturlImagen;
+
+        /// <summary>
+        /// Control rfvurlimagen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvurlimagen;
 
         /// <summary>
         /// Control Label1.
