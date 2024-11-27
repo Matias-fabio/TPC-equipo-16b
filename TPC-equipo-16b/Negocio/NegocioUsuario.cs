@@ -186,5 +186,42 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+public Cliente ObtenerUsuarioPorEmail(string email)
+{
+    AccesoDatos datos = new AccesoDatos();
+
+    try
+    {
+        datos.setearConsulta("SELECT * FROM Usuarios WHERE Email = @Email");
+        datos.setearParametro("@Email", email);
+        datos.ejecutarLectura();
+        Cliente cliente = null;
+        if (datos.Lector.Read())
+        {
+            cliente = new Cliente
+            {
+                ID = Convert.ToInt32(datos.Lector["ID"]),
+                Email = datos.Lector["Email"] != DBNull.Value ? (string)datos.Lector["Email"] : string.Empty,
+                Contraseña = datos.Lector["Contraseña"] != DBNull.Value ? (string)datos.Lector["Contraseña"] : string.Empty,
+                Nombre = datos.Lector["Nombre"] != DBNull.Value ? (string)datos.Lector["Nombre"] : string.Empty,
+                Apellido = datos.Lector["Apellido"] != DBNull.Value ? (string)datos.Lector["Apellido"] : string.Empty,
+                Direccion = datos.Lector["Direccion"] != DBNull.Value ? (string)datos.Lector["Direccion"] : string.Empty,
+                Telefono = datos.Lector["Telefono"] != DBNull.Value ? (string)datos.Lector["Telefono"] : string.Empty
+            };
+        }
+        return cliente;
+    }
+    catch (Exception ex)
+    {
+        throw ex;
+    }
+    finally
+    {
+        datos.cerrarConexion();
+    }
+}
+
+
+
     }
 }

@@ -59,11 +59,85 @@ namespace ecommerce
                 }
             }
         }
+        protected void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            string email = txtEmail.Text.Trim();
+            NegocioUsuario negocioUsuario = new NegocioUsuario();
+            Cliente clienteExistente = negocioUsuario.ObtenerUsuarioPorEmail(email);
+
+            if (clienteExistente != null)
+            {
+                lblEmailExistente.Text = "El email ya está registrado. Inicie sesión para continuar.";
+                lblEmailExistente.Visible = true;
+                lblCuenta.Text = "Ingresar a tu cuenta";
+                txtPasswordRep.Visible = false;
+                btnLogin.Visible = true;
+            }
+            else
+            {
+                lblEmailExistente.Text = "";
+                lblEmailExistente.Visible = false;
+                btnNext1.Enabled = true;
+                lblCuenta.Text = "Crear una cuenta nueva";
+                txtPasswordRep.Visible = true;
+                btnLogin.Visible = false;
+            }
+        }
+
 
         protected void chkCrearCuenta_CheckedChanged(object sender, EventArgs e)
         {
             pnlPassword.Visible = chkCrearCuenta.Checked;
         }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string email = txtEmail.Text.Trim();
+            string password = txtPassword.Text;
+            if (string.IsNullOrEmpty(password))
+            {
+                lblError.Text = "Debe ingresar su contraseña.";
+                lblError.Visible = true;
+                return;
+            }
+
+            NegocioUsuario negocioUsuario = new NegocioUsuario();
+            Cliente clienteExistente = negocioUsuario.ObtenerUsuarioPorEmail(email);
+
+            if (clienteExistente != null)
+            {
+                if (password == clienteExistente.Contraseña)
+                {
+                    negocioUsuario.IngresarUsuario(clienteExistente.Email, clienteExistente.Contraseña);
+                    lblError.Visible = false;
+                    Session["Usuario"] = clienteExistente;
+
+                    btnNext1.Enabled = true;
+
+                    txtNombre.Text = clienteExistente.Nombre.ToString();
+                    txtApellido.Text = clienteExistente.Apellido.ToString();
+                    txtTelefono.Text = clienteExistente.Telefono.ToString();
+                    lblEmailExistente.Text = "INGRESADO CON EXITO";
+                    string script = "showStep(2);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "showStepScript", script, true);
+
+                    UpdatePanel1.Update();
+
+                }
+                else
+                {
+                    lblError.Text = "Contraseña incorrecta.";
+                    lblError.Visible = true;
+                }
+            }
+            else
+            {
+                lblError.Text = "El email no está registrado.";
+                lblError.Visible = true;
+            }
+        }
+
+
 
         protected void btnNext1_Click(object sender, EventArgs e)
         {
@@ -73,6 +147,9 @@ namespace ecommerce
             bool crearCuenta = chkCrearCuenta.Checked;
             string password = txtPassword.Text;
             string passwordRep = txtPasswordRep.Text;
+
+            lblError.Visible = false;
+            lblEmailExistente.Visible = false;
 
             if (string.IsNullOrEmpty(email) || !Regex.IsMatch(email, @"^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$"))
             {
@@ -92,37 +169,66 @@ namespace ecommerce
                 lblError.Visible = true;
                 return;
             }
-            if (crearCuenta)
+
+            NegocioUsuario negocioUsuario = new NegocioUsuario();
+            Cliente clienteExistente = negocioUsuario.ObtenerUsuarioPorEmail(email);
+
+            if (clienteExistente != null)
             {
-                if (string.IsNullOrEmpty(password) || password.Length < 6)
+                // Usuario registrado
+                if (clienteExistente.Contraseña == password)
                 {
-                    lblError.Text = "La contraseña debe tener al menos 6 caracteres.";
+
+                    Session["Usuario"] = clienteExistente;
+                    lblError.Visible = false;
+                    string script = "showStep(2);"; 
+                    ClientScript.RegisterStartupScript(this.GetType(), "showStepScript", script, true);
+                }
+                else
+                {
+                    lblError.Text = "Contraseña incorrecta.";
                     lblError.Visible = true;
                     return;
                 }
+            }
+            else if (crearCuenta && lblCuenta.Text == "Crear una cuenta?")
+            {
+                // Usuario no registrado, crear nuevo usuario
+                //if (string.IsNullOrEmpty(password) || password.Length < 8)
+                //{
+                //    lblError.Text = "La contraseña debe tener al menos 8 caracteres.";
+                //    lblError.Visible = true;
+                //    return;
+                //}
                 if (password != passwordRep)
                 {
                     lblError.Text = "Las contraseñas no coinciden.";
                     lblError.Visible = true;
                     return;
                 }
-            }
 
-            bool isFormValid = true;  // Este es un ejemplo; coloca tu lógica de validación aquí.
+                Cliente nuevoCliente = new Cliente
+                {
+                    Email = email,
+                    Contraseña = password,
+                    Nombre = nombre,
+                    Apellido = apellido,
+                    Telefono = txtTelefono.Text,
+                    Direccion = txtDireccion.Text
+                };
 
-            if (isFormValid)
-            {
-                // Si la validación en el servidor es correcta, muestra el paso siguiente en el cliente.
-                string script = "showStep(2);";  // Esto avanzará al paso 2.
+                negocioUsuario.AgregarUsuario(nuevoCliente);
+                Session["Usuario"] = nuevoCliente;
+                lblError.Visible = false;
+                string script = "showStep(2);";
                 ClientScript.RegisterStartupScript(this.GetType(), "showStepScript", script, true);
             }
             else
             {
-                // Si no es válido, muestra un mensaje o realiza alguna acción
-                string script = "alert('Por favor, complete todos los campos correctamente.');";
-                ClientScript.RegisterStartupScript(this.GetType(), "validationAlert", script, true);
+                lblError.Text = "El usuario no está registrado y no se ha marcado la opción de crear cuenta";
+                lblError.Visible = true;
+                return;
             }
-
         }
 
 
@@ -139,22 +245,13 @@ namespace ecommerce
                 }
 
 
-
-                Cliente cliente = new Cliente
-                {
-                    Email = txtEmail.Text,
-                    Contraseña = txtPassword.Text,
-                    Nombre = txtNombre.Text,
-                    Apellido = txtApellido.Text,
-                    Telefono = txtTelefono.Text,
-                    Direccion = txtDireccion.Text
-                };
-
                 NegocioUsuario negocioUsuario = new NegocioUsuario();
-                negocioUsuario.AgregarUsuario(cliente);
-
                 // Obtener el último ID del usuario creado
+                Cliente cliente = new Cliente();
                 cliente.ID = negocioUsuario.ObtenerUltimoIDUsuario();
+                cliente.Email = txtEmail.Text.Trim();
+                cliente.Nombre = txtNombre.Text.Trim();
+
 
                 decimal totalVenta;
                 if (!decimal.TryParse(lblTotal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture, out totalVenta))
@@ -175,17 +272,15 @@ namespace ecommerce
                 // Obtener el Id del método de pago
                 NegocioMetodosPago negocioMetodosPago = new NegocioMetodosPago();
                 int idMetodoPago = negocioMetodosPago.ObtenerIdMetodoPago(rblMetodoPago.SelectedItem.Value);
+                //registrar la venta
+                Venta venta = new Venta();
 
-                Venta venta = new Venta
-                {
-                    FechaVenta = DateTime.UtcNow,
-                    MetodoPago = new MetodoPago { IdMetodoPago = idMetodoPago },
-                    TotalVenta = totalVenta,
-                    Envio = new Envio { Id = idZonaEnvio },
-                    Estado = new Estado { IdEstado = 1 },
-                    Cliente = cliente // Asignar el cliente con su ID
-                };
-
+                venta.FechaVenta = DateTime.UtcNow;
+                venta.MetodoPago = new MetodoPago { IdMetodoPago = idMetodoPago };
+                venta.TotalVenta = totalVenta;
+                venta.Envio = new Envio { Id = idZonaEnvio };
+                venta.Estado = new Estado { IdEstado = 1 };
+                venta.Cliente = cliente; // Asignar el cliente con su ID
                 NegocioVenta negocioVenta = new NegocioVenta();
                 int numVenta = negocioVenta.registrarVenta(venta);
 
@@ -193,22 +288,21 @@ namespace ecommerce
                 List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
                 foreach (var articulo in carrito)
                 {
-                    DetalleVenta detalleVenta = new DetalleVenta
-                    {
+                    DetalleVenta detalleVenta = new DetalleVenta();
+                    detalleVenta.NumVenta = numVenta;
+                    detalleVenta.IdArticulo = articulo.Id;
+                    detalleVenta.Cantidad = articulo.Cantidad;
+                    detalleVenta.Precio = articulo.Precio;
 
-                        NumVenta = numVenta,
-                        IdArticulo = articulo.Id,
-                        Cantidad = articulo.Cantidad,
-                        Precio = articulo.Precio
-                    };
                     negocioVenta.registrarDetalleVenta(detalleVenta);
                 }
+                //Envia mail con detalle de la venta
                 EmailService emailService = new EmailService();
                 string cuerpo = ObtenerCuerpoCorreo(cliente.Nombre, carrito);
                 emailService.armarCorreo(cliente.Email, "Confirmación de compra", cuerpo);
                 emailService.enviarEmail();
 
-
+                Session["Carrito"] = null;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", "$('#modalAgradecimiento').modal('show');", true);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Redirigir", "setTimeout(function(){ window.location.href = 'Default.aspx'; }, 2000);", true);
 
@@ -235,7 +329,7 @@ namespace ecommerce
             body += "</ul>";
             body += "<p>Esperamos que disfrutes tu compra. Si tienes alguna pregunta, no dudes en contactarnos.</p>";
             body += "<p>Saludos cordiales,</p>";
-            body += "<p>Equipo de [Nombre de la Empresa]</p>";
+            body += "<p>Equipo de E-Commerce</p>";
             return body;
 
         }
@@ -389,5 +483,7 @@ namespace ecommerce
         {
             lblCardCVV.Text = string.IsNullOrEmpty(txtCVV.Text) ? "CVV" : txtCVV.Text;
         }
+
+
     }
 }

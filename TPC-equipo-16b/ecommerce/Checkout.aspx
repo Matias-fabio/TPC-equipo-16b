@@ -27,20 +27,25 @@
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <label for="inputEmail" class="form-label">Email</label>
-                                            <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Placeholder="Email *"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="rfvEmail" ControlToValidate="txtEmail" runat="server"
-                                                ErrorMessage="El campo email es obligatorio." CssClass="text-danger"></asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator ID="revEmail" ControlToValidate="txtEmail" runat="server"
-                                                ErrorMessage="El formato del email no es válido." CssClass="text-danger"
-                                                ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"></asp:RegularExpressionValidator>
+                                            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Placeholder="Email *"  OnTextChanged="txtEmail_TextChanged"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtEmail" runat="server"
+                                                        ErrorMessage="El campo email es obligatorio." CssClass="text-danger"></asp:RequiredFieldValidator>
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtEmail" runat="server"
+                                                        ErrorMessage="El formato del email no es válido." CssClass="text-danger"
+                                                        ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"></asp:RegularExpressionValidator>
+                                                    <asp:Label ID="lblEmailExistente" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
+
                                         <asp:UpdatePanel runat="server">
                                             <ContentTemplate>
                                                 <div class="form-check">
                                                     <asp:CheckBox ID="chkCrearCuenta" runat="server" CssClass="" type="checkbox" OnCheckedChanged="chkCrearCuenta_CheckedChanged" AutoPostBack="true" />
-                                                    <label class="form-check-label" for="chkCrearCuenta">
-                                                        Crear una cuenta?
-                                                    </label>
+                                                    <asp:Label runat="server" ID="lblCuenta" Text="Crear una cuenta?" CssClass="form-check-label" for="chkCrearCuenta"></asp:Label>
                                                 </div>
                                                 <asp:Panel ID="pnlPassword" runat="server" Visible="false">
                                                     <div class="row">
@@ -48,13 +53,15 @@
                                                             <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" TextMode="Password" Placeholder="Contraseña *"></asp:TextBox>
                                                         </div>
                                                         <div class="col">
-                                                            <asp:TextBox ID="txtPasswordRep" CssClass="form-control" runat="server" TextMode="Password" Placeholder="Repetir contraseña *"></asp:TextBox>
+                                                            <asp:TextBox ID="txtPasswordRep" CssClass="form-control" runat="server" TextMode="Password" Placeholder="Repetir contraseña *" Visible="true"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <asp:Label ID="lblError" CssClass="text-danger" runat="server" Visible="false"></asp:Label>
                                                 </asp:Panel>
+                                                <asp:Button ID="btnLogin" runat="server" Text="Iniciar Sesión" OnClick="btnLogin_Click" Visible="false" CssClass="btn btn-warning" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
+                                        
                                         <div class="row g-3">
                                             <div class="col">
                                                 <label for="inputNombre" class="form-label">Nombre</label>
