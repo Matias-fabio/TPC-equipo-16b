@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,13 +44,23 @@ namespace ecommerce
                 }
 
                 // Lógica para mostrar/ocultar el botón de ingresar y desloguear
-                if (Session["UsuarioLogueado"] != null)
+                if (Seguridad.sessionActiva(Session["cliente"]))
                 {
-
-                    btnIngresar.Visible = false; // Ocultar botón de ingresar si el usuario está logueado
-                    btnDesloguear.Visible = true; // Mostrar botón de desloguear si el usuario está logueado
+                    Cliente user = (Cliente)Session["cliente"];
+                    btnIngresar.Visible = false;
+                    btnDesloguear.Visible = true;
                     LnBPerfil.Visible = true;
+                    LblPerfil.Text = user.Nombre;
+
                 }
+                //if (Session["UsuarioLogueado"] != null)
+                //{
+
+                //    btnIngresar.Visible = false; // Ocultar botón de ingresar si el usuario está logueado
+                //    btnDesloguear.Visible = true; // Mostrar botón de desloguear si el usuario está logueado
+                //    LnBPerfil.Visible = true;
+                //    LblPerfil.Text = 
+                //}
                 else
                 {
                     btnIngresar.Visible = true; // Mostrar botón de ingresar si el usuario no está logueado
@@ -114,7 +125,10 @@ namespace ecommerce
         protected void btnDesloguear_Click(object sender, EventArgs e)
         {
             Session["IDAdmin"] = null;
-            Session["UsuarioLogueado"] = null;
+            Session["cliente"] = null;
+            //pasar esto a seguridad
+            Session.Clear();
+            Session.Abandon();
             Response.Redirect("Default.aspx");
         }
 
