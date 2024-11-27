@@ -73,6 +73,8 @@
     <Content Include="EliminarMarcaAdmin.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="estilos\checkout.css" />
+    <Content Include="estilos\historialVentas.css" />
+    <Content Include="estilos\ventaDetallada.css" />
     <Content Include="MasStock.aspx" />
     <Content Include="ModificarCategoria.aspx" />
     <Content Include="ModificarMarcaAdmin.aspx" />

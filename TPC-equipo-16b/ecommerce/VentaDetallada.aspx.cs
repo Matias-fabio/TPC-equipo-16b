@@ -24,7 +24,7 @@ namespace ecommerce
 
         private void CargarDetallesVenta(int numVenta)
         {
-            // Suponiendo que tienes una clase NegocioVenta con un método para obtener los detalles de la venta
+            
             NegocioVenta negocioVenta = new NegocioVenta();
             List<DetalleVenta> detallesVenta = negocioVenta.ObtenerDetallesVenta(numVenta);
 
@@ -33,6 +33,11 @@ namespace ecommerce
                 gvDetallesVenta.DataSource = detallesVenta;
                 gvDetallesVenta.DataBind();
             }
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("HistorialVentasOpciones.aspx");
         }
     }
 }

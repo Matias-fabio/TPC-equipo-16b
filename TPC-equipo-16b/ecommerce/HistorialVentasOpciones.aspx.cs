@@ -57,6 +57,14 @@ namespace ecommerce
         {
             NegocioVenta negocioVenta = new NegocioVenta();
             ListaVenta = negocioVenta.listarVentas();
+
+            // Asegurarse de que los estados estén disponibles
+            if (listaEstados == null || listaEstados.Count == 0)
+            {
+                NegocioEstado negocioEstado = new NegocioEstado();
+                listaEstados = negocioEstado.ObtenerEstadosPedido();
+            }
+
             RepHistorialVentas.DataSource = ListaVenta;
             RepHistorialVentas.DataBind();
 
@@ -68,8 +76,51 @@ namespace ecommerce
             decimal promedioFacturacion = cantidadVentas > 0 ? totalVentas / cantidadVentas : 0;
             lblPromedio.Text = promedioFacturacion.ToString("C");
 
-            int cantidadFinalizados = ListaVenta.Count(v => v.Estado.IdEstado == 3); // hay que arreglar esto
+            int cantidadFinalizados = ListaVenta.Count(v => v.Estado.IdEstado == 3);
             lblFinalizados.Text = cantidadFinalizados.ToString();
+        }
+
+        private void ConfigurarDropDownListEstados(DropDownList ddlCambioEstado, int idEstadoActual)
+        {
+            ddlCambioEstado.DataSource = listaEstados;
+            ddlCambioEstado.DataTextField = "NombreEstado";
+            ddlCambioEstado.DataValueField = "IdEstado";
+            ddlCambioEstado.DataBind();
+
+            // Verificar si el valor existe antes de asignar
+            if (ddlCambioEstado.Items.FindByValue(idEstadoActual.ToString()) != null)
+            {
+                ddlCambioEstado.SelectedValue = idEstadoActual.ToString();
+            }
+            else
+            {
+                Console.WriteLine("El idEstadoActual no se encuentra en el DropDownList: " + idEstadoActual);
+            }
+        }
+
+        protected void RepHistorialVentas_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                DropDownList ddlCambioEstado = (DropDownList)e.Item.FindControl("ddlCambioEstado");
+                var venta = (Venta)e.Item.DataItem;
+                ConfigurarDropDownListEstados(ddlCambioEstado, venta.Estado.IdEstado);
+            }
+        }
+
+        protected void RepHistorialVentas_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            NegocioVenta negocioVenta = new NegocioVenta();
+            if (e.CommandName == "ActualizarEstado")
+            {
+                int numVenta = Convert.ToInt32(e.CommandArgument);
+                DropDownList ddlCambioEstado = (DropDownList)e.Item.FindControl("ddlCambioEstado");
+                int idEstado = Convert.ToInt32(ddlCambioEstado.SelectedValue);
+                negocioVenta.ActualizarEstadoVenta(numVenta, idEstado);
+
+                CargarVentas();
+                UdpVentas.Update();
+            }
         }
 
         protected void btnDetalle_Click(object sender, EventArgs e)
@@ -79,6 +130,5 @@ namespace ecommerce
             string numVenta = ((Label)item.FindControl("lblNumVenta")).Text;
             Response.Redirect("VentaDetallada.aspx?NumVenta=" + numVenta);
         }
-
     }
 }
