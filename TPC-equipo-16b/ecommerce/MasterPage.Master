@@ -16,15 +16,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    
+
     <form id="form1" runat="server">
-         <asp:ScriptManager ID="ScriptManagerMaster" runat="server" />
+        <asp:ScriptManager ID="ScriptManagerMaster" runat="server" />
         <header class="navbar navbar-expand-lg bg-dark w-auto nav-size">
             <div class="container-md">
                 <a class="navbar-brand text-white" href="Default.aspx">E-commerce</a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="input-group ms-3 search " style="max-width: 400px; width: 100%;">
-                        <asp:TextBox ID="txtBuscarProductos" runat="server" CssClass="form-control d-inline-flex focus-ring focus-ring-warning " Placeholder="Buscar productos..." aria-label="Search" ></asp:TextBox>
+                        <asp:TextBox ID="txtBuscarProductos" runat="server" CssClass="form-control d-inline-flex focus-ring focus-ring-warning " Placeholder="Buscar productos..." aria-label="Search"></asp:TextBox>
                         <asp:LinkButton ID="btnBuscar" runat="server" CssClass="btn btn-light" OnClick="btnBuscar_Click">
                            <i class="fa-solid fa-magnifying-glass"></i>
                         </asp:LinkButton>
@@ -33,8 +33,15 @@
                         <li class="nav-item">
                             <asp:LinkButton ID="btnIngresar" runat="server" CssClass="nav-link nav-header text-white active fs-sm" OnClick="btnIngresar_Click">
                                 <i class="fa-regular fa-user">
-                                    <asp:Label ID="Ingresarusuario" runat="server" Text="Ingresar"></asp:Label> 
+                                    <asp:Label ID="Ingresarusuario" runat="server" Text="Ingresar"></asp:Label>
                                 </i>
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton ID="LnBPerfil" runat="server" CssClass="nav-link nav-header" OnClick="LnBPerfil_Click" Visible="false">
+                                 <i class="fa-regular fa-circle-user">
+                                     <asp:Label ID="LblPerfil" runat="server" Text="Perfil"></asp:Label>
+                                 </i>
                             </asp:LinkButton>
                         </li>
                         <li class="nav-item">
@@ -44,17 +51,18 @@
                         </li>
                         <li class="nav-item">
                             <asp:LinkButton ID="btnCarrito" runat="server" CssClass="nav-link nav-header" OnClick="btnCarrito_Click">
-                                 
+
                                 <asp:UpdatePanel runat="server">
                                     <ContentTemplate>
                                         <i class="fa-solid fa-cart-shopping"></i>
-                                        <asp:label text="" runat="server" CssClass="badge bg-warning text-dark" ID="lblCantidadCarrito" AutoPostback="true" />
+                                        <asp:Label Text="" runat="server" CssClass="badge bg-warning text-dark" ID="lblCantidadCarrito" AutoPostback="true" />
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                             </asp:LinkButton>
                         </li>
+
                         <li class="nav-item">
-                            <asp:LinkButton ID="BotonAdmin" runat="server" CssClass="nav-link nav-header" Onclick="BotonAdmin_Click">
+                            <asp:LinkButton ID="BotonAdmin" runat="server" CssClass="nav-link nav-header" OnClick="BotonAdmin_Click">
                                  <i class="fa-solid fa-user-tie"></i>
                             </asp:LinkButton>
                         </li>
@@ -66,13 +74,13 @@
         <nav class="nav-container">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <asp:LinkButton ID="lbProductos" runat="server" CssClass="nav-link active" OnClick="lbProductos_Click" >Productos</asp:LinkButton>
+                    <asp:LinkButton ID="lbProductos" runat="server" CssClass="nav-link active" OnClick="lbProductos_Click">Productos</asp:LinkButton>
                 </li>
                 <li class="nav-item">
                     <asp:LinkButton ID="lbNotebooks" runat="server" CssClass="nav-link" OnClick="lbNotebooks_Click">Notebooks</asp:LinkButton>
                 </li>
                 <li class="nav-item">
-                    <asp:LinkButton ID="lbAyuda" runat="server" CssClass="nav-link" OnClick="lbAyuda_Click" >Ayuda</asp:LinkButton>
+                    <asp:LinkButton ID="lbAyuda" runat="server" CssClass="nav-link" OnClick="lbAyuda_Click">Ayuda</asp:LinkButton>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" aria-disabled="true">Arma tu PC</a>

@@ -45,8 +45,10 @@ namespace ecommerce
                 // Lógica para mostrar/ocultar el botón de ingresar y desloguear
                 if (Session["UsuarioLogueado"] != null)
                 {
+
                     btnIngresar.Visible = false; // Ocultar botón de ingresar si el usuario está logueado
                     btnDesloguear.Visible = true; // Mostrar botón de desloguear si el usuario está logueado
+                    LnBPerfil.Visible = true;
                 }
                 else
                 {
@@ -114,6 +116,11 @@ namespace ecommerce
             Session["IDAdmin"] = null;
             Session["UsuarioLogueado"] = null;
             Response.Redirect("Default.aspx");
+        }
+
+        protected void LnBPerfil_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("usuarioOpciones.aspx");
         }
     }
 }

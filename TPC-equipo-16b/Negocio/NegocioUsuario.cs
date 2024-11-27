@@ -19,7 +19,7 @@ namespace Negocio
 
             try
             {
-                Datos.setearConsulta("SELECT ID, Email, Contraseña, IdRol FROM Usuarios WHERE Email = @Email AND Contraseña = @Contraseña");
+                Datos.setearConsulta("SELECT ID, Email, Contraseña, IdRol, Nombre, Apellido FROM Usuarios WHERE Email = @Email AND Contraseña = @Contraseña");
 
                 Datos.setearParametro("@Email", email);
                 Datos.setearParametro("@Contraseña", contraseña);
@@ -35,6 +35,8 @@ namespace Negocio
                     cliente.Email = (string)Datos.Lector["Email"];
                     cliente.Contraseña = (string)Datos.Lector["Contraseña"];
                     cliente.IDAdmin = (int)Datos.Lector["IdRol"]; // Asignar el IDAdmin
+                    cliente.Nombre = (string)Datos.Lector["Nombre"];
+                    cliente.Apellido = (string)Datos.Lector["Apellido"];
                 }
                 else
                 {
@@ -103,7 +105,7 @@ namespace Negocio
                 Datos.setearConsulta("SELECT COUNT(*) FROM Usuarios WHERE Email = @Email");
                 Datos.setearParametro("@Email", email);
                 Datos.ejecutarLectura();
-              
+
                 if (Datos.Lector.Read() && Convert.ToInt32(Datos.Lector[0]) > 0)
                 {
                     Datos.cerrarConexion();
@@ -119,7 +121,7 @@ namespace Negocio
                 {
                     return false;
                 }
-                
+
             }
             catch (Exception Ex)
             {
@@ -186,42 +188,62 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-public Cliente ObtenerUsuarioPorEmail(string email)
-{
-    AccesoDatos datos = new AccesoDatos();
-
-    try
-    {
-        datos.setearConsulta("SELECT * FROM Usuarios WHERE Email = @Email");
-        datos.setearParametro("@Email", email);
-        datos.ejecutarLectura();
-        Cliente cliente = null;
-        if (datos.Lector.Read())
+        public Cliente ObtenerUsuarioPorEmail(string email)
         {
-            cliente = new Cliente
+            AccesoDatos datos = new AccesoDatos();
+
+            try
             {
-                ID = Convert.ToInt32(datos.Lector["ID"]),
-                Email = datos.Lector["Email"] != DBNull.Value ? (string)datos.Lector["Email"] : string.Empty,
-                Contraseña = datos.Lector["Contraseña"] != DBNull.Value ? (string)datos.Lector["Contraseña"] : string.Empty,
-                Nombre = datos.Lector["Nombre"] != DBNull.Value ? (string)datos.Lector["Nombre"] : string.Empty,
-                Apellido = datos.Lector["Apellido"] != DBNull.Value ? (string)datos.Lector["Apellido"] : string.Empty,
-                Direccion = datos.Lector["Direccion"] != DBNull.Value ? (string)datos.Lector["Direccion"] : string.Empty,
-                Telefono = datos.Lector["Telefono"] != DBNull.Value ? (string)datos.Lector["Telefono"] : string.Empty
-            };
+                datos.setearConsulta("SELECT * FROM Usuarios WHERE Email = @Email");
+                datos.setearParametro("@Email", email);
+                datos.ejecutarLectura();
+                Cliente cliente = null;
+                if (datos.Lector.Read())
+                {
+                    cliente = new Cliente
+                    {
+                        ID = Convert.ToInt32(datos.Lector["ID"]),
+                        Email = datos.Lector["Email"] != DBNull.Value ? (string)datos.Lector["Email"] : string.Empty,
+                        Contraseña = datos.Lector["Contraseña"] != DBNull.Value ? (string)datos.Lector["Contraseña"] : string.Empty,
+                        Nombre = datos.Lector["Nombre"] != DBNull.Value ? (string)datos.Lector["Nombre"] : string.Empty,
+                        Apellido = datos.Lector["Apellido"] != DBNull.Value ? (string)datos.Lector["Apellido"] : string.Empty,
+                        Direccion = datos.Lector["Direccion"] != DBNull.Value ? (string)datos.Lector["Direccion"] : string.Empty,
+                        Telefono = datos.Lector["Telefono"] != DBNull.Value ? (string)datos.Lector["Telefono"] : string.Empty
+                    };
+                }
+                return cliente;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
-        return cliente;
-    }
-    catch (Exception ex)
-    {
-        throw ex;
-    }
-    finally
-    {
-        datos.cerrarConexion();
-    }
-}
+        public void actualizarUsuario(Cliente cliente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Update USUARIOS set Nombre = @nombre, Apellido = @apellido Where ID = @id");
+                //datos.setearParametro("@imagen", user.ImagenPerfil != null ? user.ImagenPerfil : (object)DBNull.Value);
+                datos.setearParametro("@nombre", cliente.Nombre);
+                datos.setearParametro("@apellido", cliente.Apellido);
+                datos.setearParametro("@id", cliente.ID);
+                datos.ejecutarAccion();
 
-
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }

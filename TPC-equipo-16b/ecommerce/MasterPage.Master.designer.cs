@@ -78,6 +78,24 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.Label Ingresarusuario;
 
         /// <summary>
+        /// Control LnBPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LnBPerfil;
+
+        /// <summary>
+        /// Control LblPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblPerfil;
+
+        /// <summary>
         /// Control btnDesloguear.
         /// </summary>
         /// <remarks>
