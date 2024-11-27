@@ -28,6 +28,11 @@
                                         <div class="mb-3">
                                             <label for="inputEmail" class="form-label">Email</label>
                                             <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" Placeholder="Email *"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvEmail" ControlToValidate="txtEmail" runat="server"
+                                                ErrorMessage="El campo email es obligatorio." CssClass="text-danger"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="revEmail" ControlToValidate="txtEmail" runat="server"
+                                                ErrorMessage="El formato del email no es válido." CssClass="text-danger"
+                                                ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"></asp:RegularExpressionValidator>
                                         </div>
                                         <asp:UpdatePanel runat="server">
                                             <ContentTemplate>
@@ -54,18 +59,31 @@
                                             <div class="col">
                                                 <label for="inputNombre" class="form-label">Nombre</label>
                                                 <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server" Placeholder="Nombre *"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvNombre" ControlToValidate="txtNombre" runat="server"
+                                                    ErrorMessage="El campo nombre es obligatorio." CssClass="text-danger"></asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ID="revNombre" ControlToValidate="txtNombre" runat="server"
+                                                    ErrorMessage="Solo se permiten letras en el nombre." CssClass="text-danger"
+                                                    ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"></asp:RegularExpressionValidator>
                                             </div>
                                             <div class="col">
                                                 <label for="inputApellido" class="form-label">Apellido</label>
                                                 <asp:TextBox ID="txtApellido" CssClass="form-control" runat="server" Placeholder="Apellido *"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvApellido" ControlToValidate="txtApellido" runat="server"
+                                                    ErrorMessage="El campo apellido es obligatorio." CssClass="text-danger"></asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ID="revApellido" ControlToValidate="txtApellido" runat="server"
+                                                    ErrorMessage="Solo se permiten letras en el apellido." CssClass="text-danger"
+                                                    ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"></asp:RegularExpressionValidator>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <label for="inputAddress2" class="form-label">Telefono:</label>
                                             <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server" Placeholder="Telefono(opcional)"></asp:TextBox>
+                                            <asp:RegularExpressionValidator ID="revTelefono" ControlToValidate="txtTelefono" runat="server"
+                                                ErrorMessage="El teléfono debe contener solo números." CssClass="text-danger"
+                                                ValidationExpression="^[0-9]+$"></asp:RegularExpressionValidator>
                                         </div>
                                         <div class="text-end">
-                                            <asp:Button ID="btnNext1" CssClass="btn btn-warning" runat="server" Text="Siguiente" OnClientClick="showStep(2); return false;" OnClick="btnNext1_Click" />
+                                            <asp:Button ID="btnNext1" CssClass="btn btn-warning" runat="server" Text="Siguiente" OnClientClick="return validateAndNext(1);" OnClick="btnNext1_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -287,6 +305,16 @@
                     stepElement.classList.remove('text-primary', 'fw-bold');
                 }
             });
+        }
+        function validateAndNext(step) {
+
+            let isValid = validateStep(step);
+            if (isValid) {
+                // Si es válido, avanza al siguiente paso
+                showStep(step + 1);
+                return false;  // Para evitar que la página se recargue
+            }
+            return false; // Evita la acción por defecto del botón
         }
 
     </script>
