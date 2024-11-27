@@ -34,10 +34,6 @@ namespace ecommerce
                     Session["IDAdmin"] = cliente.IDAdmin;
                     // Almacenar un indicador de inicio de sesión
                     Session["UsuarioLogueado"] = cliente.Email;
-
-                   
-                    
-
                     // Redirigir al usuario a la página principal
                     Response.Redirect("Default.aspx");
                 }

@@ -16,6 +16,10 @@ namespace ecommerce
         {
             if (!IsPostBack)
             {
+                if (Session["IDAdmin"] == null || Convert.ToInt32(Session["IDAdmin"]) != 2)
+                {
+                    Response.Redirect("Error.aspx");
+                }
                 CargarArticulo();
             }
 

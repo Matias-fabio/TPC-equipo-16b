@@ -29,6 +29,10 @@ namespace ecommerce
                     throw ex;
                 }
             }
+            if (Session["IDAdmin"] == null || Convert.ToInt32(Session["IDAdmin"]) != 2)
+            {
+                Response.Redirect("Error.aspx");
+            }
         }
     }
 }
