@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label"><i class="bi bi-key"></i>Contraseña</label>
+                            <label class="form-label"><i class="bi bi-key"></i>Contraseña(Entre 8-16 caracteres)</label>
                             <asp:TextBox ID="txtContraseña" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtContraseña"
                                 ErrorMessage="El campo de contraseña es obligatorio." CssClass="text-danger" Display="Dynamic" />

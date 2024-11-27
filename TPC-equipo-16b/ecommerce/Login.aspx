@@ -29,7 +29,10 @@
 
                                 </div>
                                 <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
-                                    ErrorMessage="El campo de email es obligatorio." CssClass="text-danger" />
+                                    ErrorMessage="El campo de email es obligatorio." CssClass="text-danger" Display="Dynamic"/>
+                                <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" 
+                                    ErrorMessage="Por favor, ingrese un email válido." ValidationExpression="\w+([-+.’']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+                                    CssClass="text-danger" Display="Dynamic" />
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
