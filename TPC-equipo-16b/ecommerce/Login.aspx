@@ -53,11 +53,11 @@
                             </div>
 
                             <div class="d-grid gap-2 mt-3">
-                                <asp:LinkButton ID="botonNuevoUsuario" runat="server" class="btn btn-info" OnClick="botonNuevoUsuario_Click">
+                                <asp:LinkButton ID="botonNuevoUsuario" runat="server" class="btn btn-info" OnClick="botonNuevoUsuario_Click" CausesValidation="false">
                                 <h5>Nuevo usuario</h5>
                                 </asp:LinkButton>
 
-                                <asp:LinkButton ID="BotonContraseña" runat="server" class="btn btn-secondary" OnClick="BotonContraseña_Click">
+                                <asp:LinkButton ID="BotonContraseña" runat="server" class="btn btn-secondary" OnClick="BotonContraseña_Click" CausesValidation="false">
                                 <h5>Olvide mi contraseña</h5>
                                 </asp:LinkButton>
                             </div>

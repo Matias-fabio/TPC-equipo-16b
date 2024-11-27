@@ -25,6 +25,8 @@
                                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Text="" type="email"
                                     title="Ingrese una dirección de correo válida" required="required"></asp:TextBox>
                             </div>
+                            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" 
+                                ErrorMessage="El campo de email es obligatorio." CssClass="text-danger" display="Dynamic"/>
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
 
@@ -36,6 +38,8 @@
                                 </span>
                                 <asp:TextBox ID="txtContraseña1" runat="server" CssClass="form-control" Text="" type="password" required="required"></asp:TextBox>
                             </div>
+                            <asp:RequiredFieldValidator ID="rfvContraseña1" runat="server" ControlToValidate="txtContraseña1" 
+                                ErrorMessage="El campo de contraseña es obligatorio." CssClass="text-danger" display="Dynamic"/>
                             <span asp-validation-for="Contraseña1" class="text-danger"></span>
                         </div>
 
@@ -47,6 +51,10 @@
                                 </span>
                                 <asp:TextBox ID="txtContraseña2" runat="server" CssClass="form-control" Text="" type="password" required="required"></asp:TextBox>
                             </div>
+                            <asp:RequiredFieldValidator ID="rfvContraseña2" runat="server" ControlToValidate="txtContraseña2" 
+                                ErrorMessage="El campo de confirmación de contraseña es obligatorio." CssClass="text-danger" display="Dynamic"/>
+                            <asp:CompareValidator ID="cvContraseñas" runat="server" ControlToValidate="txtContraseña2" ControlToCompare="txtContraseña1" 
+                                ErrorMessage="Las contraseñas no coinciden." CssClass="text-danger" />
                             <span asp-validation-for="Contraseña2" class="text-danger"></span>
                         </div>
                          <asp:Label ID="lblMensaje" runat="server" CssClass="text-success" Visible="False"></asp:Label>
@@ -59,7 +67,7 @@
                         </div>
 
                         <div class="d-grid gap-2 mt-3">
-                            <asp:LinkButton ID="VolverLogin" runat="server" class="btn btn-secondary" OnClick="VolverLogin_Click">
+                            <asp:LinkButton ID="VolverLogin" runat="server" class="btn btn-secondary" OnClick="VolverLogin_Click" CausesValidation="false">
                                 <h5>Volver</h5>
                             </asp:LinkButton>
                         </div>

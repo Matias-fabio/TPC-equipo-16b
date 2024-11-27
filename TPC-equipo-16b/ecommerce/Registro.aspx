@@ -13,38 +13,52 @@
                         <div class="col-md-6">
                             <label class="form-label"><i class="bi bi-envelope"></i>Email</label>
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" type="email" title="Ingrese una dirección de correo válida"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" 
+                                ErrorMessage="El campo de email es obligatorio." CssClass="text-danger" Display="Dynamic" />
+                            <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" 
+                                ErrorMessage="Por favor, ingrese un email válido." ValidationExpression="\w+([-+.'']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" CssClass="text-danger" Display="Dynamic" />
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label"><i class="bi bi-person"></i>Nombre</label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" type="text"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" 
+                            ErrorMessage="El campo de nombre es obligatorio." CssClass="text-danger" Display="Dynamic" />
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label"><i class="bi bi-person"></i>Apellido</label>
                             <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" type="text"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvApellido" runat ="server" ControlToValidate="txtApellido"
+                              ErrorMessage="El campo de apellido es obligatorio." CssClass="text-danger" Display="Dynamic" /> 
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label"><i class="bi bi-telephone"></i>Teléfono</label>
                             <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" type="text"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvTelefono" runat ="server" ControlToValidate="txtTelefono"
+                            ErrorMessage="El campo de telefono es obligatorio." CssClass="text-danger" Display="Dynamic" /> 
                         </div>
 
                         <div class="col-12">
                             <label class="form-label"><i class="bi bi-geo-alt"></i>Dirección</label>
                             <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" type="text"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion"
+                                ErrorMessage="El campo de direccion es obligatorio." CssClass="text-danger" Display="Dynamic" />
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label"><i class="bi bi-key"></i>Contraseña</label>
                             <asp:TextBox ID="txtContraseña" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtContraseña"
+                                ErrorMessage="El campo de contraseña es obligatorio." CssClass="text-danger" Display="Dynamic" />
                         </div>
 
                         <div class="col-12 mt-4">
                             <asp:LinkButton ID="BotonAceptar" runat="server" class="btn btn-primary w-100 mb-2" OnClick="BotonAceptar_Click">
                                 <h3>Aceptar!!</h3>
                             </asp:LinkButton>
-                            <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-secondary w-100"  OnClick="BotonVolver_Click">
+                            <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-secondary w-100"  OnClick="BotonVolver_Click" CausesValidation="false">
                                 <h3>Volver</h3>
                             </asp:LinkButton>
                         </div>
