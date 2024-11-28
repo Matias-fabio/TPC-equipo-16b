@@ -50,5 +50,10 @@ namespace ecommerce
         {
             Response.Redirect("MasStock.aspx");
         }
+
+        protected void DardeAltaArticulo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

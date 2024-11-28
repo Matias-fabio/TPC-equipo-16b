@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ArticuloStock.aspx" />
+    <Content Include="DarDeAltaArticulo.aspx" />
     <Content Include="EliminarCategoriaAdmin.aspx" />
     <Content Include="EliminarMarcaAdmin.aspx" />
     <Content Include="Error.aspx" />
@@ -118,6 +119,13 @@
     </Compile>
     <Compile Include="ArticuloStock.aspx.designer.cs">
       <DependentUpon>ArticuloStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DarDeAltaArticulo.aspx.cs">
+      <DependentUpon>DarDeAltaArticulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DarDeAltaArticulo.aspx.designer.cs">
+      <DependentUpon>DarDeAltaArticulo.aspx</DependentUpon>
     </Compile>
     <Compile Include="EliminarCategoriaAdmin.aspx.cs">
       <DependentUpon>EliminarCategoriaAdmin.aspx</DependentUpon>

@@ -380,6 +380,26 @@ namespace Negocio
                 accesoDatos.cerrarConexion();
             }
         }
+        public void DarDeAltaArticulo(int IdArticulo)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+
+                accesoDatos.setearConsulta("UPDATE ARTICULOS SET Estado = 1 WHERE IdArticulo = @id");
+                accesoDatos.setearParametro("@id", IdArticulo);
+                accesoDatos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
 
         public Articulo obtenerArticuloPorId(int id)
         {
