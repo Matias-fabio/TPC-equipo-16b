@@ -1,48 +1,65 @@
+-- Cambiar a la base de datos master y crear la base de datos TPC_Ecommerce
 USE master;
 GO
 
 CREATE DATABASE TPC_Ecommerce;
 GO
 
+-- Cambiar a la base de datos TPC_Ecommerce
 USE TPC_Ecommerce;
 GO
 
+-- ========================================
+-- Crear tabla CATEGORIAS
+-- ========================================
 CREATE TABLE CATEGORIAS (
     Id INT IDENTITY(1,1) NOT NULL,
     Nombre VARCHAR(50) NULL,
     Descripcion VARCHAR(100) NULL,
     UrlImagen VARCHAR(300) NULL,
+    Estado BIT DEFAULT 1,
     CONSTRAINT PK_CATEGORIAS PRIMARY KEY (Id)
 );
 GO
 
+-- ========================================
+-- Crear tabla MARCAS
+-- ========================================
 CREATE TABLE MARCAS (
     Id INT IDENTITY(1,1) NOT NULL,
     Nombre VARCHAR(50) NULL,
     Logo VARCHAR(300) NULL,
+    Estado BIT DEFAULT 1,
     CONSTRAINT PK_MARCAS PRIMARY KEY (Id)
 );
 GO
 
+-- ========================================
+-- Crear tabla ARTICULOS
+-- ========================================
 CREATE TABLE ARTICULOS (
-    ID INT IDENTITY(1,1) NOT NULL,
+    IdArticulo INT IDENTITY(1,1) NOT NULL,
     Codigo VARCHAR(10) NULL,
     Nombre VARCHAR(50) NULL,
-    Stock int not null,
     Descripcion VARCHAR(200) NULL,
     IdMarca INT NOT NULL,
     IdCategoria INT NOT NULL,
     Precio DECIMAL(10,2) NULL,
     ImgUrl VARCHAR(300) NULL,
-    CONSTRAINT PK_ARTICULOS PRIMARY KEY (ID),
+    Stock INT NOT NULL DEFAULT 0,
+    Estado BIT DEFAULT 1,
+    CONSTRAINT PK_ARTICULOS PRIMARY KEY (IdArticulo),
     CONSTRAINT FK_ARTICULOS_MARCAS FOREIGN KEY (IdMarca) REFERENCES MARCAS(Id),
     CONSTRAINT FK_ARTICULOS_CATEGORIAS FOREIGN KEY (IdCategoria) REFERENCES CATEGORIAS(Id)
 );
 GO
 
+-- ========================================
+-- Crear tabla USUARIOS
+-- ========================================
 CREATE TABLE USUARIOS (
     ID INT IDENTITY(1,1) NOT NULL,
-    IDAdmin INT NOT NULL,
+    IdRol INT DEFAULT 1, -- 1: cliente, 2: admin
     Nombre VARCHAR(50) NULL,
     Apellido VARCHAR(50) NULL,
     Direccion VARCHAR(100) NULL,
@@ -53,15 +70,21 @@ CREATE TABLE USUARIOS (
 );
 GO
 
+-- ========================================
+-- Crear tabla IMAGENES_ARTICULO
+-- ========================================
 CREATE TABLE IMAGENES_ARTICULO (
     Id_Img INT IDENTITY(1,1) NOT NULL,
     Id_art INT NOT NULL,
     UrlImagen NVARCHAR(255),
     CONSTRAINT PK_IMAGENES_ARTICULO PRIMARY KEY (Id_Img),
-    CONSTRAINT FK_ARTICULO_IMG FOREIGN KEY (Id_art) REFERENCES ARTICULOS(ID)
+    CONSTRAINT FK_ARTICULO_IMG FOREIGN KEY (Id_art) REFERENCES ARTICULOS(IdArticulo)
 );
 GO
 
+-- ========================================
+-- Crear tabla PRECIO_ENVIOS
+-- ========================================
 CREATE TABLE PRECIO_ENVIOS (
     idZona INT IDENTITY(1,1) NOT NULL,
     Descripcion VARCHAR(60),
@@ -70,46 +93,62 @@ CREATE TABLE PRECIO_ENVIOS (
 );
 GO
 
-CREATE TABLE ESTADOS (
-    IdEstado CHAR(6) NOT NULL,
-    NombreEstado VARCHAR(50) UNIQUE DEFAULT 'PROCESADO' NOT NULL,
+-- ========================================
+-- Crear tabla EstadoPedido
+-- ========================================
+CREATE TABLE EstadoPedido (
+    IdEstado INT IDENTITY(1,1) NOT NULL,
+    NombreEstado VARCHAR(50) DEFAULT 'PROCESADO' NOT NULL,
+    Estado BIT DEFAULT 1,
     CONSTRAINT PK_ESTADOS PRIMARY KEY (IdEstado)
 );
 GO
 
+-- ========================================
+-- Crear tabla MetodoPago
+-- ========================================
 CREATE TABLE MetodoPago (
-    IdMetodoPago CHAR(6) NOT NULL,
-    MetodoPago VARCHAR(50) UNIQUE NOT NULL,
+    IdMetodoPago INT IDENTITY(1,1) NOT NULL,
+    MetodoPago VARCHAR(50)  NOT NULL,
     CONSTRAINT PK_METODOPAGO PRIMARY KEY (IdMetodoPago)
 );
 GO
 
+-- ========================================
+-- Crear tabla VENTAS
+-- ========================================
 CREATE TABLE VENTAS (
     NumVenta INT IDENTITY(1,1) NOT NULL,
     IdUsuario INT NOT NULL,
     FechaVenta DATE DEFAULT GETDATE(),
-    TotalVenta DECIMAL(8,2) DEFAULT 0.00,
-    MetodoPago VARCHAR(30) NULL,
+    TotalVenta DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    IdMetodoPago INT NOT NULL,
     IdCostoEnvio INT NOT NULL,
-    IdEstado CHAR(6) NOT NULL,
+    IdEstado INT NOT NULL,
     CONSTRAINT PK_VENTA PRIMARY KEY (NumVenta),
     CONSTRAINT FK_IDUSUARIO FOREIGN KEY (IdUsuario) REFERENCES USUARIOS(ID),
     CONSTRAINT FK_COSTOENVIO FOREIGN KEY (IdCostoEnvio) REFERENCES PRECIO_ENVIOS(idZona),
-    CONSTRAINT FK_ESTADO FOREIGN KEY (IdEstado) REFERENCES ESTADOS(IdEstado)
+    CONSTRAINT FK_ESTADO FOREIGN KEY (IdEstado) REFERENCES EstadoPedido(IdEstado)
 );
 GO
 
+-- ========================================
+-- Crear tabla DETALLEVENTA
+-- ========================================
 CREATE TABLE DETALLEVENTA (
-    DetalleVentaID INT IDENTITY PRIMARY KEY,
+    DetalleVentaID INT IDENTITY(1,1) PRIMARY KEY,
     NumVenta INT NOT NULL,
     IdArticulo INT NOT NULL,
     Cantidad INT,
     Precio DECIMAL(10,2),
     CONSTRAINT FK_VENTA FOREIGN KEY (NumVenta) REFERENCES VENTAS(NumVenta),
-    CONSTRAINT FK_ARTICULO FOREIGN KEY (IdArticulo) REFERENCES ARTICULOS(ID)
+    CONSTRAINT FK_ARTICULO FOREIGN KEY (IdArticulo) REFERENCES ARTICULOS(IdArticulo)
 );
 GO
 
+-- ========================================
+-- Crear tabla CUPONES
+-- ========================================
 CREATE TABLE CUPONES (
     CodigoCupon VARCHAR(50) NOT NULL,
     FechaCanje DATE NULL,
@@ -118,71 +157,126 @@ CREATE TABLE CUPONES (
 );
 GO
 
--- Procedimientos almacenados
+-- ========================================
+-- Crear tabla ROLES
+-- ========================================
+CREATE TABLE ROLES(
+    IdRol INT PRIMARY KEY,
+    Descripcion VARCHAR(255) NOT NULL
+);
+GO
 
+-- ========================================
+-- Crear tabla Carritos
+-- ========================================
+CREATE TABLE Carritos (
+    idCarrito INT IDENTITY(1,1) PRIMARY KEY,
+    idUsuario INT NULL, -- Permitir NULL si se elimina el usuario
+    total DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    fecha_creacion DATETIME DEFAULT GETDATE(),
+    CONSTRAINT FK_Carrito_Usuario FOREIGN KEY (idUsuario) REFERENCES USUARIOS(ID)
+);
+GO
+
+-- ========================================
+-- Crear tabla Carrito_Articulos
+-- ========================================
+CREATE TABLE Carrito_Articulos (
+    idCarritoArticulo INT IDENTITY(1,1) PRIMARY KEY,
+    idCarrito INT NOT NULL,
+    idArticulo INT NOT NULL,
+    cantidad INT NOT NULL,
+    CONSTRAINT FK_CarritoArticulo_Carrito FOREIGN KEY (idCarrito) REFERENCES Carritos(idCarrito),
+    CONSTRAINT FK_CarritoArticulo_Articulo FOREIGN KEY (idArticulo) REFERENCES ARTICULOS(IdArticulo)
+);
+GO
+
+-- ========================================
+-- Procedimientos almacenados
+-- ========================================
 CREATE OR ALTER PROCEDURE SP_PAGINACION
 @cantidad INT,
 @offset INT
 AS
 BEGIN
-    SELECT A.Id, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, 
-           A.Precio, A.ImgUrl AS Img, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca
+    SELECT A.IdArticulo, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, 
+           A.Precio, A.ImgUrl AS Img, A.Estado, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca
     FROM ARTICULOS A
     JOIN CATEGORIAS C ON A.IdCategoria = C.Id
     JOIN MARCAS M ON A.IdMarca = M.Id
-    ORDER BY A.Id
+    WHERE A.Estado = 1
+    ORDER BY A.IdArticulo
     OFFSET @offset ROWS
     FETCH NEXT @cantidad ROWS ONLY;
 END;
 GO
 
+exec SP_PAGINACION 26,1;
+GO
+
 CREATE OR ALTER PROCEDURE SP_ListarVentas
 AS
 BEGIN
-    SELECT V.NumVenta, U.Nombre AS Cliente, U.Email, V.FechaVenta AS Fecha, V.MetodoPago, E.Descripcion AS Envio, 
+    SELECT V.NumVenta, U.Nombre AS Cliente, U.Email, V.FechaVenta AS Fecha, M.MetodoPago AS MetodoPago, E.Descripcion AS Envio, 
            V.TotalVenta AS ImporteTotal, S.NombreEstado AS Estado
     FROM VENTAS V
     INNER JOIN USUARIOS U ON V.IdUsuario = U.ID
     INNER JOIN PRECIO_ENVIOS E ON V.IdCostoEnvio = E.idZona
-    INNER JOIN ESTADOS S ON V.IdEstado = S.IdEstado;
+    INNER JOIN MetodoPago M ON V.IdMetodoPago = M.IdMetodoPago
+    INNER JOIN EstadoPedido S ON V.IdEstado = S.IdEstado;
 END;
 GO
-exec SP_ListarVentas
-go
 
-CREATE OR ALTER PROCEDURE SP_RegistrarVenta
-    @IdUsuario INT,
-    @FechaVenta DATE = NULL,
-    @TotalVenta DECIMAL(8,2),
-    @MetodoPago VARCHAR(30),
-    @IdCostoEnvio INT,
-    @IdEstado CHAR(6)
+exec SP_ListarVentas;
+GO
+
+-- ========================================
+-- TRIGGER ACTUALIZAR STOCK 
+-- ========================================
+CREATE OR ALTER TRIGGER ACTUALIZASTOCK
+ON DetalleVenta
+AFTER INSERT
 AS
 BEGIN
-    INSERT INTO VENTAS (IdUsuario, FechaVenta, TotalVenta, MetodoPago, IdCostoEnvio, IdEstado)
-    VALUES (@IdUsuario, ISNULL(@FechaVenta, GETDATE()), @TotalVenta, @MetodoPago, @IdCostoEnvio, @IdEstado);
-
-    DECLARE @NumVenta INT = SCOPE_IDENTITY();
+    SET NOCOUNT ON;
+    DECLARE @DetalleVentaId INT, @NumVenta INT, @Cantidad INT, @IdArticulo INT;
+    SELECT @DetalleVentaId = DetalleVentaId, @NumVenta = NumVenta, @Cantidad = Cantidad, @IdArticulo = IdArticulo FROM INSERTED;
+    UPDATE ARTICULOS SET Stock = Stock - @Cantidad WHERE IdArticulo = @IdArticulo;
 END;
 GO
 
+-- ========================================
 -- Inserciones de datos
+-- ========================================
 
+-- INSERTs para la tabla PRECIO_ENVIOS
 INSERT INTO PRECIO_ENVIOS (Descripcion, precio)
-VALUES ('CABA', 2449), ('GBA 1', 3650), ('GBA 2', 4150), ('GBA 3', 6800), 
-       ('BUENOS AIRES', 7500), ('RESTO DEL PAIS', 7900);
+VALUES 
+('CABA', 2449), 
+('GBA 1', 3650), 
+('GBA 2', 4150), 
+('GBA 3', 6800), 
+('BUENOS AIRES', 7500), 
+('RESTO DEL PAIS', 7900);
 GO
 
-INSERT INTO ESTADOS (IdEstado, NombreEstado)
-VALUES ('EST001', 'PROCESADO'), ('EST002', 'RECHAZADO'), ('EST003', 'EN PREPARACION'), 
-       ('EST004', 'DESPACHADO'), ('EST005', 'COMPLETADO');
+-- INSERTs para la tabla EstadoPedido
+INSERT INTO EstadoPedido (NombreEstado, Estado) VALUES
+('En Preparación', 1),
+('Enviado', 1),
+('Entregado', 1),
+('Cancelado', 1);
 GO
 
+-- INSERTs para la tabla CUPONES
 INSERT INTO CUPONES (CodigoCupon, FechaCanje, Descuento)
-VALUES ('Desc01', GETDATE() - 10, 20), ('Codigo02', NULL, NULL), ('Codigo03', NULL, NULL), 
-       ('Codigo04', NULL, NULL), ('Codigo05', NULL, NULL);
+VALUES 
+('Desc01', GETDATE() - 10, 20), 
+('Codigo02', NULL, NULL), 
+('Codigo03', NULL, NULL), 
+('Codigo04', NULL, NULL), 
+('Codigo05', NULL, NULL);
 GO
-
 
 
 
@@ -224,37 +318,41 @@ VALUES
 GO
 
 
-INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio, ImgUrl) VALUES
-('PROD001', 'Teclado Mecánico Redragon K568', 'Teclado mecánico con iluminación RGB, switches cherry red', 1, 5, 7999.99, 'https://redragon.es/content/uploads/2021/04/DARK-AVENGER.png'),
-('PROD002', 'Mouse Gamer Logitech G203', 'Mouse óptico gamer con 16000 DPI y retroiluminación', 1, 5, 4999.99, 'https://resource.logitechg.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g203/g203-gallery-1.png?v=1'),
-('PROD003', 'Monitor 24" SAMSUNG FHD', 'Monitor LED 24 pulgadas Full HD con tasa de refresco de 75Hz', 1, 3, 29999.99, 'https://images.samsung.com/is/image/samsung/p6pim/ar/lf24t350fhlczb/gallery/ar-t35f-388813-lf24t350fhlczb-456991993?$650_519_PNG$'),
-('PROD004', 'Memoria RAM Corsair Vengance 16GB DDR4', 'Memoria RAM DDR4 de 16GB 3200MHz para gaming', 1, 7, 12999.99, 'https://www.gamerspoint.com.ar/wp-content/uploads/Memoria-Ram-Corsair-Vengeance-Rs-16gb-2x8-3600mhz-Rgb-Ddr4-Cl18-600x600.png'),
-('PROD005', 'Procesador AMD Ryzen 7 5800X', 'Procesador AMD Ryzen 7 5800X de 8 núcleos y 16 hilos', 1, 12, 139999.99, 'https://logg.api.cygnus.market/static/logg/Global/Procesador%20AMD%20Ryzen%207%205700X%204.6GHz%20AM4/da28f5f3752f4fb1a4d43a2c601c1eb5.webp'),
-('PROD006', 'Gigabyte Aorus RTX 3070', 'Placa de video NVIDIA RTX 3070 con 8GB GDDR6', 1, 2, 199999.99, 'https://static.gigabyte.com/StaticFile/Image/Global/163e9f51ab41e2b931919e1dde162c0a/Product/29215'),
-('PROD007', 'Gabinete ATX Level Up Cassiopeia', 'Gabinete ATX para PC con panel lateral de vidrio templado y RGB', 1, 10, 14999.99, 'https://tienda.anywayinsumos.com.ar/22766-medium_default/gabinete-gm-level-up-cassiopeia-mid-tower-atx-1fan-rgb-rear-378190447mm.jpg'),
-('PROD008', 'Fuente AeroCool Dorado 750W ', 'Fuente de alimentación 80 Plus Gold 750W modular, 80 PLUS GOLD', 1, 9, 10999.99, 'https://aerocool.io/wp-content/uploads/2021/03/DORADO-Infographics-01-750.png'),
-('PROD009', 'Disco Duro 2TB', 'Disco duro mecánico 2TB para almacenamiento masivo', 1, 11, 8999.99, 'https://www.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/wd-purple-sata-hdd/gallery/wd-purple-surveillance-hard-drive-2tb.png.thumb.1280.1280.png'),
-('PROD010', 'Procesador Intel i7 12700K', 'Procesador Intel Core i7 12700K de 12 núcleos y 20 hilos', 1, 12, 179999.99, 'https://gamerloot.com.mx/wp-content/uploads/2024/06/Procesador-Intel-Core-i7-12700K.webp'),
-('PROD011', 'Aorus Gigabyte Disco Ssd 1tb M.2 Nvme Gen4', 'Unidad SSD NVMe de 1TB con velocidad de lectura de 3500MB/s', 1, 11, 24999.99, 'https://app.contabilium.com/files/explorer/7026/Productos-Servicios/concepto-5751641.png'),
-('PROD012', 'ROG MAXIMUS Z690 EXTREME', 'Placa madre para Intel Z690 con soporte para DDR5', 1, 6, 37999.99, 'https://dlcdnwebimgs.asus.com/gain/293AC7FB-F2DB-4559-A749-9AD4A23598EF/w717/h525'),
-('PROD013', 'Cooler Master ML240 Illusion White', 'Sistema de refrigeración líquida con radiador de 240mm', 1, 13, 19999.99, 'https://www.venex.com.ar/products_images/1678372857_whater-3.png'),
-('PROD014', 'Redragon pandora 7.1 auriculares gamer', 'Auriculares gaming con sonido 7.1 envolvente y micrófono', 1, 5, 9999.99, 'https://acdn.mitiendanube.com/stores/003/998/438/products/h350w-rgb-1-png-web-1-ee54ab129512d8cf4417177884697002-1024-1024.png'),
-('PROD015', 'Redragon Gaia C211', 'Silla ergonómica para gaming con reposabrazos ajustable', 1, 4, 24999.99, 'https://redragon.es/content/uploads/2021/12/C221-BW-GAIA.png'),
-('PROD016', 'TP-LINK Archer AX72 Router WiFi 6', 'Router de última generación con tecnología WiFi 6', 1, 5, 11999.99, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMScoTNQfyQHFEktZYG6xhfdJ1pWCc0OSSug&s'),
-('PROD017', 'Logitech c920s webcam full hd', 'Cámara web Full HD 1080p con micrófono incorporado', 1, 5, 7999.99, 'https://logitechar.vtexassets.com/arquivos/ids/157219-800-800?v=637081483397370000&width=800&height=800&aspect=true'),
-('PROD018', 'Micrófono Condensador Usb Mackie Em-91cu', 'Micrófono condensador USB ideal para streaming y grabaciones', 1, 5, 40999.99, 'https://cdnx.jumpseller.com/guitarstore/image/18133102/resize/1800/1800?1648423789'),
-('PROD019', 'Base soporte Cooler Notebook Wesdar K-8028F', 'Base refrigerante para laptops de hasta 17 pulgadas con iluminación LED', 1, 13, 34999.99, 'https://images.fravega.com/f500/06d522be0df54361fd86d5b9fe17a303.png'),
-('PROD020', 'Kit de Limpieza para PC', 'Kit de limpieza profesional para PC y componentes electrónicos', 1, 5, 9899.99, 'https://www.gamerspoint.com.ar/wp-content/uploads/DELTA-KIT-LIMPIEZA-PARA-NOTEBOOKS.png'),
-('PROD021', 'Corsair T3', 'Silla gamer Corsair T3, máximo confort', 1, 4, 2499.99, 'https://www.liontech-gaming.com/wp-content/uploads/2021/12/SILLA-GAMER-CORSAIR-T3-RUSH-CHARCOAL-500x538.webp'),
-('PROD022', 'Shenlong SCH-RGB155', 'Silla gamer Shenlong, con luces LED RGB, máximo confort', 1, 4, 356499.99, 'https://shenlong.com.ar/resources/users-uploads/galleries/256/productos/sch-rgb155-black.png'),
-('PROD023', 'Notebook ROG Zephyrus', 'Intel® Core™ Ultra 9 de 16 núcleos NVIDIA GeForce RTX 4070 32GB 1TB SSD 240HZ OLED GU605MI-QR118W', 1, 1, 3855000.75, 'https://tiendadiggit.com.ar/web/image/product.image/6477/image_1024/Notebook%20Gamer%20ROG%20Zephyrus%20G16%20Intel%C2%AE%20Core%E2%84%A2%20Ultra%209%20de%2016%20N%C3%BAcleos%20NVIDIA%20GeForce%20RTX%204070%2032GB%201TB%20SSD%20240HZ%20OLED%20GU605MI-QR118W?unique=b47f338'),
-('PROD024', 'Notebook XPG Xenia', 'Notebook XPG Xenia 2024 15G IPS 144HZ I7-14700HX Nvidia RTX 4070 16GB DDR5 1TB M.2', 1, 1, 1900499.99, 'https://statics.globaldrop.com.ar/bartez-02-2024/1002_09-05-2024-10-05-58-xenia_15g_pd_2000x2000_01.png'),
-('PROD025', 'Monitor AOC Agon 32" 165Hz', 'Monitor 32 AOC Agon AG323FCXE 165Hz Curvo', 1, 3, 290499.99, 'https://www.venex.com.ar/products_images/1668189743_ag323fcxe_3.png'),
-('PROD026', 'Intel i5 13400F', 'Procesador Intel Core i5-13400F 4.6GHz 20MB Raptor Lake LGA1700 c/ Cooler', 1, 12, 894999.99, 'https://logg.api.cygnus.market/static/logg/Global/Procesador_Intel_Core_i5_13400F_4.6GHz_20MB_Raptor_Lake_LGA1700_c_Cooler/13b46ae6ba40462d895a7bc90b18d91c.webp');
+
+INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio, ImgUrl, Stock) VALUES
+('PROD001', 'Teclado Mecánico Redragon K568', 'Teclado mecánico con iluminación RGB, switches cherry red', 1, 5, 7999.99, 'https://redragon.es/content/uploads/2021/04/DARK-AVENGER.png', 20),
+('PROD002', 'Mouse Gamer Logitech G203', 'Mouse óptico gamer con 16000 DPI y retroiluminación', 1, 5, 4999.99, 'https://resource.logitechg.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g203/g203-gallery-1.png?v=1',5),
+('PROD003', 'Monitor 24" SAMSUNG FHD', 'Monitor LED 24 pulgadas Full HD con tasa de refresco de 75Hz', 1, 3, 29999.99, 'https://images.samsung.com/is/image/samsung/p6pim/ar/lf24t350fhlczb/gallery/ar-t35f-388813-lf24t350fhlczb-456991993?$650_519_PNG$',31),
+('PROD004', 'Memoria RAM Corsair Vengance 16GB DDR4', 'Memoria RAM DDR4 de 16GB 3200MHz para gaming', 1, 7, 12999.99, 'https://www.gamerspoint.com.ar/wp-content/uploads/Memoria-Ram-Corsair-Vengeance-Rs-16gb-2x8-3600mhz-Rgb-Ddr4-Cl18-600x600.png',12),
+('PROD005','Procesador AMD Ryzen 7 5800X', 'Procesador AMD Ryzen 7 5800X de 8 núcleos y 16 hilos', 1, 12, 139999.99, 'https://logg.api.cygnus.market/static/logg/Global/Procesador%20AMD%20Ryzen%207%205700X%204.6GHz%20AM4/da28f5f3752f4fb1a4d43a2c601c1eb5.webp',1 ),
+('PROD006', 'Gigabyte Aorus RTX 3070', 'Placa de video NVIDIA RTX 3070 con 8GB GDDR6', 1, 2, 199999.99, 'https://static.gigabyte.com/StaticFile/Image/Global/163e9f51ab41e2b931919e1dde162c0a/Product/29215',0),
+('PROD007', 'Gabinete ATX Level Up Cassiopeia', 'Gabinete ATX para PC con panel lateral de vidrio templado y RGB', 1, 10, 14999.99, 'https://tienda.anywayinsumos.com.ar/22766-medium_default/gabinete-gm-level-up-cassiopeia-mid-tower-atx-1fan-rgb-rear-378190447mm.jpg',10),
+('PROD008', 'Fuente AeroCool Dorado 750W ', 'Fuente de alimentación 80 Plus Gold 750W modular, 80 PLUS GOLD', 1, 9, 10999.99, 'https://aerocool.io/wp-content/uploads/2021/03/DORADO-Infographics-01-750.png',10),
+('PROD009', 'Disco Duro 2TB', 'Disco duro mecánico 2TB para almacenamiento masivo', 1, 11, 8999.99, 'https://www.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/wd-purple-sata-hdd/gallery/wd-purple-surveillance-hard-drive-2tb.png.thumb.1280.1280.png',11),
+('PROD010', 'Procesador Intel i7 12700K', 'Procesador Intel Core i7 12700K de 12 núcleos y 20 hilos', 1, 12, 179999.99, 'https://gamerloot.com.mx/wp-content/uploads/2024/06/Procesador-Intel-Core-i7-12700K.webp',3),
+('PROD011', 'Aorus Gigabyte Disco Ssd 1tb M.2 Nvme Gen4', 'Unidad SSD NVMe de 1TB con velocidad de lectura de 3500MB/s', 1, 11, 24999.99, 'https://app.contabilium.com/files/explorer/7026/Productos-Servicios/concepto-5751641.png',31),
+('PROD012', 'ROG MAXIMUS Z690 EXTREME', 'Placa madre para Intel Z690 con soporte para DDR5', 1, 6, 37999.99, 'https://dlcdnwebimgs.asus.com/gain/293AC7FB-F2DB-4559-A749-9AD4A23598EF/w717/h525',120),
+('PROD013', 'Cooler Master ML240 Illusion White', 'Sistema de refrigeración líquida con radiador de 240mm', 1, 13, 19999.99, 'https://www.venex.com.ar/products_images/1678372857_whater-3.png',6),
+('PROD014', 'Redragon pandora 7.1 auriculares gamer', 'Auriculares gaming con sonido 7.1 envolvente y micrófono', 1, 5, 9999.99, 'https://acdn.mitiendanube.com/stores/003/998/438/products/h350w-rgb-1-png-web-1-ee54ab129512d8cf4417177884697002-1024-1024.png',60),
+('PROD015', 'Redragon Gaia C211', 'Silla ergonómica para gaming con reposabrazos ajustable', 1, 4, 24999.99, 'https://redragon.es/content/uploads/2021/12/C221-BW-GAIA.png',13),
+('PROD016', 'TP-LINK Archer AX72 Router WiFi 6', 'Router de última generación con tecnología WiFi 6', 1, 5, 11999.99, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMScoTNQfyQHFEktZYG6xhfdJ1pWCc0OSSug&s',3),
+('PROD017', 'Logitech c920s webcam full hd', 'Cámara web Full HD 1080p con micrófono incorporado', 1, 5, 7999.99, 'https://logitechar.vtexassets.com/arquivos/ids/157219-800-800?v=637081483397370000&width=800&height=800&aspect=true',23),
+('PROD018', 'Micrófono Condensador Usb Mackie Em-91cu', 'Micrófono condensador USB ideal para streaming y grabaciones', 1, 5, 40999.99, 'https://cdnx.jumpseller.com/guitarstore/image/18133102/resize/1800/1800?1648423789',2),
+('PROD019', 'Base soporte Cooler Notebook Wesdar K-8028F', 'Base refrigerante para laptops de hasta 17 pulgadas con iluminación LED', 1, 13, 34999.99, 'https://images.fravega.com/f500/06d522be0df54361fd86d5b9fe17a303.png',0),
+('PROD020', 'Kit de Limpieza para PC', 'Kit de limpieza profesional para PC y componentes electrónicos', 1, 5, 9899.99, 'https://www.gamerspoint.com.ar/wp-content/uploads/DELTA-KIT-LIMPIEZA-PARA-NOTEBOOKS.png',21),
+('PROD021', 'Corsair T3', 'silla gamer corsair t3, maximo confort', 1, 4, 2499.99, 'https://www.liontech-gaming.com/wp-content/uploads/2021/12/SILLA-GAMER-CORSAIR-T3-RUSH-CHARCOAL-500x538.webp',91),
+('PROD022', 'Shenlong SCH-RGB155', 'silla gamer Shenlong, con luces led RGB,  maximo confort', 1, 4, 356499.99, 'https://shenlong.com.ar/resources/users-uploads/galleries/256/productos/sch-rgb155-black.png',56),
+('PROD023', 'Notebook ROG Zephyrus', 'Intel® Core™ Ultra 9 de 16 Núcleos NVIDIA GeForce RTX 4070 32GB 1TB SSD 240HZ OLED GU605MI-QR118W', 1, 1, 3855000.75, 'https://tiendadiggit.com.ar/web/image/product.image/6477/image_1024/Notebook%20Gamer%20ROG%20Zephyrus%20G16%20Intel%C2%AE%20Core%E2%84%A2%20Ultra%209%20de%2016%20N%C3%BAcleos%20NVIDIA%20GeForce%20RTX%204070%2032GB%201TB%20SSD%20240HZ%20OLED%20GU605MI-QR118W?unique=b47f338',5),
+('PROD024', 'Notebook XPG Xenia', 'Notebook XPG Xenia 2024 15G IPS 144HZ I7-14700HX Nvidia RTX 4070 16GB DDR5 1TB M.2', 1, 1, 1900499.99, 'https://statics.globaldrop.com.ar/bartez-02-2024/1002_09-05-2024-10-05-58-xenia_15g_pd_2000x2000_01.png',51),
+('PROD025', 'Monitor AOC Agon 32" 165Hz ', 'Monitor 32 AOC Agon AG323FCXE 165Hz Curvo', 1, 3, 290499.99, 'https://www.venex.com.ar/products_images/1668189743_ag323fcxe_3.png',7),
+('PROD026', 'Intel i5 13400F ', 'Procesador Intel Core i5-13400F 4.6GHz 20MB Raptor Lake LGA1700 c/ Cooler', 1, 12, 894999.99, 'https://logg.api.cygnus.market/static/logg/Global/Procesador_Intel_Core_i5_13400F_4.6GHz_20MB_Raptor_Lake_LGA1700_c_Cooler/13b46ae6ba40462d895a7bc90b18d91c.webp',21)
+
+;
 GO
 
 
 SET IDENTITY_INSERT IMAGENES_ARTICULO ON
+
 
 INSERT INTO IMAGENES_ARTICULO(Id_Img, Id_art, UrlImagen) VALUES
 (1,1,'https://redragon.es/content/uploads/2021/04/DARK-AVENGER.png'),
@@ -355,81 +453,10 @@ INSERT INTO IMAGENES_ARTICULO(Id_Img, Id_art, UrlImagen) VALUES
 (97,26,'https://cdn.salla.sa/dPlRDp/58eb643b-175f-4d21-b369-f748b2588b64-1000x915.70881226054-3dPF7ZRzE3D3lsuoTssed9gx8enx44xRNZDTlHeM.png'),
 (98,26,'https://img.evetech.co.za/repository/components/intel-core-i5-13400f-processor-600px-v03.webp')
 GO
+
 SET IDENTITY_INSERT IMAGENES_ARTICULO OFF; 
 GO
---****************************************************************************************
-CREATE OR ALTER PROCEDURE SP_RegistrarVenta
-    @IdUsuario INT,
-    @FechaVenta DATETIME,
-    @MetodoPago NVARCHAR(50),
-    @IdCostoEnvio INT,
-    @TotalVenta DECIMAL(18, 2),
-    @IdEstado CHAR(6)
-AS
-BEGIN
-    BEGIN TRY
-        BEGIN TRANSACTION;
 
-        INSERT INTO VENTAS (IdUsuario, FechaVenta, MetodoPago, IdCostoEnvio, TotalVenta, IdEstado)
-        VALUES (@IdUsuario, @FechaVenta, @MetodoPago, @IdCostoEnvio, @TotalVenta, @IdEstado);
+INSERT INTO USUARIOS (IdRol, Nombre, Apellido, Direccion, Telefono, Email, Contraseña)
+VALUES (2, 'admin', 'admin', '1234 Calle Falsa', '1234567890', 'admin@admin.com', 'admin');
 
-        COMMIT TRANSACTION;
-        PRINT 'La venta ha sido registrada correctamente.';
-    END TRY
-    BEGIN CATCH
-        ROLLBACK TRANSACTION;
-        PRINT 'Ocurrió un error al registrar la venta.';
-        THROW;
-    END CATCH
-END;
-GO
-
-
-EXEC SP_RegistrarVenta 
-    @IdUsuario = 1,
-    @FechaVenta = '2024-11-22 ',
-    @MetodoPago = 'Tarjeta de Crédito',
-    @IdCostoEnvio = 2,
-    @TotalVenta = 1500.75,
-    @IdEstado = 'EST001';
-GO
-
-SELECT * FROM VENTAS
-GO
-
-
--- SELECT * from Usuarios
--- GO
--- DELETE FROM USUARIOS WHERE [ID] = 2;
--- DBCC CHECKIDENT ('USUARIOS', RESEED, 0);
--- GO
-
-
-DECLARE @IdUsuario int = 1, @FechaVenta date = getdate(), @MetodoPago varchar(50) = 'transferencia', @IdCostoEnvio int = 3, @TotalVenta Decimal(8,2) = 50000, @IdEstado char(6) = 'EST001'
-INSERT INTO VENTAS (IdUsuario, FechaVenta, MetodoPago, IdCostoEnvio, TotalVenta, IdEstado)
-VALUES (@IdUsuario, @FechaVenta, @MetodoPago, @IdCostoEnvio, @TotalVenta, @IdEstado);
-GO
-
-
--- CREATE TABLE ARTICULOS(
---     ID INT IDENTITY(1,1) NOT NULL,
---     Codigo VARCHAR(10) NULL,
---     Nombre VARCHAR(50) NULL,
---     Descripcion VARCHAR(200) NULL,
---     IdMarca INT NOT NULL,
---     IdCategoria INT NOT NULL,
---     Precio DECIMAL(10,2) NULL,
---     ImgUrl VARCHAR(300) NULL,
---     Cantidad Int,
---     CONSTRAINT PK_ARTICULOS PRIMARY KEY (ID),
---     CONSTRAINT FK_ARTICULOS_MARCAS FOREIGN KEY (IdMarca) REFERENCES MARCAS(Id),
---     CONSTRAINT FK_ARTICULOS_CATEGORIAS FOREIGN KEY (IdCategoria) REFERENCES CATEGORIAS(Id)
--- )
--- GO
-
-INSERT INTO USUARIOS (IDAdmin, Nombre, Apellido, Direccion, Telefono, Email, Contraseña)
-VALUES (2, 'admin', 'admin', '1234 Calle Falsa', '1234567890', 'admin', 'admin');
-SELECT * FROM USUARIOS WHERE Email = 'admin';
-
-
-SELECT * from USUARIOS
