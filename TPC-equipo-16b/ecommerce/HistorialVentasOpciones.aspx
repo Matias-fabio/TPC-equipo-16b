@@ -2,6 +2,66 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="estilos/historialVentas.css" rel="stylesheet" />
+    <style>
+        .EstadoActual {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .estado-en-preparacion {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .estado-enviado {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        .estado-entregado {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .estado-cancelado {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+    <script>
+        function aplicarEstilosEstado() {
+            var etiquetasEstado = document.querySelectorAll('.EstadoActual');
+            etiquetasEstado.forEach(function (etiqueta) {
+                const estado = etiqueta.getAttribute('data-estado').toLowerCase();
+                switch (estado) {
+                    case 'en preparacion':
+                        etiqueta.classList.add('estado-en-preparacion');
+                        break;
+                    case 'enviado':
+                        etiqueta.classList.add('estado-enviado');
+                        break;
+                    case 'entregado':
+                        etiqueta.classList.add('estado-entregado');
+                        break;
+                    case 'cancelado':
+                        etiqueta.classList.add('estado-cancelado');
+                        break;
+                    default:
+                        console.log('Estado no reconocido:', estado);
+                }
+            });
+        }
+
+        // Ejecutar la función cuando el documento esté listo
+        document.addEventListener('DOMContentLoaded', aplicarEstilosEstado);
+
+        // Si estás usando UpdatePanel, también deberías ejecutar la función después de cada actualización parcial
+        if (typeof Sys !== 'undefined' && Sys.WebForms) {
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(aplicarEstilosEstado);
+        }
+    </script>
 
 </asp:Content>
 
@@ -105,7 +165,7 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <div class="mt-4">
-            <asp:Button ID="btnVolver" runat="server" Text="Volver " CssClass="btn btn-warning" OnClick="btnVolver_Click"  />
+            <asp:Button ID="btnVolver" runat="server" Text="Volver " CssClass="btn btn-warning" OnClick="btnVolver_Click" />
         </div>
     </div>
 </asp:Content>

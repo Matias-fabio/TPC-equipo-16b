@@ -153,6 +153,31 @@ namespace ecommerce
                     }
                 }
 
+
+                else if (idEstado == 4)
+                {
+                    Label lblEmail = (Label)e.Item.FindControl("lblEmail");
+                    string email = lblEmail.Text;
+
+                    EmailService emailService = new EmailService();
+                    string asunto = $"$Tu pedido #{numVenta} ha sido cancelado";
+                    string cuerpo = $"<h1>¡Hola!</h1><p>Tu pedido con número de venta {numVenta} ha sido cancelado.</p>";
+                    cuerpo += "<p>Tu pago no se pudo procesar correctamente. Si tienes alguna pregunta, no dudes en contactarnos.</p>";
+                    cuerpo += "<p>Saludos cordiales,</p>";
+                    cuerpo += "<p>Equipo de E-Commerce</p>";
+                    emailService.armarCorreo(email, asunto, cuerpo);
+                    try
+                    {
+                        emailService.enviarEmail();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejo de errores al enviar el correo
+                        Session.Add("error", ex.ToString());
+                        Response.Redirect("Error.aspx", false);
+                    }
+                }
+
                 CargarVentas();
                 UdpVentas.Update();
 
