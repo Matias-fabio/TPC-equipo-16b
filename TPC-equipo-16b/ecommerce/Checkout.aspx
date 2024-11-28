@@ -45,7 +45,7 @@
                                             <ContentTemplate>
                                                 <div class="form-check">
                                                     <asp:CheckBox ID="chkCrearCuenta" runat="server" CssClass="" type="checkbox" OnCheckedChanged="chkCrearCuenta_CheckedChanged" AutoPostBack="true" />
-                                                    <asp:Label runat="server" ID="lblCuenta" Text="Crear una cuenta?" CssClass="form-check-label" for="chkCrearCuenta"></asp:Label>
+                                                    <asp:Label runat="server" ID="lblCuenta" Text="Crear una cuenta?" CssClass="form-check-label" for="chkCrearCuenta" ></asp:Label>
                                                 </div>
                                                 <asp:Panel ID="pnlPassword" runat="server" Visible="false">
                                                     <div class="row">

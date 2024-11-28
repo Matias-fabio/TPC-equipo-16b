@@ -208,7 +208,7 @@ namespace ecommerce
                     return;
                 }
             }
-            else if (crearCuenta && lblCuenta.Text == "Crear una cuenta?")
+            else if (chkCrearCuenta.Checked )
             {
                 // Usuario no registrado, crear nuevo usuario
                 //if (string.IsNullOrEmpty(password) || password.Length < 8)
