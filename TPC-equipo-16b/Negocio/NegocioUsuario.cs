@@ -245,5 +245,58 @@ namespace Negocio
             }
         }
 
+        public List<Cliente> ListarUsuarios()
+        {
+            List<Cliente> lista = new List<Cliente>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT ID, Email FROM USUARIOS");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Cliente usuario = new Cliente
+                    {
+                        ID = (int)datos.Lector["ID"],
+                        Email = (string)datos.Lector["Email"]
+                    };
+                    lista.Add(usuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar usuarios: " + ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return lista;
+        }
+
+        public void ActualizarRolUsuario(int UsuarioID, int NuevoRol)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE USUARIOS SET IdRol = @nuevoRol WHERE ID = @userId");
+                datos.setearParametro("@nuevoRol", NuevoRol);
+                datos.setearParametro("@userId", UsuarioID);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar el rol del usuario: " + ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
     }
 }

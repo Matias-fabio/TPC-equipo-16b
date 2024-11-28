@@ -78,6 +78,7 @@
     <Content Include="estilos\perfilUsuario.css" />
     <Content Include="estilos\ventaDetallada.css" />
     <Content Include="MasStock.aspx" />
+    <Content Include="ModificacionUsuario.aspx" />
     <Content Include="ModificarCategoria.aspx" />
     <Content Include="ModificarMarcaAdmin.aspx" />
     <Content Include="NuevaCategoriaAdmin.aspx" />
@@ -145,6 +146,13 @@
     </Compile>
     <Compile Include="MasStock.aspx.designer.cs">
       <DependentUpon>MasStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificacionUsuario.aspx.cs">
+      <DependentUpon>ModificacionUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificacionUsuario.aspx.designer.cs">
+      <DependentUpon>ModificacionUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModificarCategoria.aspx.cs">
       <DependentUpon>ModificarCategoria.aspx</DependentUpon>
