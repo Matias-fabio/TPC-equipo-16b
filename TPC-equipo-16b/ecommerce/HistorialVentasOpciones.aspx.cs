@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using Negocio;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,6 +115,7 @@ namespace ecommerce
 
         protected void RepHistorialVentas_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+
             NegocioVenta negocioVenta = new NegocioVenta();
             if (e.CommandName == "ActualizarEstado")
             {
@@ -121,11 +123,44 @@ namespace ecommerce
                 DropDownList ddlCambioEstado = (DropDownList)e.Item.FindControl("ddlCambioEstado");
                 int idEstado = Convert.ToInt32(ddlCambioEstado.SelectedValue);
                 negocioVenta.ActualizarEstadoVenta(numVenta, idEstado);
+                if (idEstado == 2)
+                {
+                    // Obtén el email del cliente asociado a la venta
+                    Label lblEmail = (Label)e.Item.FindControl("lblEmail");
+                    string email = lblEmail.Text;
+
+                    // Configura y envía el correo
+                    negocioHelpers negocioHelpers = new negocioHelpers();
+                    string codigoSeguimiento = negocioHelpers.GenerarCodigoSeguimiento();
+                    EmailService emailService = new EmailService();
+                    string asunto = $"$Tu pedido #{numVenta} ha sido enviado";
+                    string cuerpo = $"<h1>¡Hola!</h1><p>Tu pedido con número de venta {numVenta} ha sido enviado. Gracias por confiar en nosotros.</p>";
+                    cuerpo += $"Tu código de seguimiento es: **{codigoSeguimiento}**";
+                    cuerpo += "<p>Esperamos que disfrutes tu compra. Si tienes alguna pregunta, no dudes en contactarnos.</p>";
+                    cuerpo += "<p>Saludos cordiales,</p>";
+                    cuerpo += "<p>Equipo de E-Commerce</p>";
+                    emailService.armarCorreo(email, asunto, cuerpo);
+
+                    try
+                    {
+                        emailService.enviarEmail();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejo de errores al enviar el correo
+                        Session.Add("error", ex.ToString());
+                        Response.Redirect("Error.aspx", false);
+                    }
+                }
 
                 CargarVentas();
                 UdpVentas.Update();
+
             }
         }
+
+       
+        
 
         protected void btnDetalle_Click(object sender, EventArgs e)
         {

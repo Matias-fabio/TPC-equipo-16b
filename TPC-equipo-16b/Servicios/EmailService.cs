@@ -33,11 +33,7 @@ namespace Servicios
             email.Subject = asunto;
             email.IsBodyHtml = true;
             email.Body = cuerpo;
-            //email.Body = "<h2> Tu compra ha sido confirmada correctamente</h2> <br>";
-            //email.Body += "<p>Gracias por tu compra en nuestra tienda. Aquí tienes los detalles de tu pedido:</p>";;
-            //email.Body += "<p>Esperamos que disfrutes tu compra. Si tienes alguna pregunta, no dudes en contactarnos.</p>";
-            //email.Body += "<p>Saludos cordiales,</p>";
-            //email.Body += "<p>Equipo de E-commerce</p>";
+
         }
 
         public void enviarEmail()
