@@ -28,13 +28,12 @@ namespace ecommerce
         protected void ddlMarca_SelectedIndexChanged(object sender, EventArgs e)
         {     
              int marcaId = int.Parse(ddlMarca.SelectedValue);
-             Marca marca = NegocioMarca.ObtenerMarcaPorId(marcaId.ToString()); 
-             NombreNuevoMarca.Text = marca.Nombre;
+             Marca marca = NegocioMarca.ObtenerMarcaPorId(marcaId.ToString());
              urlVieja.Text = marca.Logo; 
         }
 
 
-            protected void CargarMarca()
+        protected void CargarMarca()
         {
             List<Marca> list = NegocioMarca.listarMarcas();
             ddlMarca.DataSource = list;
@@ -48,8 +47,9 @@ namespace ecommerce
 
             Marca ModificarMarca = new Marca();
 
-            ModificarMarca.Nombre = NombreNuevoMarca.Text;
+            ModificarMarca.Id = MarcaId;
             ModificarMarca.Logo = UrlNueva.Text;
+            ModificarMarca.Nombre = NombreNuevoMarca.Text;
             NegocioMarca.ModificarMarca(ModificarMarca);
 
             lblMensaje.Text = "Marca modificada exitosamente."; 
