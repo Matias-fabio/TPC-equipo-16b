@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ModificarArticulo.aspx.cs" Inherits="ecommerce.ModificarArticulo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href ="estilos/LadoAdmin.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>
-        Modificar articulo
+    <h1>Modificar articulo
     </h1>
     <div>
         <div class="col-md-12">
@@ -61,15 +61,16 @@
             </div>
         </div>
         <div class="col-12" id="BotonNuevoArticulo">
-            <div class="d-grid gap-2 col-8 mx-auto">
+            <div class="d-grid gap-2 col-8 mx-auto extra-padding" >
                 <asp:Label ID="lblMensaje" runat="server" CssClass="alert alert-success" Visible="False"></asp:Label>
-                <asp:LinkButton ID="BotonModificar" runat="server" class="btn btn-primary" type="button" OnClick="BotonModificar_Click">
-                    <h3>Modificar articulo</h3>
+                <asp:LinkButton ID="BotonModificar" runat="server" CssClass="custom-button" type="button" OnClick="BotonModificar_Click">
+                    <h5 class="Titulo">Modificar artículo</h5>
                 </asp:LinkButton>
-                <asp:LinkButton ID="BotonVolver" runat="server" class="btn btn-primary" type="button" OnClick="BotonVolver_Click" CausesValidation="false"> 
-                    <h3>Volver</h3>
+                <asp:LinkButton ID="BotonVolver" runat="server" CssClass="custom-button" type="button" OnClick="BotonVolver_Click" CausesValidation="false">
+                    <h5 class="Titulo">Volver</h5>
                 </asp:LinkButton>
             </div>
         </div>
+
     </div>
 </asp:Content>

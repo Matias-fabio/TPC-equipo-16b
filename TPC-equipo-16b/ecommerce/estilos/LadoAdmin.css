@@ -47,3 +47,12 @@
     margin-bottom: 2rem !important;
 }
 
+.extra-padding {
+    padding-bottom: 100px !important;
+}
+
+.extra-paddingM {
+    padding-top: 100px !important;
+    padding-bottom: 100px !important;
+}
+
