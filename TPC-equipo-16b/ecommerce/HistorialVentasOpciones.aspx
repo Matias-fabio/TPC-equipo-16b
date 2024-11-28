@@ -104,5 +104,8 @@
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
+        <div class="mt-4">
+            <asp:Button ID="btnVolver" runat="server" Text="Volver " CssClass="btn btn-warning" OnClick="btnVolver_Click"  />
+        </div>
     </div>
 </asp:Content>

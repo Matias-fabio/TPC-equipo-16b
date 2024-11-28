@@ -83,7 +83,7 @@ namespace Negocio
             AccesoDatos accesoDatos = new AccesoDatos();
             try
             {
-                accesoDatos.setearConsulta("SELECT Dv.DetalleVentaID, Dv.NumVenta, A.Nombre AS Articulo, Dv.Cantidad, Dv.Precio" +
+                accesoDatos.setearConsulta("SELECT Dv.DetalleVentaID AS DetalleVentaID, Dv.NumVenta As NumeroVenta, A.Nombre AS Articulo, Dv.Cantidad, Dv.Precio " +
                     "FROM DetalleVenta Dv INNER JOIN ARTICULOS A ON Dv.IdArticulo = A.IdArticulo WHERE NumVenta = @NumVenta");
                 accesoDatos.setearParametro("@NumVenta", numVenta);
 
@@ -92,7 +92,7 @@ namespace Negocio
                 {
                     DetalleVenta aux = new DetalleVenta();
                     aux.IdDetalleVenta = (int)accesoDatos.Lector["DetalleVentaID"];
-                    aux.NumVenta = (int)accesoDatos.Lector["NumVenta"];
+                    aux.NumVenta = (int)accesoDatos.Lector["NumeroVenta"];
                     aux.Articulo.Nombre = (string)accesoDatos.Lector["Articulo"];
                     aux.Cantidad = (int)accesoDatos.Lector["Cantidad"];
                     aux.Precio = (decimal)accesoDatos.Lector["Precio"];

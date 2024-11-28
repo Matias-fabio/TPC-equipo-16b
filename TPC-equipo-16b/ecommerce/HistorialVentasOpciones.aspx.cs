@@ -169,5 +169,10 @@ namespace ecommerce
             string numVenta = ((Label)item.FindControl("lblNumVenta")).Text;
             Response.Redirect("VentaDetallada.aspx?NumVenta=" + numVenta);
         }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdministradorInicio.aspx");
+        }
     }
 }
