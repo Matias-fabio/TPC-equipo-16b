@@ -153,7 +153,7 @@ namespace Negocio
             }
         }
 
-        public List<Articulo> BuscarArticulos(string searchTerm)
+        public List<Articulo> BuscarArticulos(string DatoSolicitado)
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos Datos = new AccesoDatos();
@@ -161,14 +161,14 @@ namespace Negocio
             try
             {
                 Datos.setearConsulta(@"
-                    SELECT a.IdArticulo, a.Codigo, a.Nombre, a.Descripcion, a.Precio, a.ImgUrl, 
-                    m.Nombre AS Marca, c.Nombre AS Categoria
-                    FROM ARTICULOS a
-                    INNER JOIN MARCAS m ON a.IdMarca = m.Id
-                    INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id
-                    WHERE a.Nombre LIKE @searchTerm OR a.Descripcion LIKE @searchTerm");
+            SELECT a.IdArticulo, a.Codigo, a.Nombre, a.Descripcion, a.Estado, a.Precio, a.ImgUrl, 
+            m.Nombre AS Marca, c.Nombre AS Categoria
+            FROM ARTICULOS a
+            INNER JOIN MARCAS m ON a.IdMarca = m.Id
+            INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id
+            WHERE (a.Nombre LIKE @DatoSolicitado OR a.Descripcion LIKE @DatoSolicitado) AND a.Estado = 1");
 
-                Datos.setearParametro("@searchTerm", "%" + searchTerm + "%");
+                Datos.setearParametro("@DatoSolicitado", "%" + DatoSolicitado + "%");
                 Datos.ejecutarLectura();
 
                 while (Datos.Lector.Read())
@@ -182,6 +182,7 @@ namespace Negocio
                     art.Marca = (string)Datos.Lector["Marca"];
                     art.categoria = (string)Datos.Lector["Categoria"];
                     art.UrlImagen = (string)Datos.Lector["ImgUrl"];
+                    art.Estado = (bool)Datos.Lector["Estado"];
                     lista.Add(art);
                 }
             }
@@ -196,6 +197,7 @@ namespace Negocio
 
             return lista;
         }
+
 
         public List<string> ObtenerImagenes(int idArt)
         {
@@ -248,9 +250,13 @@ namespace Negocio
                         Descripcion = (string)datos.Lector["DescripcionArticulo"],
                         Precio = (decimal)datos.Lector["Precio"],
                         categoria = (string)datos.Lector["NombreCategoria"],
-                        UrlImagen = (string)datos.Lector["Img"]
+                        UrlImagen = (string)datos.Lector["Img"],
+                        Estado = (bool)datos.Lector["Estado"]
                     };
+                    
                     lista.Add(aux);
+                    
+                    
                 }
 
                 return lista;

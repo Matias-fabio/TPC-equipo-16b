@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -104,7 +105,7 @@ namespace ecommerce
                     if (string.IsNullOrEmpty(categoriaID))
                     {
                         // Si no se pasa un ID de categoría, se cargan todos los productos
-                        ListaArticulos = negocioArticulo.listarArticulosPaginacion(1, 15);
+                        ListaArticulos = negocioArticulo.listarArticulosPaginacion(1, 15); 
                         lblCategoria.Text = "Todos los productos";
                     }
                     else
