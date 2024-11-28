@@ -24,6 +24,8 @@
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" type="text"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" 
                             ErrorMessage="El campo de nombre es obligatorio." CssClass="text-danger" Display="Dynamic" />
+                            <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="txtNombre" 
+                                ErrorMessage="El nombre no debe contener caracteres especiales ni números." ValidationExpression="^[a-zA-Z]+$" CssClass="text-danger" Display="Dynamic" />
                         </div>
 
                         <div class="col-md-6">
@@ -31,6 +33,8 @@
                             <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" type="text"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvApellido" runat ="server" ControlToValidate="txtApellido"
                               ErrorMessage="El campo de apellido es obligatorio." CssClass="text-danger" Display="Dynamic" /> 
+                            <asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="txtApellido" 
+                                ErrorMessage="El apellido no debe contener caracteres especiales ni números." ValidationExpression="^[a-zA-Z]+$" CssClass="text-danger" Display="Dynamic" />
                         </div>
 
                         <div class="col-md-6">
@@ -38,6 +42,8 @@
                             <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" type="text"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvTelefono" runat ="server" ControlToValidate="txtTelefono"
                             ErrorMessage="El campo de telefono es obligatorio." CssClass="text-danger" Display="Dynamic" /> 
+                            <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" 
+                                ErrorMessage="El teléfono debe tener un máximo de 13 caracteres." ValidationExpression="^\d{1,13}$" CssClass="text-danger" Display="Dynamic" />
                         </div>
 
                         <div class="col-12">
@@ -52,6 +58,8 @@
                             <asp:TextBox ID="txtContraseña" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtContraseña"
                                 ErrorMessage="El campo de contraseña es obligatorio." CssClass="text-danger" Display="Dynamic" />
+                            <asp:RegularExpressionValidator ID="revContraseña" runat="server" ControlToValidate="txtContraseña" 
+                                ErrorMessage="La contraseña debe tener entre 8 y 16 caracteres." ValidationExpression="^.{8,16}$" CssClass="text-danger" Display="Dynamic" /> </div>
                         </div>
 
                         <div class="col-12 mt-4">
