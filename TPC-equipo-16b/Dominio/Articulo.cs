@@ -19,6 +19,7 @@ namespace Dominio
         public string categoria { get; set; }
         public string Marca { get; set; }
         public int Cantidad { get; set; } 
+        public bool Estado { get; set; }
     }
 
 }

@@ -13,7 +13,7 @@
                     <th>Articulo</th>
                     <th>Precio</th>
                     <th>Stock</th>
-
+                    <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +24,7 @@
                             <td><%# Eval("Nombre") %></td>
                             <td><%# Eval("Precio") %></td>
                             <td><%# Eval("Cantidad") %></td>
-                      
+                            <td><%# Eval("Estado", "{0:Activo;Inactivo}") %></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
