@@ -102,15 +102,21 @@
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <asp:TextBox ID="txtDireccion" CssClass="form-control" runat="server" Placeholder="Dirección *"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion" 
+                                                ErrorMessage="El campo de dirección es obligatorio." CssClass="text-danger" Display="Dynamic" />
                                         </div>
                                         <div class="row g-3">
                                             <div class="col">
                                                 <label for="inputCiudad" class="form-label">Ciudad</label>
                                                 <asp:TextBox ID="txtCiudad" CssClass="form-control" runat="server" Placeholder="Ciudad"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvCiudad" runat="server" ControlToValidate="txtCiudad" 
+                                                    ErrorMessage="El campo de ciudad es obligatorio." CssClass="text-danger" Display="Dynamic" />
                                             </div>
                                             <div class="col">
                                                 <label for="inputProvincia" class="form-label">Provincia</label>
                                                 <asp:TextBox ID="txtProv" CssClass="form-control" runat="server" Placeholder="Provincia"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="txtProv" 
+                                                    ErrorMessage="El campo de provincia es obligatorio." CssClass="text-danger" Display="Dynamic" />
                                             </div>
                                         </div>
                                         <asp:UpdatePanel runat="server">
@@ -167,16 +173,28 @@
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                     <div class="mb-3">
-                                                        <asp:TextBox ID="txtNumeroTarjeta" CssClass="form-control" runat="server" Placeholder="Número de tarjeta" AutoPostBack="true" OnTextChanged="txtNumeroTarjeta_TextChanged"></asp:TextBox>
+                                                        <asp:TextBox ID="txtNumeroTarjeta" CssClass="form-control" runat="server" Placeholder="Número de tarjeta" MaxLength="16"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvNumeroTarjeta" runat="server" ControlToValidate="txtNumeroTarjeta" 
+                                                            ErrorMessage="El número de tarjeta es obligatorio." CssClass="text-danger" Display="Dynamic" />
+                                                        <asp:RegularExpressionValidator ID="revNumeroTarjeta" runat="server" ControlToValidate="txtNumeroTarjeta" 
+                                                            ErrorMessage="El número de tarjeta debe contener solo números y tener 16 dígitos." ValidationExpression="^\d{16}$" CssClass="text-danger" Display="Dynamic" />
                                                     </div>
                                                     <div class="mb-3">
-                                                        <asp:TextBox ID="txtNombreTitular" CssClass="form-control" runat="server" Placeholder="Nombre del titular" AutoPostBack="true" OnTextChanged="txtNombreTitular_TextChanged"></asp:TextBox>
+                                                        <asp:TextBox ID="txtNombreTitular" CssClass="form-control" runat="server" Placeholder="Nombre del titular"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvNombreTitular" runat="server" ControlToValidate="txtNombreTitular" 
+                                                            ErrorMessage="El nombre del titular es obligatorio." CssClass="text-danger" Display="Dynamic" />
                                                     </div>
                                                     <div class="mb-3">
-                                                        <asp:TextBox ID="txtFechaVencimiento" CssClass="form-control" runat="server" Placeholder="Fecha de vencimiento (MM/YY)" AutoPostBack="true" OnTextChanged="txtFechaVencimiento_TextChanged"></asp:TextBox>
+                                                        <asp:TextBox ID="txtFechaVencimiento" CssClass="form-control" runat="server" Placeholder="Fecha de vencimiento (MM/YY)" MaxLength="5"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvFechaVencimiento" runat="server" ControlToValidate="txtFechaVencimiento" 
+                                                            ErrorMessage="La fecha de vencimiento es obligatoria." CssClass="text-danger" Display="Dynamic" />
                                                     </div>
                                                     <div class="mb-3">
-                                                        <asp:TextBox ID="txtCVV" CssClass="form-control" runat="server" Placeholder="CVV" AutoPostBack="true" OnTextChanged="txtCVV_TextChanged"></asp:TextBox>
+                                                        <asp:TextBox ID="txtCVV" CssClass="form-control" runat="server" Placeholder="CVV" MaxLength="3"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvCVV" runat="server" ControlToValidate="txtCVV" 
+                                                            ErrorMessage="El CVV es obligatorio." CssClass="text-danger" Display="Dynamic" />
+                                                        <asp:RegularExpressionValidator ID="revCVV" runat="server" ControlToValidate="txtCVV" 
+                                                            ErrorMessage="El CVV debe contener solo números y tener 3 dígitos." ValidationExpression="^\d{3}$" CssClass="text-danger" Display="Dynamic" />
                                                     </div>
                                                 </asp:Panel>
                                                 <asp:Panel ID="pnlTranferencia" runat="server" Visible="false">
@@ -195,6 +213,8 @@
                                                         <li>Al procesar correctamente el pago de notificara en el mail registrado(revisar SPAM).</li>
                                                     </ul>
                                                     <asp:FileUpload ID="fUComprobante" runat="server" CssClass="form-control" />
+                                                    <asp:RequiredFieldValidator ID="rfvComprobante" runat="server" ControlToValidate="fUComprobante" 
+                                                        ErrorMessage="El comprobante es obligatorio." InitialValue="" CssClass="text-danger" Display="Dynamic" />
                                                 </asp:Panel>
                                                 <div class="d-flex justify-content-between">
                                                     <asp:Button ID="btnBack2" CssClass="btn btn-secondary" runat="server" Text="Volver" OnClientClick="showStep(2); return false;" />

@@ -213,6 +213,15 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.TextBox txtDireccion;
 
         /// <summary>
+        /// Control rfvDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDireccion;
+
+        /// <summary>
         /// Control txtCiudad.
         /// </summary>
         /// <remarks>
@@ -222,6 +231,15 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.TextBox txtCiudad;
 
         /// <summary>
+        /// Control rfvCiudad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCiudad;
+
+        /// <summary>
         /// Control txtProv.
         /// </summary>
         /// <remarks>
@@ -229,6 +247,15 @@ namespace ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProv;
+
+        /// <summary>
+        /// Control rfvProvincia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvProvincia;
 
         /// <summary>
         /// Control ddlZonaEnvio.
@@ -339,6 +366,24 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.TextBox txtNumeroTarjeta;
 
         /// <summary>
+        /// Control rfvNumeroTarjeta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNumeroTarjeta;
+
+        /// <summary>
+        /// Control revNumeroTarjeta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revNumeroTarjeta;
+
+        /// <summary>
         /// Control txtNombreTitular.
         /// </summary>
         /// <remarks>
@@ -346,6 +391,15 @@ namespace ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombreTitular;
+
+        /// <summary>
+        /// Control rfvNombreTitular.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombreTitular;
 
         /// <summary>
         /// Control txtFechaVencimiento.
@@ -357,6 +411,15 @@ namespace ecommerce
         protected global::System.Web.UI.WebControls.TextBox txtFechaVencimiento;
 
         /// <summary>
+        /// Control rfvFechaVencimiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFechaVencimiento;
+
+        /// <summary>
         /// Control txtCVV.
         /// </summary>
         /// <remarks>
@@ -364,6 +427,24 @@ namespace ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCVV;
+
+        /// <summary>
+        /// Control rfvCVV.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCVV;
+
+        /// <summary>
+        /// Control revCVV.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revCVV;
 
         /// <summary>
         /// Control pnlTranferencia.
@@ -382,6 +463,15 @@ namespace ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fUComprobante;
+
+        /// <summary>
+        /// Control rfvComprobante.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvComprobante;
 
         /// <summary>
         /// Control btnBack2.
