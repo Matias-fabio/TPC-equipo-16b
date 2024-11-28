@@ -23,7 +23,7 @@ namespace ecommerce
             }
             else
             {
-
+                
                 ListaArticulos = Session["ListaArticulos"] as List<Articulo>;
 
                 if (ListaArticulos != null)
@@ -59,6 +59,7 @@ namespace ecommerce
             {
                 if (string.IsNullOrEmpty(categoriaID))
                 {
+                    
                     ListaArticulos = negocioArticulo.listarArticulosPaginacion(1, 26);
                     lblCategoria.Text = "Todos los productos";
                 }

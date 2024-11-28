@@ -12,7 +12,7 @@ namespace Negocio
         {
             const string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             Random random = new Random();
-            return new string(Enumerable.Repeat(caracteres, 10)
+            return new string(Enumerable.Repeat(caracteres, 16)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }

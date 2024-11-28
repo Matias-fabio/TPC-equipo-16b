@@ -31,7 +31,7 @@
             <asp:LinkButton ID="BotonConfirmar" runat="server" CssClass="custom-button" type="button" OnClick="BotonConfirmar_Click">
             <h5 class="Titulo">Confirmar</h5>
             </asp:LinkButton>
-            <asp:LinkButton ID="BotonVolver" runat="server" CssClass="custom-button" type="button">
+            <asp:LinkButton ID="BotonVolver" runat="server" CssClass="custom-button" type="button" OnClick="BotonVolver_Click" CausesValidation="false">
             <h5 class="Titulo">Volver</h5>
             </asp:LinkButton>
         </div>
