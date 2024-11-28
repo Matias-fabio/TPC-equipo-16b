@@ -27,7 +27,7 @@ namespace ecommerce
                         txtEmail.ReadOnly = true;
                         txtNombre.Text = user.Nombre;
                         txtApellido.Text = user.Apellido;
-
+                        CargarCompras();
                     }
                 }
 
@@ -38,6 +38,21 @@ namespace ecommerce
             }
 
         }
+        protected void CargarCompras()
+        {
+            try
+            {
+                Cliente cliente = (Cliente)Session["cliente"];
+                NegocioVenta negocio = new NegocioVenta(); // Clase que gestiona VENTAS
+                gvCompras.DataSource = negocio.ObtenerVentasPorCliente(cliente.ID); // Método para obtener datos
+                gvCompras.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+            }
+        }
+
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {

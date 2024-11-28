@@ -21,6 +21,17 @@ namespace ecommerce
         {
             if (!IsPostBack)
             {
+                if (Seguridad.sessionActiva(Session["cliente"]))
+                {
+                    Cliente user = (Cliente)Session["cliente"];
+                    txtEmail.Text = user.Email;
+                    txtNombre.Text = user.Nombre;
+                    txtApellido.Text = user.Apellido;
+                    txtTelefono.Text = user.Telefono;
+                    string script = "showStep(2);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "showStepScript", script, true);
+
+                }
                 if (Session["Carrito"] != null)
                 {
                     List<Articulo> carrito = (List<Articulo>)Session["Carrito"];
@@ -92,6 +103,9 @@ namespace ecommerce
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+                return;
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text;
             if (string.IsNullOrEmpty(password))
@@ -113,15 +127,18 @@ namespace ecommerce
                     Session["Usuario"] = clienteExistente;
 
                     btnNext1.Enabled = true;
+                    if (Seguridad.sessionActiva(Session["cliente"]))
+                    {
+                        txtNombre.Text = clienteExistente.Nombre;
+                        txtApellido.Text = clienteExistente.Apellido;
+                        txtTelefono.Text = clienteExistente.Telefono;
+                        lblEmailExistente.Text = "INGRESADO CON EXITO";
+                        string script = "showStep(2);";
+                        ClientScript.RegisterStartupScript(this.GetType(), "showStepScript", script, true);
 
-                    txtNombre.Text = clienteExistente.Nombre.ToString();
-                    txtApellido.Text = clienteExistente.Apellido.ToString();
-                    txtTelefono.Text = clienteExistente.Telefono.ToString();
-                    lblEmailExistente.Text = "INGRESADO CON EXITO";
-                    string script = "showStep(2);";
-                    ClientScript.RegisterStartupScript(this.GetType(), "showStepScript", script, true);
+                        UpdatePanel1.Update();
 
-                    UpdatePanel1.Update();
+                    }
 
                 }
                 else
@@ -181,7 +198,7 @@ namespace ecommerce
 
                     Session["Usuario"] = clienteExistente;
                     lblError.Visible = false;
-                    string script = "showStep(2);"; 
+                    string script = "showStep(2);";
                     ClientScript.RegisterStartupScript(this.GetType(), "showStepScript", script, true);
                 }
                 else

@@ -53,14 +53,6 @@ namespace ecommerce
                     LblPerfil.Text = user.Nombre;
 
                 }
-                //if (Session["UsuarioLogueado"] != null)
-                //{
-
-                //    btnIngresar.Visible = false; // Ocultar botón de ingresar si el usuario está logueado
-                //    btnDesloguear.Visible = true; // Mostrar botón de desloguear si el usuario está logueado
-                //    LnBPerfil.Visible = true;
-                //    LblPerfil.Text = 
-                //}
                 else
                 {
                     btnIngresar.Visible = true; // Mostrar botón de ingresar si el usuario no está logueado

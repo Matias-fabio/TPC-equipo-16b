@@ -85,7 +85,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex; // Manejar el error de forma adecuada en producción
+                throw ex; // Manejar el error de forma adecuada 
             }
             finally
             {

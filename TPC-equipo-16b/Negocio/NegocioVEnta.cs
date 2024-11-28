@@ -83,7 +83,8 @@ namespace Negocio
             AccesoDatos accesoDatos = new AccesoDatos();
             try
             {
-                accesoDatos.setearConsulta("SELECT Dv.DetalleVentaID, Dv.NumVenta, A.Nombre AS Articulo, Dv.Cantidad, Dv.Precio FROM DetalleVenta Dv INNER JOIN ARTICULOS A ON Dv.IdArticulo = A.IdArticulo WHERE NumVenta = @NumVenta");
+                accesoDatos.setearConsulta("SELECT Dv.DetalleVentaID, Dv.NumVenta, A.Nombre AS Articulo, Dv.Cantidad, Dv.Precio" +
+                    "FROM DetalleVenta Dv INNER JOIN ARTICULOS A ON Dv.IdArticulo = A.IdArticulo WHERE NumVenta = @NumVenta");
                 accesoDatos.setearParametro("@NumVenta", numVenta);
 
                 accesoDatos.ejecutarLectura();
@@ -108,11 +109,7 @@ namespace Negocio
             }
         }
 
-
-
-
-
-            public List<Venta> listarVentas()
+        public List<Venta> listarVentas()
         {
             List<Venta> listaVenta = new List<Venta>();
             AccesoDatos datos = new AccesoDatos();
@@ -144,10 +141,6 @@ namespace Negocio
                 throw ex;
             }
         }
-
-
-        // Otros métodos...
-
         public void ActualizarEstadoVenta(int numVenta, int idEstado)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -168,6 +161,45 @@ namespace Negocio
             }
 
         }
+        public List<Venta> ObtenerVentasPorCliente(int idCliente)
+        {
+            List<Venta> listaVentas = new List<Venta>();
+            AccesoDatos datos = new AccesoDatos();
+            string consulta = "SELECT V.NumVenta, V.FechaVenta, E.NombreEstado AS Estado, V.TotalVenta, M.MetodoPago AS MetodoPago FROM VENTAS V INNER JOIN EstadoPedido E ON V.IdEstado = E.IdEstado INNER JOIN MetodoPago M ON V.IdMetodoPago = M.IdMetodoPago WHERE V.IdUsuario = @IdUsuario;";
+            try
+            {
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@IdUsuario", idCliente);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Venta aux = new Venta();
+
+                    aux.NumVenta = (int)datos.Lector["NumVenta"];
+                    aux.FechaVenta = (DateTime)datos.Lector["FechaVenta"];
+                    aux.TotalVenta = (decimal)datos.Lector["TotalVenta"];
+                    aux.MetodoPago = new MetodoPago();
+                    aux.MetodoPago.MetodoNombre = (string)datos.Lector["MetodoPago"];
+                    aux.Estado = new Estado();
+                    aux.Estado.NombreEstado = (string)datos.Lector["Estado"];
+
+                    listaVentas.Add(aux);
+                }
+
+                return listaVentas;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
     }
 }
 
