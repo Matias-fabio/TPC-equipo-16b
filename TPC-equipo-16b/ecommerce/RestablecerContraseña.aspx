@@ -27,11 +27,13 @@
                             </div>
                             <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" 
                                 ErrorMessage="El campo de email es obligatorio." CssClass="text-danger" display="Dynamic"/>
+                            <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" 
+                                ErrorMessage="Por favor, ingrese un email válido." ValidationExpression="\w+([-+.’']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" CssClass="text-danger" Display="Dynamic" />
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label for="txtContraseña1" class="form-label">Contraseña</label>
+                            <label for="txtContraseña1" class="form-label">Contraseña (Entre 8 y 16 caracter)</label>
                             <div class="input-group">
                                 <span class="input-group-text">
                                     <i class="fas fa-key"></i>
@@ -40,11 +42,13 @@
                             </div>
                             <asp:RequiredFieldValidator ID="rfvContraseña1" runat="server" ControlToValidate="txtContraseña1" 
                                 ErrorMessage="El campo de contraseña es obligatorio." CssClass="text-danger" display="Dynamic"/>
+                            <asp:RegularExpressionValidator ID="revContraseña1" runat="server" ControlToValidate="txtContraseña1" 
+                                ErrorMessage="La contraseña debe tener entre 8 y 16 caracteres." ValidationExpression="^.{8,16}$" CssClass="text-danger" Display="Dynamic" />
                             <span asp-validation-for="Contraseña1" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label for="txtContraseña2" class="form-label">Confirme Contraseña</label>
+                            <label for="txtContraseña2" class="form-label">Confirme Contraseña (Entre 8 y 16 caracter)</label>
                             <div class="input-group">
                                 <span class="input-group-text">
                                     <i class="fas fa-key"></i>
@@ -53,6 +57,8 @@
                             </div>
                             <asp:RequiredFieldValidator ID="rfvContraseña2" runat="server" ControlToValidate="txtContraseña2" 
                                 ErrorMessage="El campo de confirmación de contraseña es obligatorio." CssClass="text-danger" display="Dynamic"/>
+                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="txtContraseña2" ControlToCompare="txtContraseña1" 
+                                ErrorMessage="Las contraseñas no coinciden." CssClass="text-danger" Display="Dynamic"/>
                             <asp:CompareValidator ID="cvContraseñas" runat="server" ControlToValidate="txtContraseña2" ControlToCompare="txtContraseña1" 
                                 ErrorMessage="Las contraseñas no coinciden." CssClass="text-danger" />
                             <span asp-validation-for="Contraseña2" class="text-danger"></span>
