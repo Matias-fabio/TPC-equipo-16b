@@ -78,11 +78,11 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "SELECT A.IdArticulo, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, A.Precio, A.ImgUrl AS Img, C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca " +
+                string consulta = "SELECT A.IdArticulo, A.Codigo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, A.Precio, A.ImgUrl AS Img, A.Estado , C.Nombre AS NombreCategoria, M.Nombre AS NombreMarca " +
                                   "FROM ARTICULOS A " +
                                   "JOIN CATEGORIAS C ON A.IdCategoria = C.Id " +
                                   "JOIN MARCAS M ON A.IdMarca = M.Id " +
-                                  "WHERE A.IdCategoria = @CategoriaID";
+                                  "WHERE A.IdCategoria = @CategoriaID and A.Estado = 1";
                 //pasar consulta a stored procedure
                 datos.setearConsulta(consulta);
                 datos.setearParametro("@CategoriaID", categoriaID);
@@ -98,6 +98,7 @@ namespace Negocio
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.categoria = (string)datos.Lector["NombreCategoria"];
                     aux.UrlImagen = (string)datos.Lector["Img"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
                     lista.Add(aux);
                 }
             }
