@@ -1,0 +1,49 @@
+﻿body {
+}
+.button-container {
+    max-width: 36rem;
+    width: 100%;
+}
+
+.custom-button {
+    background-color: #ffc756 !important;
+    border: none !important;
+    padding: 1.5rem 2rem !important;
+    border-radius: 0.5rem !important;
+    color: #1a1a1a !important;
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.2s ease-in-out !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    text-decoration: none;
+}
+
+    .custom-button:hover {
+        background-color: #ffb726 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .custom-button:focus {
+        outline: none !important;
+        box-shadow: 0 0 0 4px rgba(255, 199, 86, 0.5) !important;
+    }
+
+.button-title {
+    margin: 0 !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.titulo-admin {
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+}
+

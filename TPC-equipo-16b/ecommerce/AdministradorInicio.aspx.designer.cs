@@ -15,6 +15,15 @@ namespace ecommerce
     {
 
         /// <summary>
+        /// Control formulario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl formulario;
+
+        /// <summary>
         /// Control botonArticulo.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace ecommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton BotonMarcas;
+
+        /// <summary>
+        /// Control BotonUsuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton BotonUsuarios;
 
         /// <summary>
         /// Control botonHistoriaVentas.

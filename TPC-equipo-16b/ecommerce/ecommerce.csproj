@@ -74,6 +74,7 @@
     <Content Include="Error.aspx" />
     <Content Include="estilos\checkout.css" />
     <Content Include="estilos\historialVentas.css" />
+    <Content Include="estilos\LadoAdmin.css" />
     <Content Include="estilos\perfilUsuario.css" />
     <Content Include="estilos\ventaDetallada.css" />
     <Content Include="MasStock.aspx" />

@@ -44,5 +44,20 @@ namespace ecommerce
         {
             Response.Redirect("HistorialVentasOpciones.aspx");
         }
+
+        protected void BotonUsuario_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BotonUsuario_Click2(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BotonUsuarios_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
