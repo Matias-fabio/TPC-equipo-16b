@@ -53,7 +53,7 @@ namespace ecommerce
 
         protected void DardeAltaArticulo_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("DarDeAltaArticulo.aspx");
         }
     }
 }
